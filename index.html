@@ -302,10 +302,8 @@
 
       
         
-          
-            <p>让代码比你来时干净</p>
-<p>####一、有意义的命名</p>
-<ol>
+          <p>让代码比你来时干净</p>
+<h4 id="一、有意义的命名"><a href="#一、有意义的命名" class="headerlink" title="一、有意义的命名"></a>一、有意义的命名</h4><ol>
 <li>变量、函数或者类的名称应该告诉你它为什么存在，它做什么事情，应该怎么用。</li>
 <li>要名副其实，让人明白代码是做了什么事情</li>
 <li>避免误导。如不是数组不要以list结尾，可以用group或者直接用复数形式。避免使用很相似的命名。</li>
@@ -316,28 +314,20 @@
 <li>避免一个单词用于不同目的。</li>
 <li>使用命名代替魔术数字。使用SECONDS_PER_DAY代替86400。</li>
 </ol>
-<p>####二、函数</p>
-<ol>
+<h4 id="二、函数"><a href="#二、函数" class="headerlink" title="二、函数"></a>二、函数</h4><ol>
 <li>短小。函数不应该长于一屏。</li>
 <li>只做一件事情。</li>
 <li>参数。少用多参数，如果有三个以上参数，可以将其封装为对象。参数的名字与函数的名字应该有良好的关系</li>
 <li>无副作用。副作用就是做与名字无关的事情。</li>
 <li>不重复。</li>
 </ol>
-<p>####三、注释<br>注释的恰当用法是弥补我们用代码表达意图时遭遇的失败。注释的更新不及时。只有代码才是真实的。</p>
-<ol>
-<li>注释不能美化糟糕的代码。</li>
-<li>用代码代替注释</li>
-<li>好注释。提供信息的注释，解释意图的注释。TODO。警示。</li>
-<li>坏注释。多余的注释、废弃的注释、糟糕的注释、被注释的代码。</li>
-</ol>
-<p>####四、格式</p>
-<ol>
-<li>垂直格式。空白行分割代码，相关联的代码应该互相靠近。变量声明尽可能靠近使用位。函数调用者在被调用者的上面。</li>
-<li>水平格式。遵循代码规范。</li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/04/代码整洁之道读书笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -457,16 +447,16 @@
 
       
         
-          
-            <p>网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。</p>
+          <p>网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。</p>
 <h4 id="获取API授权码"><a href="#获取API授权码" class="headerlink" title="获取API授权码"></a>获取API授权码</h4><p>来到<a href="https://tinypng.com/" target="_blank" rel="external">https://tinypng.com/</a>，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。</p>
 <h4 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h4><p>需要用到 gulp-util 模块， gulp-tinypng 模块</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i gulp-util gulp-tinypng --save</div></pre></td></tr></table></figure>
-<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>想要指定待压缩图片的来源位置和是否覆盖源文件，而不用每次都修改配置文件，经查询，gulp-util可以支持命令行中传递参数，而gulp.dest(data =&gt; data.base)可以覆盖源文件。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'imagemin'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> src = util.env.photopath ? <span class="string">'图片的默认地址'</span> : util.env.photopath</div><div class="line">  <span class="keyword">if</span> (util.env.overwrite) &#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(src)</div><div class="line">    .pipe(tinypng(<span class="string">'前面获取的授权码'</span>))</div><div class="line">    .pipe(gulp.dest(<span class="function"><span class="params">data</span> =&gt;</span> data.base))</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(src)</div><div class="line">        .pipe(tinypng(<span class="string">'前面获取的授权码'</span>))</div><div class="line">        .pipe(gulp.dest(<span class="string">'图片的输出地址'</span>))</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gulp imagemin <span class="comment">// 使用默认的源图片地址，不覆盖源图片</span></div><div class="line">gulp imagemin --photopath <span class="string">'源图片的地址'</span> --overwrite <span class="literal">true</span>   <span class="comment">//自定义地址，覆盖源文件的情况</span></div></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/20/使用gulp-tinypng-压缩图片/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

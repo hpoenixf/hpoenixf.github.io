@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。 获取API授权码来到https://tinypng.com/，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。 安装模块需要用到 gulp-util 模块， gulp-tinypng 模块 1npm i gulp-util gulp-tinypng --sa">
+<meta name="description" content="网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。 获取API授权码来到https://tinypng.com/，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。 安装模块需要用到 gulp-util 模块， gulp-tinypng 模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用gulp-tinypng 压缩图片">
 <meta property="og:url" content="http://yoursite.com/2017/05/20/使用gulp-tinypng-压缩图片/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。 获取API授权码来到https://tinypng.com/，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。 安装模块需要用到 gulp-util 模块， gulp-tinypng 模块 1npm i gulp-util gulp-tinypng --sa">
-<meta property="og:updated_time" content="2017-05-20T11:18:45.262Z">
+<meta property="og:description" content="网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。 获取API授权码来到https://tinypng.com/，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。 安装模块需要用到 gulp-util 模块， gulp-tinypng 模块">
+<meta property="og:updated_time" content="2017-06-03T16:26:24.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用gulp-tinypng 压缩图片">
-<meta name="twitter:description" content="网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。 获取API授权码来到https://tinypng.com/，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。 安装模块需要用到 gulp-util 模块， gulp-tinypng 模块 1npm i gulp-util gulp-tinypng --sa">
+<meta name="twitter:description" content="网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。 获取API授权码来到https://tinypng.com/，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。 安装模块需要用到 gulp-util 模块， gulp-tinypng 模块">
 
 
 
@@ -304,6 +304,7 @@
         <p>网上gulp压缩图片使用的方法大多数是使用gulp-imagemin，不知道为什么总是失败，便尝试了使用别的方法，作为一种补充吧。</p>
 <h4 id="获取API授权码"><a href="#获取API授权码" class="headerlink" title="获取API授权码"></a>获取API授权码</h4><p>来到<a href="https://tinypng.com/" target="_blank" rel="external">https://tinypng.com/</a>，注册获取授权码，每个月可以压缩五百张图片。正常来说够用了。</p>
 <h4 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h4><p>需要用到 gulp-util 模块， gulp-tinypng 模块</p>
+<a id="more"></a>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i gulp-util gulp-tinypng --save</div></pre></td></tr></table></figure>
 <h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>想要指定待压缩图片的来源位置和是否覆盖源文件，而不用每次都修改配置文件，经查询，gulp-util可以支持命令行中传递参数，而gulp.dest(data =&gt; data.base)可以覆盖源文件。</p>
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'imagemin'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> src = util.env.photopath ? <span class="string">'图片的默认地址'</span> : util.env.photopath</div><div class="line">  <span class="keyword">if</span> (util.env.overwrite) &#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(src)</div><div class="line">    .pipe(tinypng(<span class="string">'前面获取的授权码'</span>))</div><div class="line">    .pipe(gulp.dest(<span class="function"><span class="params">data</span> =&gt;</span> data.base))</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(src)</div><div class="line">        .pipe(tinypng(<span class="string">'前面获取的授权码'</span>))</div><div class="line">        .pipe(gulp.dest(<span class="string">'图片的输出地址'</span>))</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
