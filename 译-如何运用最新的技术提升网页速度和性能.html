@@ -276,6 +276,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/译-如何运用最新的技术提升网页速度和性能.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -530,6 +540,8 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
           
   <div class="comments" id="comments">
     
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
   </div>
 
 
@@ -576,7 +588,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +599,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -598,7 +610,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -675,7 +687,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2016 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -806,18 +818,21 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
 
 
   
-
-
-
-
-
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "c70f40658aa04c8faf5c8b961928da58",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
 
 
 
 
-
-  
 
 
 
