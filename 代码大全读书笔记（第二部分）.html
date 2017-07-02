@@ -1,0 +1,1260 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="软件构件中的设计设计中的挑战软件设计就是把需求分析和编码调试连在一起的活动。 设计是一个险恶的问题险恶的问题就是只有通过解决或部分解决才能被明确的问题。只有把问题解决一遍才能明确的定义它，然后再次解决该问题，形成可行的方案。就如同设计大桥时值考虑了是否结实，没考虑到风的影响，最终风让大桥坍塌。 设计是一个了章法的过程形成设计的过程会采取很多错误的步奏，多次误入歧途。犯错正是设计的关键所在。设计过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码大全读书笔记（第二部分）">
+<meta property="og:url" content="http://hpoenixf.com/代码大全读书笔记（第二部分）.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="软件构件中的设计设计中的挑战软件设计就是把需求分析和编码调试连在一起的活动。 设计是一个险恶的问题险恶的问题就是只有通过解决或部分解决才能被明确的问题。只有把问题解决一遍才能明确的定义它，然后再次解决该问题，形成可行的方案。就如同设计大桥时值考虑了是否结实，没考虑到风的影响，最终风让大桥坍塌。 设计是一个了章法的过程形成设计的过程会采取很多错误的步奏，多次误入歧途。犯错正是设计的关键所在。设计过程">
+<meta property="og:updated_time" content="2017-07-02T17:01:41.953Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码大全读书笔记（第二部分）">
+<meta name="twitter:description" content="软件构件中的设计设计中的挑战软件设计就是把需求分析和编码调试连在一起的活动。 设计是一个险恶的问题险恶的问题就是只有通过解决或部分解决才能被明确的问题。只有把问题解决一遍才能明确的定义它，然后再次解决该问题，形成可行的方案。就如同设计大桥时值考虑了是否结实，没考虑到风的影响，最终风让大桥坍塌。 设计是一个了章法的过程形成设计的过程会采取很多错误的步奏，多次误入歧途。犯错正是设计的关键所在。设计过程">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/代码大全读书笔记（第二部分）.html"/>
+
+
+
+
+
+  <title>代码大全读书笔记（第二部分） | hpoenixf's blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Travel alone</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/代码大全读书笔记（第二部分）.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">代码大全读书笔记（第二部分）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T01:01:27+08:00">
+                2017-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/代码大全读书笔记（第二部分）.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/代码大全读书笔记（第二部分）.html" class="leancloud_visitors" data-flag-title="代码大全读书笔记（第二部分）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="软件构件中的设计"><a href="#软件构件中的设计" class="headerlink" title="软件构件中的设计"></a>软件构件中的设计</h4><h5 id="设计中的挑战"><a href="#设计中的挑战" class="headerlink" title="设计中的挑战"></a>设计中的挑战</h5><p>软件设计就是把需求分析和编码调试连在一起的活动。</p>
+<h6 id="设计是一个险恶的问题"><a href="#设计是一个险恶的问题" class="headerlink" title="设计是一个险恶的问题"></a>设计是一个险恶的问题</h6><p>险恶的问题就是只有通过解决或部分解决才能被明确的问题。只有把问题解决一遍才能明确的定义它，然后再次解决该问题，形成可行的方案。就如同设计大桥时值考虑了是否结实，没考虑到风的影响，最终风让大桥坍塌。</p>
+<h6 id="设计是一个了章法的过程"><a href="#设计是一个了章法的过程" class="headerlink" title="设计是一个了章法的过程"></a>设计是一个了章法的过程</h6><p>形成设计的过程会采取很多错误的步奏，多次误入歧途。犯错正是设计的关键所在。设计过程犯错并改正比编码后才发现代价要小得多。设计的优劣差异微妙。很难判断设计何时才算足够好了，永无止尽。</p>
+<h6 id="设计就是确定取舍和调整顺序的过程"><a href="#设计就是确定取舍和调整顺序的过程" class="headerlink" title="设计就是确定取舍和调整顺序的过程"></a>设计就是确定取舍和调整顺序的过程</h6><p>设计的关键内容就是去衡量彼此冲突的各项设计特性，并寻找平衡。</p>
+<h6 id="设计受到诸多限制"><a href="#设计受到诸多限制" class="headerlink" title="设计受到诸多限制"></a>设计受到诸多限制</h6><p>一部分在创造可能发生的事情，另一部分在限制可能发生的事情。</p>
+<h6 id="设计是不确定的"><a href="#设计是不确定的" class="headerlink" title="设计是不确定的"></a>设计是不确定的</h6><p>设计同一套程序可能有很多种做法，每种都很不错。</p>
+<h6 id="设计是启发式过程"><a href="#设计是启发式过程" class="headerlink" title="设计是启发式过程"></a>设计是启发式过程</h6><p>设计具有探索性，不能保证能产生可重复性结果。总有试验和犯错误。没有通用的设计或技术</p>
+<h6 id="设计是自然而然形成的"><a href="#设计是自然而然形成的" class="headerlink" title="设计是自然而然形成的"></a>设计是自然而然形成的</h6><p>设计不是在谁的头脑中直接跳出来的，是在不断的设计评估、非正式讨论、写实验代码以及修改试验代码中演化和完善的。</p>
+<h5 id="关键的设计概念"><a href="#关键的设计概念" class="headerlink" title="关键的设计概念"></a>关键的设计概念</h5><h6 id="软件的首要技术使命：管理复杂度"><a href="#软件的首要技术使命：管理复杂度" class="headerlink" title="软件的首要技术使命：管理复杂度"></a>软件的首要技术使命：管理复杂度</h6><p>本质的问题和偶然的问题让软件开发变得困难。本质属性是指事物必须具备，不具备就不是该事物的属性，如汽车的轮子、车门和引擎。偶然属性是事物碰巧具有的属性。如汽车的v8发动机或是涡轮增压四缸发动机。<br>本质困难的根源在于复杂性。项目由于技术因素导致失败时，原因通常是失控的复杂度。我们不应该试着在同一时间把整个程序塞入大脑，应该去组织程序，使得可以在一个时刻专注于一个特定的部分，从而介绍任一时间内考虑的程序量。把整个系统分解为多个子系统来降低问题的复杂度。子系统的互相依赖越少，越容易专注问题。<br>高代价低效率的设计源于下面三种根源：用复杂的方法解决简单的问题、用简单但错误的方法解决复杂的问题、用不恰当的复杂方法解决复杂的问题。<br>用两种方法管理复杂度。把任何人在同一时间需要处理的本质复杂度减到最少、不要让偶然性复杂度无谓的快速增长。</p>
+<h6 id="理想的设计特征"><a href="#理想的设计特征" class="headerlink" title="理想的设计特征"></a>理想的设计特征</h6><p>高质量的设计的设计范畴特征</p>
+<ol>
+<li>最小复杂度，做出简单而易于理解的设计</li>
+<li>易于维护，为做维护工作的程序员着想</li>
+<li>松散耦合， 让程序的各个组成部分之间关联最小。通过类接口的合理抽象，封装性和信息隐藏等原则，设计出相互关联最少的类。</li>
+<li>可扩展性，改动系统的某一部分而不影响其他。</li>
+<li>可重用性</li>
+<li>高扇入，让大量的类使用某个给定的类。设计的系统很好的利用了较低层次的工具类。</li>
+<li>低扇出，让一个类少量或适中的使用其他的类。</li>
+<li>可移植性</li>
+<li>精简性</li>
+<li>层次性，设计出来的系统应该能在任意层次观察而不需要进去其他层次</li>
+<li>标准技术</li>
+</ol>
+<h6 id="设计的层次"><a href="#设计的层次" class="headerlink" title="设计的层次"></a>设计的层次</h6><ul>
+<li>第一层、软件系统<br>往往从第二层开始思考比较有益。</li>
+<li>第二层、子系统或者包。<br>识别出所有的主要子系统。例如数据库、用户界面、业务规则、命令解释器、报表引擎。任务有确定如何把程序分为主要子系统，定义清楚允许子系统如何使用其他子系统。<br>应该限制子系统之间的通信，使得替换或者去掉子系统时，带来的影响最小。尽量简化子系统之间的交互关系。最简单的是调用其他子系统的子程序，接着是子系统包含另一个子系统的类，最复杂的是继承另一个子系统的类。</li>
+<li>第三层、分解为类<br>识别出系统中所有的类。同时定义类与系统其余部分打交道的细节，尤其是接口。</li>
+<li>第四层、分解成子程序<br>把类细分为子程序。</li>
+<li>第五层、子程序内部的设计<br>编写伪代码、选择算法、组织代码块，用编程语言编写代码。</li>
+</ul>
+<h5 id="设计构造块：启发式方法"><a href="#设计构造块：启发式方法" class="headerlink" title="设计构造块：启发式方法"></a>设计构造块：启发式方法</h5><h6 id="找出现实世界中的对象"><a href="#找出现实世界中的对象" class="headerlink" title="找出现实世界中的对象"></a>找出现实世界中的对象</h6><p>使用对象进行设计的步奏</p>
+<ul>
+<li>辨识对象及其属性（方法、数据）</li>
+<li>确定可以对各个对象进行的操作</li>
+<li>确定各个对象能对其他对象进行的操作</li>
+<li>确定对象的哪些部分对其他对象可见</li>
+<li>定义对象的公开接口</li>
+</ul>
+<h6 id="形成一致的抽象"><a href="#形成一致的抽象" class="headerlink" title="形成一致的抽象"></a>形成一致的抽象</h6><p>抽象是能让你在关注某一概念的同时忽略细节的能力-在不同的层次处理不同的细节。好的接口是一种抽象，能让你关注接口而不是类的内部工作方式。抽象是处理复杂度的主要手段。</p>
+<h6 id="封装实现细节"><a href="#封装实现细节" class="headerlink" title="封装实现细节"></a>封装实现细节</h6><p>封装就是不让你看到对象的其他细节层次。</p>
+<h6 id="当继承能简化设计时就继承"><a href="#当继承能简化设计时就继承" class="headerlink" title="当继承能简化设计时就继承"></a>当继承能简化设计时就继承</h6><p>继承能辅佐抽象的概念、简化编程的工作。</p>
+<h6 id="隐藏秘密"><a href="#隐藏秘密" class="headerlink" title="隐藏秘密"></a>隐藏秘密</h6><p>设计类时，一个关键的决策就是确定类的哪些特性应该对外可见，哪些应该隐藏起来。类的接口应该尽可能的少暴露内部工作机制。<br>秘密主要有两种，隐藏复杂度和隐藏变化源。<br>信息隐藏的障碍</p>
+<ul>
+<li><p>信息过度分散</p>
+<p>  用命名常量代替到处使用的数字。</p>
+</li>
+<li><p>循环依赖</p>
+</li>
+<li><p>把类的内部数据误认为全局数据<br>  全局数据的问题：其他子程序可能也在用这些数据进行操作、不知道其他子程序做了什么操作。而类内数据只有类内部的子程序才能直接访问。</p>
+</li>
+<li><p>性能损耗</p>
+</li>
+</ul>
+<h6 id="找出容易改变的区域"><a href="#找出容易改变的区域" class="headerlink" title="找出容易改变的区域"></a>找出容易改变的区域</h6><ul>
+<li>找出容易改变的项目</li>
+<li>把容易改变的项目分离出来</li>
+<li>把看起来容易改变的项目隔离开来</li>
+</ul>
+<p>一些容易改变的区域：</p>
+<p>业务规则、对硬件的依赖、输入输出、非标准的语言特性、困难的设计区域和构建区域、状态变量、</p>
+<p>设计好你的系统，让变化的影响或范围与发生变化的可能性成反比。找出程序中对用户有用的最小子集。</p>
+<h6 id="保持松散耦合"><a href="#保持松散耦合" class="headerlink" title="保持松散耦合"></a>保持松散耦合</h6><p>尽量让你的模块不依赖或者少依赖其他模块。</p>
+<p>耦合标准</p>
+<ul>
+<li>规模、尽可能少的参数和公用方法</li>
+<li>可见性、通过参数表传递数据比修改全局数据来连接要好。把与全局数据的连接写入文档，稍微好点。</li>
+<li>灵活性、连接是否容易改动。一个模块越容易被其他模块调用，耦合关系越松散。</li>
+</ul>
+<p>耦合的种类</p>
+<ul>
+<li>简单数据参数耦合：参数传递数据</li>
+<li>简单对象耦合：模块实例化对象</li>
+<li>对象参数耦合：传单的参数为一个对象。</li>
+<li><p>语义上的耦合：使用了模块内部工作细节的语义知识。如：</p>
+<ul>
+<li>模块一传递了控制标志来告诉模块二应该做什么。</li>
+<li>模块一修改了全局数据后，模块二再使用该数据。</li>
+<li>模块二的a程序需要在b程序后调用。模块一只调用了a程序，没有先调用b程序</li>
+<li><p>模块一传递了baseObj给模块二，模块二知道模块一实际上传的是derivedObj，使用了其中特有的方法。</p>
+<p>这非常危险，可能会破坏调用的模块。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="查阅常用的设计模式"><a href="#查阅常用的设计模式" class="headerlink" title="查阅常用的设计模式"></a>查阅常用的设计模式</h6><p>好处</p>
+<ul>
+<li>提供现成的抽象来减少复杂度</li>
+<li>把常见解决方案的细节予以制度化来减少出错</li>
+<li>能提供多种设计方案，带来启发性的价值</li>
+<li>提升对话层次，简化交流。</li>
+</ul>
+<h6 id="其他启发性方法"><a href="#其他启发性方法" class="headerlink" title="其他启发性方法"></a>其他启发性方法</h6><ul>
+<li>高内聚性</li>
+<li>分层结构</li>
+<li>严格描述类契约</li>
+<li>分配职责</li>
+<li>为测试而设计</li>
+<li>避免失误</li>
+<li>有意识的选择绑定时间</li>
+<li>创建中央控制点 </li>
+<li>蛮力突破</li>
+<li>画图</li>
+<li>模块化</li>
+</ul>
+<h5 id="设计实践"><a href="#设计实践" class="headerlink" title="设计实践"></a>设计实践</h5><h6 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h6><p>同时从高层和底层看问题。找到足够好的设计方案也不要停下来。继续尝试。</p>
+<h6 id="分而治之"><a href="#分而治之" class="headerlink" title="分而治之"></a>分而治之</h6><p>把程序分解为不同的关注区域，分别处理。</p>
+<h6 id="自上而下与自下而上"><a href="#自上而下与自下而上" class="headerlink" title="自上而下与自下而上"></a>自上而下与自下而上</h6><p>自上而下：不断分解问题，直到直接编码比继续分解更容易。可以推迟构建的细节。</p>
+<p>自下而上：自上而下有时过于抽象，难以入手。自下而上可以较早找出所需的功能。</p>
+<pre><code>考虑因素：
+
+- 对系统需要做的事项，你知道些什么
+- 找到具体的对象和职责
+- 找出通用对象，组织起来
+- 在更上一层工作，或者回到自上而下
+</code></pre><h6 id="建立实验性原形"><a href="#建立实验性原形" class="headerlink" title="建立实验性原形"></a>建立实验性原形</h6><p>写出能回答特定设计问题的，量最少的能随时扔掉的代码</p>
+<h6 id="合作设计"><a href="#合作设计" class="headerlink" title="合作设计"></a>合作设计</h6><h6 id="多少设计才够"><a href="#多少设计才够" class="headerlink" title="多少设计才够"></a>多少设计才够</h6><p>影响设计和文档的因素</p>
+<ul>
+<li>团队的代码经验</li>
+<li>团队在该领域的经验</li>
+<li>团队的人员变动</li>
+<li>程序是安全或者使命相关</li>
+<li>程序的规模</li>
+<li>程序的生命周期</li>
+</ul>
+<h6 id="记录你的设计成果"><a href="#记录你的设计成果" class="headerlink" title="记录你的设计成果"></a>记录你的设计成果</h6><ul>
+<li>把设计文档插入代码</li>
+<li>记录到wiki</li>
+<li>写总结邮件</li>
+<li>使用相机</li>
+<li>保留设计挂图</li>
+<li>使用crc卡片</li>
+<li>使用uml图</li>
+</ul>
+<h4 id="可以工作的类"><a href="#可以工作的类" class="headerlink" title="可以工作的类"></a>可以工作的类</h4><p>类是数据和子程序的集合，他们共同有用一组内聚的、明确定义的职责。</p>
+<h5 id="类的基础：抽象数据类型（ADT）"><a href="#类的基础：抽象数据类型（ADT）" class="headerlink" title="类的基础：抽象数据类型（ADT）"></a>类的基础：抽象数据类型（ADT）</h5><p>抽象数据类型指的是一些数据及对这些数据进行操作的集合。这些操作既向程序其他部分描述了数据是怎样的，也允许程序其他部分修改这些数据。</p>
+<h6 id="需要用到ADT的例子"><a href="#需要用到ADT的例子" class="headerlink" title="需要用到ADT的例子"></a>需要用到ADT的例子</h6><p>假设有一个控制字体、字号、文本属性的程序。用ADT就能有捆绑在相关数据上的一组操作字体的子程序，包括字体名称、字号和文字属性。子程序与数据集合为一体就是ADT。</p>
+<p>不用ADT，加入设置字体为12磅（points），刚好为16像素，就像 currentFont.size = 16,使用了ADT，就像 currentFont.size = PointsToPixels(12)</p>
+<h6 id="使用ADT的益处"><a href="#使用ADT的益处" class="headerlink" title="使用ADT的益处"></a>使用ADT的益处</h6><ul>
+<li>隐藏实现细节</li>
+<li>改动不会影响到整个程序</li>
+<li>让接口提供更多信息，让语句更明确。</li>
+<li>更容易提高性能，只需要修改子程序，不用来回修改整个程序</li>
+<li>让程序的正确性更显而易见</li>
+<li>让程序更具有自我说明性</li>
+<li>无需在程序内到处传递数据</li>
+<li>可以像现实世界中那样操作实体，不用在底层实现上操作他。</li>
+</ul>
+<h6 id="ADT和类"><a href="#ADT和类" class="headerlink" title="ADT和类"></a>ADT和类</h6><p>可以把类当成ADT加上继承与多态</p>
+<h5 id="良好的类接口"><a href="#良好的类接口" class="headerlink" title="良好的类接口"></a>良好的类接口</h5><h6 id="好的抽象"><a href="#好的抽象" class="headerlink" title="好的抽象"></a>好的抽象</h6><ul>
+<li>类的接口应该展现一致的抽象层次，一个类应该实现一个ADT,且仅实现一个ADT。</li>
+<li>一定要理解类所实现的抽象是什么。</li>
+<li>提供成对的服务，如添加和删除，开灯与关灯。</li>
+<li>把不相关的信息转移到其他类。如果类中一半子程序用着一半的数据，另一半子程序用着另一半数据，把它们拆开。</li>
+<li>尽可能让接口可编程，而不是表达语义。可编程的部分由数据组成，可以让编辑器要求和强制。语义部分不行。一个接口中任何无法通过编译器强制实施的部分就是可能被误用的部分。想办法把语义接口元素转换为编程接口元素。</li>
+<li>谨防在修改时破坏接口的抽象</li>
+<li>不要添加与接口抽象不一致的公用成员。</li>
+<li>同时考虑抽象性与内聚性。他们联系很紧密。</li>
+</ul>
+<h6 id="良好的封装"><a href="#良好的封装" class="headerlink" title="良好的封装"></a>良好的封装</h6><p>抽象让你忽略细节，封装强制阻止你看到细节。</p>
+<ul>
+<li>尽可能限制类和成员的可访问性。</li>
+<li>不要公开暴露成员数据</li>
+<li>避免把私用的实现细节放入类的接口</li>
+<li>不要对类的使用者做出任何假设</li>
+<li>不要因为子程序仅仅使用公用子程序，就把它归入公开接口</li>
+<li>让阅读代码比编写代码更方便</li>
+<li>格外警惕从语义上破坏封装性</li>
+<li>留意过于紧密的耦合关系</li>
+</ul>
+<h5 id="有关设计和实现的问题"><a href="#有关设计和实现的问题" class="headerlink" title="有关设计和实现的问题"></a>有关设计和实现的问题</h5><h6 id="包含（‘有一个’）"><a href="#包含（‘有一个’）" class="headerlink" title="包含（‘有一个’）"></a>包含（‘有一个’）</h6><ul>
+<li>通过包含来实现‘有一个’的关系。如一个雇员有一个名字，有一个电话号码。</li>
+<li>在万不得已时通过private继承来实现‘有一个的关系</li>
+<li>警惕超过七个数据成员的类</li>
+</ul>
+<h6 id="继承（‘是一个’）"><a href="#继承（‘是一个’）" class="headerlink" title="继承（‘是一个’）"></a>继承（‘是一个’）</h6><p>需要做决策：成员函数应该对派生类可见吗，该函数可以被覆盖吗，数据成员应该对派生类可见吗</p>
+<ul>
+<li>用public来继承是一个的关系</li>
+<li>使用继承并详细说明，要么不使用</li>
+<li>遵循liskov替换原则。派生类必须能通过基类的接口而被使用，且使用者无须了解他们的差异。</li>
+<li>确保只继承需要继承的部分。子程序根据能否被覆盖与是否提供默认实现分为四种。</li>
+<li>不要覆盖不可覆盖的成员函数</li>
+<li>把公用的接口、数据和操作放到继承树尽可能高的位置</li>
+<li>只有一个实例的类是值得怀疑的</li>
+<li>只有一个派生类的基类也值得怀疑</li>
+<li>派生后覆盖了某个子程序却未做任何操作，也值得怀疑。</li>
+<li>避免继承体系过深。</li>
+<li>尽量使用多态，避免大量的类型检查</li>
+<li>让所有数据都是private</li>
+</ul>
+<p>何时使用继承</p>
+<ul>
+<li>多个类共享行为而不是数据</li>
+<li>基类控制接口时，使用继承，自己控制接口是，使用包含</li>
+</ul>
+<h6 id="成员函数和数据成员"><a href="#成员函数和数据成员" class="headerlink" title="成员函数和数据成员"></a>成员函数和数据成员</h6><ul>
+<li>让子程序数量尽可能少</li>
+<li>禁止隐式的产生不需要的成员函数和运算符</li>
+<li>减少类所调用的不同子程序的数量</li>
+<li>对其他类的子程序的间接调用尽可能少</li>
+</ul>
+<h5 id="创建类的原因"><a href="#创建类的原因" class="headerlink" title="创建类的原因"></a>创建类的原因</h5><ul>
+<li>为现实世界中的对象建模</li>
+<li>为抽象的对象建模</li>
+<li>降低复杂度</li>
+<li>隔离复杂度</li>
+<li>隐藏实现细节</li>
+<li>限制变动的影响范围</li>
+<li>隐藏全局数据</li>
+<li>让参数传递更顺畅</li>
+<li>建立中心控制点</li>
+<li>让代码更易于重用</li>
+<li>为程序族做计划</li>
+<li>把相关操作包装在一起</li>
+<li>实现某种特定的重构</li>
+</ul>
+<h6 id="应该避免的类"><a href="#应该避免的类" class="headerlink" title="应该避免的类"></a>应该避免的类</h6><ul>
+<li>万能类</li>
+<li>无关紧要的类，如只有数据没有行为的类</li>
+<li>动词命名的类，只有行为没有数据的类不是真正的类</li>
+</ul>
+<h4 id="高质量的子程序"><a href="#高质量的子程序" class="headerlink" title="高质量的子程序"></a>高质量的子程序</h4><p>差劲的子程序</p>
+<ul>
+<li>差劲的名字</li>
+<li>没有文档</li>
+<li>没有代码规范和布局</li>
+<li>输入变量被改变了</li>
+<li>读写全局变量</li>
+<li>没有单一的目的</li>
+<li>没有防范错误数据</li>
+<li>用了若干魔法数</li>
+<li>有未使用的参数</li>
+<li>参数过多，超过七个</li>
+<li>参数顺序混乱，没有注释</li>
+</ul>
+<h5 id="创建子程序的正当理由"><a href="#创建子程序的正当理由" class="headerlink" title="创建子程序的正当理由"></a>创建子程序的正当理由</h5><ul>
+<li>降低复杂度</li>
+<li>引入中间、易懂的抽象</li>
+<li>避免代码重复</li>
+<li>支持子类化</li>
+<li>隐藏顺序</li>
+<li>隐藏指针操作</li>
+<li>提高可移植性</li>
+<li>简化复杂的布尔判断</li>
+<li>方便改善性能</li>
+<li>确保子程序很小</li>
+<li>很多跟创建类类似的理由</li>
+</ul>
+<h5 id="在子程序层上设计"><a href="#在子程序层上设计" class="headerlink" title="在子程序层上设计"></a>在子程序层上设计</h5><p>内聚性</p>
+<ul>
+<li>功能的内聚性，让子程序仅仅执行一项操作。</li>
+<li>顺序的内聚性 有按顺序执行的操作，需要共享数据，全部完成后才完成功能</li>
+<li>通信的内聚性 使用了同样的数据</li>
+<li>临时的内聚性 因为需要同时执行才放到一起，让start函数。最好让他调用其他的子程序，而不是直接执行操作</li>
+</ul>
+<p>不可续的内聚性</p>
+<ul>
+<li>过程上的内聚性。</li>
+<li>逻辑上的内聚性，如通过控制标志来执行不同的操作</li>
+</ul>
+<h5 id="好的程序名字"><a href="#好的程序名字" class="headerlink" title="好的程序名字"></a>好的程序名字</h5><ul>
+<li>描述子程序所做的所有事情</li>
+<li>避免使用无意义的、模糊的或者表述不清的动词</li>
+<li>根据需要确定子程序名字的长度</li>
+<li>对返回值有所描述</li>
+<li>动词加宾语，如printDocument</li>
+<li>对仗词 <ul>
+<li>add/remove</li>
+<li>increment/decrement</li>
+<li>open/close</li>
+<li>begin/end</li>
+<li>insert/delete</li>
+<li>show/hide</li>
+<li>create/destroy</li>
+<li>lock/unlock</li>
+<li>source/target</li>
+<li>start/stop</li>
+<li>next/previous</li>
+</ul>
+</li>
+</ul>
+<h5 id="子程序可以写多长"><a href="#子程序可以写多长" class="headerlink" title="子程序可以写多长"></a>子程序可以写多长</h5><p>100行到200行，错误较小</p>
+<h5 id="如何使用子程序参数"><a href="#如何使用子程序参数" class="headerlink" title="如何使用子程序参数"></a>如何使用子程序参数</h5><ul>
+<li>按照输入-修改-输出的顺序排列参数</li>
+<li>几个子程序使用了类似的参数，排序保持一致</li>
+<li>使用所有的参数</li>
+<li>把状态和出错变量放最后</li>
+<li>不把子程序的参数当作工作变量</li>
+<li><p>在接口中对参数的假定加以说明</p>
+<ul>
+<li>参数时输入、修改还是输出的</li>
+<li>表示数量的参数的单位</li>
+<li>状态代码和错误值的含义</li>
+<li>所能接受的数值的范围</li>
+</ul>
+</li>
+<li>数量限制在七个以内</li>
+<li>确保实际参数与形式参数相匹配</li>
+</ul>
+<h4 id="防御式编程"><a href="#防御式编程" class="headerlink" title="防御式编程"></a>防御式编程</h4><p>子程序应该不因传入错误数据而被破坏。</p>
+<h5 id="保护程序免遭非法输入数据的破坏"><a href="#保护程序免遭非法输入数据的破坏" class="headerlink" title="保护程序免遭非法输入数据的破坏"></a>保护程序免遭非法输入数据的破坏</h5><p>三种方法处理进来垃圾的情况</p>
+<ul>
+<li>检查来源于外部的数据的值。</li>
+<li>检查子程序所有输入参数的值</li>
+<li>决定如何处理错误的输入数据</li>
+</ul>
+<h5 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h5><p>用于让程序在运行时进行自检的代码。</p>
+<h6 id="可以用断言检查如下假定"><a href="#可以用断言检查如下假定" class="headerlink" title="可以用断言检查如下假定"></a>可以用断言检查如下假定</h6><ul>
+<li>输入或输出参数在预期范围</li>
+<li>子程序开始执行时文件或流的状态和读写位置，打开方式</li>
+<li>只用于输入的变量的值没有被子程序修改</li>
+<li>指针非空</li>
+<li>传入子程序的数值或其他容器至少能容纳x个数数据元素</li>
+<li>表已初始化，存储着真实数值</li>
+<li>容器的状态</li>
+<li>高度优化的复杂子程序与相对缓慢的简单子程序的结果一致</li>
+</ul>
+<h6 id="指导建议"><a href="#指导建议" class="headerlink" title="指导建议"></a>指导建议</h6><ul>
+<li>用错误处理代码来处理预期会发生的状况，用断言来处理绝不应该发生的状况。</li>
+<li>避免把需要执行的代码放入断言中</li>
+<li>用断言来注解和验证前条件和后条件</li>
+<li>先使用断言再处理错误</li>
+</ul>
+<h5 id="错误处理技术"><a href="#错误处理技术" class="headerlink" title="错误处理技术"></a>错误处理技术</h5><ul>
+<li>返回中立值，数值计算返回0，字符串操作返回字符串。</li>
+<li>换用下一个正确的数据</li>
+<li>返回与前次相同的数据</li>
+<li>换用最接近的合法值</li>
+<li>把警告信息记录到日志文件</li>
+<li>返回错误码</li>
+<li>调用错误处理子程序或对象</li>
+<li>现实出错信息</li>
+<li>局部处理错误</li>
+<li>关闭程序</li>
+</ul>
+<h5 id="健壮性与正确性"><a href="#健壮性与正确性" class="headerlink" title="健壮性与正确性"></a>健壮性与正确性</h5><p> 正确性表示不返回不准确的结果。健壮性意味着不断尝试某种措施让软件持续运转下去。</p>
+<h5 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h5><ul>
+<li>用异常通知程序的其他部分，发生了不可忽略的错误</li>
+<li>只在真正例外的情况下才抛出异常</li>
+<li>不能用异常来推卸责任</li>
+<li>避免在构造函数抛出异常</li>
+<li>在恰当的抽象层次抛出异常</li>
+<li>在异常消息中加入关于导致异常发生的全部信息</li>
+<li>避免使用空的catch语句</li>
+<li>了解函数库可能抛出的异常</li>
+<li>考虑创建一个集中的异常报告机制</li>
+<li>把对异常的使用标准化</li>
+<li>考虑异常的替换方案</li>
+</ul>
+<h5 id="隔离程序，使之包容由错误造成的损害"><a href="#隔离程序，使之包容由错误造成的损害" class="headerlink" title="隔离程序，使之包容由错误造成的损害"></a>隔离程序，使之包容由错误造成的损害</h5><p>让软件的某些部分处理不干净的数据，其他部分处理干净的数据。把某些接口选定为安全区域的边界，对穿越安全区域边界的数据进行合法性校验。</p>
+<p>在输入数据时将其转换为恰当的类型</p>
+<h5 id="辅助调试的代码"><a href="#辅助调试的代码" class="headerlink" title="辅助调试的代码"></a>辅助调试的代码</h5><ul>
+<li>不要把产品版的限制加入到开发版上。</li>
+<li>尽早引入辅助调试的代码</li>
+<li>进攻式编程。在开发阶段就让异常显现出来</li>
+<li>计划移除辅助调试的代码</li>
+</ul>
+<h5 id="确定产品代码中该保留多少防御式代码"><a href="#确定产品代码中该保留多少防御式代码" class="headerlink" title="确定产品代码中该保留多少防御式代码"></a>确定产品代码中该保留多少防御式代码</h5><ul>
+<li>保留那些检查重要错误的代码</li>
+<li>去掉检查细微错误的代码</li>
+<li>去掉可以导致程序硬性崩溃的代码</li>
+<li>保留让程序稳妥奔溃的代码</li>
+<li>让技术支持人员记录错误信息</li>
+<li>确认留在代码中的错误消息是有好的</li>
+</ul>
+<h4 id="伪代码编程过程"><a href="#伪代码编程过程" class="headerlink" title="伪代码编程过程"></a>伪代码编程过程</h4><h5 id="创建类和子程序的步奏概述"><a href="#创建类和子程序的步奏概述" class="headerlink" title="创建类和子程序的步奏概述"></a>创建类和子程序的步奏概述</h5><h6 id="创建类的步奏"><a href="#创建类的步奏" class="headerlink" title="创建类的步奏"></a>创建类的步奏</h6><ul>
+<li>创建类的总体设计，定义类的特定职责，定义类要隐藏的秘密，精确定义类的接口所表示的抽象概念，决定这个类是否从其他类派生，是否允许其他类从它派生。指出类的公用方法，标志并设计重要的数据成员。</li>
+<li>创建类中的子程序</li>
+<li>复审并测试整个类</li>
+</ul>
+<h6 id="创建子程序的步奏"><a href="#创建子程序的步奏" class="headerlink" title="创建子程序的步奏"></a>创建子程序的步奏</h6><ul>
+<li>设计子程序</li>
+<li>检查设计</li>
+<li>编写代码</li>
+<li>检查代码</li>
+</ul>
+<h5 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h5><p>指导原则：</p>
+<ul>
+<li>用类似英语的语句来精确描述特定的操作</li>
+<li>避免使用目标编程语言中的语法元素</li>
+<li>在意图的层面上编写伪代码</li>
+<li>在足够低的层次上编写伪代码</li>
+</ul>
+<p>好处：</p>
+<ul>
+<li>让评审变得容易</li>
+<li>支持反复迭代优化</li>
+<li>让变更变得容易</li>
+<li>减少注释工作量</li>
+<li>比其他的设计文档容易维护</li>
+</ul>
+<h5 id="通过伪代码编写过程创建子程序"><a href="#通过伪代码编写过程创建子程序" class="headerlink" title="通过伪代码编写过程创建子程序"></a>通过伪代码编写过程创建子程序</h5><h6 id="设计子程序"><a href="#设计子程序" class="headerlink" title="设计子程序"></a>设计子程序</h6><ul>
+<li>检查先决条件</li>
+<li>定义要解决的问题<ul>
+<li>子程序要隐藏的信息</li>
+<li>子程序的输入</li>
+<li>子程序的输出</li>
+<li>调用子程序的前条件</li>
+<li>子程序将控制权交回时，后条件的成立</li>
+</ul>
+</li>
+<li>为子程序命名</li>
+<li>决定如何测试子程序</li>
+<li>在标准库中搜寻可用的功能</li>
+<li>考虑错误处理</li>
+<li>考虑效率问题</li>
+<li>研究算法和数据类型</li>
+<li>编写伪代码</li>
+<li>检查伪代码</li>
+<li>在伪代码中试验想法</li>
+</ul>
+<h6 id="编写子程序的代码"><a href="#编写子程序的代码" class="headerlink" title="编写子程序的代码"></a>编写子程序的代码</h6><ul>
+<li>写子程序的声明</li>
+<li>把伪代码转换成注释</li>
+<li>在注释下填充代码</li>
+<li>检查代码是否需要进一步分解</li>
+</ul>
+<h6 id="检查代码"><a href="#检查代码" class="headerlink" title="检查代码"></a>检查代码</h6><ul>
+<li>在脑海里检查</li>
+<li>编译子程序</li>
+<li>逐行执行代码</li>
+<li>测试代码</li>
+<li>消除程序中的错误</li>
+</ul>
+<h6 id="收尾工作"><a href="#收尾工作" class="headerlink" title="收尾工作"></a>收尾工作</h6><ul>
+<li>检查接口</li>
+<li>检查设计质量</li>
+<li>检查变量</li>
+<li>检查语句与逻辑</li>
+<li>检查布局</li>
+<li>检查文档</li>
+<li>除去冗余的注释</li>
+</ul>
+<h5 id="替代方案"><a href="#替代方案" class="headerlink" title="替代方案"></a>替代方案</h5><ul>
+<li>测试先行开发</li>
+<li>重构</li>
+<li>契约式开发</li>
+<li>东拼西凑</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/代码大全读书笔记（第一部分）.html" rel="next" title="代码大全读书笔记（第一部分）">
+                <i class="fa fa-chevron-left"></i> 代码大全读书笔记（第一部分）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="hpoenixf" />
+          <p class="site-author-name" itemprop="name">hpoenixf</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hpoenixf" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hpoenixf" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件构件中的设计"><span class="nav-number">1.</span> <span class="nav-text">软件构件中的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计中的挑战"><span class="nav-number">1.1.</span> <span class="nav-text">设计中的挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#设计是一个险恶的问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">设计是一个险恶的问题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计是一个了章法的过程"><span class="nav-number">1.1.2.</span> <span class="nav-text">设计是一个了章法的过程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计就是确定取舍和调整顺序的过程"><span class="nav-number">1.1.3.</span> <span class="nav-text">设计就是确定取舍和调整顺序的过程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计受到诸多限制"><span class="nav-number">1.1.4.</span> <span class="nav-text">设计受到诸多限制</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计是不确定的"><span class="nav-number">1.1.5.</span> <span class="nav-text">设计是不确定的</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计是启发式过程"><span class="nav-number">1.1.6.</span> <span class="nav-text">设计是启发式过程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计是自然而然形成的"><span class="nav-number">1.1.7.</span> <span class="nav-text">设计是自然而然形成的</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关键的设计概念"><span class="nav-number">1.2.</span> <span class="nav-text">关键的设计概念</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#软件的首要技术使命：管理复杂度"><span class="nav-number">1.2.1.</span> <span class="nav-text">软件的首要技术使命：管理复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#理想的设计特征"><span class="nav-number">1.2.2.</span> <span class="nav-text">理想的设计特征</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计的层次"><span class="nav-number">1.2.3.</span> <span class="nav-text">设计的层次</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计构造块：启发式方法"><span class="nav-number">1.3.</span> <span class="nav-text">设计构造块：启发式方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#找出现实世界中的对象"><span class="nav-number">1.3.1.</span> <span class="nav-text">找出现实世界中的对象</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#形成一致的抽象"><span class="nav-number">1.3.2.</span> <span class="nav-text">形成一致的抽象</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#封装实现细节"><span class="nav-number">1.3.3.</span> <span class="nav-text">封装实现细节</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#当继承能简化设计时就继承"><span class="nav-number">1.3.4.</span> <span class="nav-text">当继承能简化设计时就继承</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#隐藏秘密"><span class="nav-number">1.3.5.</span> <span class="nav-text">隐藏秘密</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#找出容易改变的区域"><span class="nav-number">1.3.6.</span> <span class="nav-text">找出容易改变的区域</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#保持松散耦合"><span class="nav-number">1.3.7.</span> <span class="nav-text">保持松散耦合</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查阅常用的设计模式"><span class="nav-number">1.3.8.</span> <span class="nav-text">查阅常用的设计模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他启发性方法"><span class="nav-number">1.3.9.</span> <span class="nav-text">其他启发性方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计实践"><span class="nav-number">1.4.</span> <span class="nav-text">设计实践</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#迭代"><span class="nav-number">1.4.1.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分而治之"><span class="nav-number">1.4.2.</span> <span class="nav-text">分而治之</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#自上而下与自下而上"><span class="nav-number">1.4.3.</span> <span class="nav-text">自上而下与自下而上</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#建立实验性原形"><span class="nav-number">1.4.4.</span> <span class="nav-text">建立实验性原形</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#合作设计"><span class="nav-number">1.4.5.</span> <span class="nav-text">合作设计</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#多少设计才够"><span class="nav-number">1.4.6.</span> <span class="nav-text">多少设计才够</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#记录你的设计成果"><span class="nav-number">1.4.7.</span> <span class="nav-text">记录你的设计成果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以工作的类"><span class="nav-number">2.</span> <span class="nav-text">可以工作的类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类的基础：抽象数据类型（ADT）"><span class="nav-number">2.1.</span> <span class="nav-text">类的基础：抽象数据类型（ADT）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#需要用到ADT的例子"><span class="nav-number">2.1.1.</span> <span class="nav-text">需要用到ADT的例子</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用ADT的益处"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用ADT的益处</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ADT和类"><span class="nav-number">2.1.3.</span> <span class="nav-text">ADT和类</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#良好的类接口"><span class="nav-number">2.2.</span> <span class="nav-text">良好的类接口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#好的抽象"><span class="nav-number">2.2.1.</span> <span class="nav-text">好的抽象</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#良好的封装"><span class="nav-number">2.2.2.</span> <span class="nav-text">良好的封装</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有关设计和实现的问题"><span class="nav-number">2.3.</span> <span class="nav-text">有关设计和实现的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#包含（‘有一个’）"><span class="nav-number">2.3.1.</span> <span class="nav-text">包含（‘有一个’）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#继承（‘是一个’）"><span class="nav-number">2.3.2.</span> <span class="nav-text">继承（‘是一个’）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#成员函数和数据成员"><span class="nav-number">2.3.3.</span> <span class="nav-text">成员函数和数据成员</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建类的原因"><span class="nav-number">2.4.</span> <span class="nav-text">创建类的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#应该避免的类"><span class="nav-number">2.4.1.</span> <span class="nav-text">应该避免的类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高质量的子程序"><span class="nav-number">3.</span> <span class="nav-text">高质量的子程序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建子程序的正当理由"><span class="nav-number">3.1.</span> <span class="nav-text">创建子程序的正当理由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在子程序层上设计"><span class="nav-number">3.2.</span> <span class="nav-text">在子程序层上设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#好的程序名字"><span class="nav-number">3.3.</span> <span class="nav-text">好的程序名字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子程序可以写多长"><span class="nav-number">3.4.</span> <span class="nav-text">子程序可以写多长</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何使用子程序参数"><span class="nav-number">3.5.</span> <span class="nav-text">如何使用子程序参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防御式编程"><span class="nav-number">4.</span> <span class="nav-text">防御式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#保护程序免遭非法输入数据的破坏"><span class="nav-number">4.1.</span> <span class="nav-text">保护程序免遭非法输入数据的破坏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#断言"><span class="nav-number">4.2.</span> <span class="nav-text">断言</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#可以用断言检查如下假定"><span class="nav-number">4.2.1.</span> <span class="nav-text">可以用断言检查如下假定</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#指导建议"><span class="nav-number">4.2.2.</span> <span class="nav-text">指导建议</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误处理技术"><span class="nav-number">4.3.</span> <span class="nav-text">错误处理技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#健壮性与正确性"><span class="nav-number">4.4.</span> <span class="nav-text">健壮性与正确性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常"><span class="nav-number">4.5.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隔离程序，使之包容由错误造成的损害"><span class="nav-number">4.6.</span> <span class="nav-text">隔离程序，使之包容由错误造成的损害</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#辅助调试的代码"><span class="nav-number">4.7.</span> <span class="nav-text">辅助调试的代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#确定产品代码中该保留多少防御式代码"><span class="nav-number">4.8.</span> <span class="nav-text">确定产品代码中该保留多少防御式代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#伪代码编程过程"><span class="nav-number">5.</span> <span class="nav-text">伪代码编程过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建类和子程序的步奏概述"><span class="nav-number">5.1.</span> <span class="nav-text">创建类和子程序的步奏概述</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#创建类的步奏"><span class="nav-number">5.1.1.</span> <span class="nav-text">创建类的步奏</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#创建子程序的步奏"><span class="nav-number">5.1.2.</span> <span class="nav-text">创建子程序的步奏</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#伪代码"><span class="nav-number">5.2.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过伪代码编写过程创建子程序"><span class="nav-number">5.3.</span> <span class="nav-text">通过伪代码编写过程创建子程序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#设计子程序"><span class="nav-number">5.3.1.</span> <span class="nav-text">设计子程序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#编写子程序的代码"><span class="nav-number">5.3.2.</span> <span class="nav-text">编写子程序的代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#检查代码"><span class="nav-number">5.3.3.</span> <span class="nav-text">检查代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#收尾工作"><span class="nav-number">5.3.4.</span> <span class="nav-text">收尾工作</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替代方案"><span class="nav-number">5.4.</span> <span class="nav-text">替代方案</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "c70f40658aa04c8faf5c8b961928da58",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
