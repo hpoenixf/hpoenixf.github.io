@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="背景公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的region-picker比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看demo，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。 过程通过阅读源码，可以发">
+<meta name="description" content="开始preact是一个体积非常小（只有3kb），性能非常优秀，api跟react基本一致的库，可以无缝兼容react的生态系统。于是我便尝试了一下将之前开发的react-cropper迁移到preact上。preact-cropper 过程首先使用npm安装preact，由于react-cropper项目使用到了findDOMNode,因此还需要安装preact-compat1npm i -S p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="修改vue第三方组件的内部方法">
-<meta property="og:url" content="http://hpoenixf.com/修改vue第三方组件的内部方法.html">
+<meta property="og:title" content="从react到preact">
+<meta property="og:url" content="http://hpoenixf.com/从react到preact.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="背景公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的region-picker比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看demo，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。 过程通过阅读源码，可以发">
-<meta property="og:updated_time" content="2017-07-04T14:35:39.105Z">
+<meta property="og:description" content="开始preact是一个体积非常小（只有3kb），性能非常优秀，api跟react基本一致的库，可以无缝兼容react的生态系统。于是我便尝试了一下将之前开发的react-cropper迁移到preact上。preact-cropper 过程首先使用npm安装preact，由于react-cropper项目使用到了findDOMNode,因此还需要安装preact-compat1npm i -S p">
+<meta property="og:updated_time" content="2017-07-11T15:54:36.185Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="修改vue第三方组件的内部方法">
-<meta name="twitter:description" content="背景公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的region-picker比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看demo，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。 过程通过阅读源码，可以发">
+<meta name="twitter:title" content="从react到preact">
+<meta name="twitter:description" content="开始preact是一个体积非常小（只有3kb），性能非常优秀，api跟react基本一致的库，可以无缝兼容react的生态系统。于是我便尝试了一下将之前开发的react-cropper迁移到preact上。preact-cropper 过程首先使用npm安装preact，由于react-cropper项目使用到了findDOMNode,因此还需要安装preact-compat1npm i -S p">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/修改vue第三方组件的内部方法.html"/>
+  <link rel="canonical" href="http://hpoenixf.com/从react到preact.html"/>
 
 
 
 
 
-  <title>修改vue第三方组件的内部方法 | hpoenixf's blog</title>
+  <title>从react到preact | hpoenixf's blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +226,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/修改vue第三方组件的内部方法.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/从react到preact.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -243,7 +243,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">修改vue第三方组件的内部方法</h2>
+          <h2 class="post-title" itemprop="name headline">从react到preact</h2>
         
 
         <div class="post-meta">
@@ -255,8 +255,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T21:19:32+08:00">
-                2017-07-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T23:34:03+08:00">
+                2017-07-11
               </time>
             
 
@@ -274,7 +274,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/修改vue第三方组件的内部方法.html#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/从react到preact.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -283,7 +283,7 @@
 
           
           
-             <span id="/修改vue第三方组件的内部方法.html" class="leancloud_visitors" data-flag-title="修改vue第三方组件的内部方法">
+             <span id="/从react到preact.html" class="leancloud_visitors" data-flag-title="从react到preact">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -311,14 +311,14 @@
       
 
       
-        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的<a href="https://github.com/ElementUI/region-picker" target="_blank" rel="external">region-picker</a>比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看<a href="https://elementui.github.io/region-picker/" target="_blank" rel="external">demo</a>，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>通过阅读源码，可以发现该组件包含了单选和多选两种组件，这次只考虑修改单选的，于是找到single.vue,从39行开始，可以简单的明白，点击选项时，会调用select方法，因此只要修改select方法就好。</p>
-<a id="more"></a>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">ul.scroll-option(ref=<span class="string">"province"</span>)</div><div class="line">  li(</div><div class="line">      v-<span class="keyword">for</span>=<span class="string">"province in provinces"</span></div><div class="line">      :key=<span class="string">"province.adcode"</span></div><div class="line">      :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; hover: current.province === province &#125;"</span></div><div class="line">      @mouseenter=<span class="string">"current.province = province; current.city = null"</span></div><div class="line">      @click=<span class="string">"select(province)"</span></div><div class="line">    )</div><div class="line">    span &#123;&#123; province.name &#125;&#125;</div><div class="line">ul.scroll-option(ref=<span class="string">"city"</span>)</div><div class="line">  li(</div><div class="line">      v-<span class="keyword">for</span>=<span class="string">"city in cities"</span></div><div class="line">      :key=<span class="string">"city.adcode"</span></div><div class="line">      :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; hover: current.city === city &#125;"</span></div><div class="line">      @mouseenter=<span class="string">"current.city = city"</span></div><div class="line">      @click=<span class="string">"select(city)"</span></div><div class="line">    )</div><div class="line">    span &#123;&#123; city.name &#125;&#125;</div><div class="line">ul.scroll-option(ref=<span class="string">"district"</span>, v-<span class="keyword">if</span>=<span class="string">"maxLevel &gt; 2"</span>)</div><div class="line">  li(</div><div class="line">      v-<span class="keyword">for</span>=<span class="string">"district in districts"</span></div><div class="line">      :key=<span class="string">"district.adcode"</span></div><div class="line">      :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; hover: current.district === district &#125;"</span></div><div class="line">      @mouseenter=<span class="string">"current.district = district"</span></div><div class="line">      @click=<span class="string">"select(district)"</span></div><div class="line">    )</div><div class="line">    span &#123;&#123; district.name &#125;&#125;</div></pre></td></tr></table></figure>
-<p>select方法的代码如下。通过console调试可以知道，传给select的place参数是一个具有level的对象，如果传入的是省份，level为1，城市为2，区为3，因此，我们需要让select只接受level为1的参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">select(place) &#123;</div><div class="line">  <span class="keyword">this</span>.hidePicker();</div><div class="line">  <span class="keyword">this</span>.selected = place;</div><div class="line">  <span class="keyword">const</span> map = [<span class="string">'country'</span>, <span class="string">'province'</span>, <span class="string">'city'</span>, <span class="string">'district'</span>];</div><div class="line">  <span class="keyword">if</span> (!place.adcode) &#123;</div><div class="line">    <span class="keyword">this</span>.current.province = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.current.city = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.current.district = <span class="literal">null</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">const</span> set = <span class="function">(<span class="params">p</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> &#123; level &#125; = p;</div><div class="line">    <span class="keyword">if</span> (level &gt; <span class="number">1</span>) &#123;</div><div class="line">      set(p.parent);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.current[map[p.level]] = p;</div><div class="line">  &#125;;</div><div class="line">  set(place);</div><div class="line">  <span class="keyword">this</span>.clearSearch();</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>首先引入该组件，给该组件加上ref，这里取名为regionPicker。<br>接着在mounted的钩子上加入一个函数，hackRegionPicker,注意要在mounted的钩子中调用该方法，如果是在created中调用，由于组件尚未加载，通过$refs是获取不到该组件的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hackRegionPicker() &#123;</div><div class="line">  <span class="comment">// singlePicker 是regionPiker的第一个子组件</span></div><div class="line">  <span class="keyword">let</span> singlePicker = <span class="keyword">this</span>.$refs.regionPicker.children[<span class="number">0</span>]</div><div class="line">  <span class="comment">// 保存singlePicker的select方法</span></div><div class="line">  <span class="keyword">let</span> select = &#123;...singlePicker&#125;.select</div><div class="line">  singlePicker.select = <span class="function"><span class="params">place</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">// 只有点击区时才关闭选项</span></div><div class="line">    <span class="keyword">if</span> (place.level ===<span class="number">3</span>) &#123;</div><div class="line">      select(place)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="跳过的坑"><a href="#跳过的坑" class="headerlink" title="跳过的坑"></a>跳过的坑</h4><p>原本是直接给select赋值为singlePicker.select的，然而实际上select只是保存了在singlePicker对象中select方法的引用，因此在新的singlePicker.select中调用的select并不是旧的select，而是新的singlePicker.select，实际上这样就成了没有结束条件的递归，导致浏览器卡死。<br>而使用便利的{…Obj}语法可以成功的保存旧的select函数。</p>
+        <h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>preact是一个体积非常小（只有3kb），性能非常优秀，api跟react基本一致的库，可以无缝兼容react的生态系统。于是我便尝试了一下将之前开发的<a href="https://github.com/hpoenixf/react-cropper" target="_blank" rel="external">react-cropper</a>迁移到preact上。<a href="https://github.com/hpoenixf/preact-cropper" target="_blank" rel="external">preact-cropper</a></p>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>首先使用npm安装preact，由于react-cropper项目使用到了findDOMNode,因此还需要安装preact-compat<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i -S preact preact-compat</div></pre></td></tr></table></figure></p>
+<p>把原项目的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></div></pre></td></tr></table></figure></p>
+<p>改成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'preact'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'preact-compat'</span>;</div></pre></td></tr></table></figure>
+<p>还可以使用通过 Webpack 设置 Alias，使得不用修改引用。<a href="https://preactjs.com/guide/switching-to-preact" target="_blank" rel="external">用 Preact 替换 React</a></p>
+<p>注意，如果不使用preact-compat，就是从preact中引入render来进行渲染，而不是使用ReactDom.render。<br>还有，Preact不支持字符串形式的ref，因此，需要改用下面的形式来保存节点索引。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ref=&#123;node =&gt; <span class="keyword">this</span>.ref_selectArea = node&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -355,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/代码大全读书笔记（第二部分）.html" rel="next" title="代码大全读书笔记（第二部分）">
-                <i class="fa fa-chevron-left"></i> 代码大全读书笔记（第二部分）
+              <a href="/修改vue第三方组件的内部方法.html" rel="next" title="修改vue第三方组件的内部方法">
+                <i class="fa fa-chevron-left"></i> 修改vue第三方组件的内部方法
               </a>
             
           </div>
@@ -364,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/从react到preact.html" rel="prev" title="从react到preact">
-                从react到preact <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -518,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跳过的坑"><span class="nav-number">3.</span> <span class="nav-text">跳过的坑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li></ol></div>
             
 
           </div>
