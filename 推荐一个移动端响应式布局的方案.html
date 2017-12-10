@@ -316,7 +316,7 @@
 <h4 id="传统的REM布局遇到的问题"><a href="#传统的REM布局遇到的问题" class="headerlink" title="传统的REM布局遇到的问题"></a>传统的REM布局遇到的问题</h4><p>以100像素为例，很多常见的属性如字体大小需要写成0.12rem等，可读性较差，输入起来也不方便，降低了工作效率。</p>
 <h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>在webpack中使用px2rem-loader。用法如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">rules: [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">    <span class="attr">use</span>: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'px2rem-loader?remUnit=75&amp;remPrecision=8'</span>]</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
 <p>这样便可以应对常见的750px的设计图，直接按照设计图的尺寸来填写属性大小就好，<br>注意，还需要在html文件中引入flexible文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://github.com/Jinjiang/px2rem-loader" target="_blank" rel="external">https://github.com/Jinjiang/px2rem-loader</a></p>
 
       
@@ -440,7 +440,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
