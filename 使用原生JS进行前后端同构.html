@@ -89,7 +89,7 @@
 <meta property="og:url" content="http://hpoenixf.com/使用原生JS进行前后端同构.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="背景出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了 什么是前后端同构明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单">
-<meta property="og:updated_time" content="2018-02-27T18:23:26.867Z">
+<meta property="og:updated_time" content="2018-02-27T23:46:43.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用原生JS进行前后端同构">
 <meta name="twitter:description" content="背景出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了 什么是前后端同构明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单">
@@ -330,6 +330,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</div><div class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, fn)</div><div class="line"><span class="comment">//页面函数支持返回一个卸载函数，在页面离开的时候会被调用</span></div><div class="line"><span class="comment">//主要用于内存的释放，定时器的清除，事件监听的移除等等</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">window</span>.removeEventListener(<span class="string">'scroll'</span>, fn)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="后端部分"><a href="#后端部分" class="headerlink" title="后端部分"></a>后端部分</h4><p>使用koa2搭建的一个渲染服务器，在收到前端传来的页面请求时，会向API服务器请求数据，并识别页面请求是否带有json=1的参数，如果带有，则为前端路由跳转时的请求，直接返回数据即可，如果没有带json参数，加载跟前端共用的模板，配合数据进行渲染，发送到浏览器。</p>
 <h4 id="提升空间"><a href="#提升空间" class="headerlink" title="提升空间"></a>提升空间</h4><p>后端可以使用bigpipe或是骨架屏来加快首屏时间。<br>前端如果DOM操作频繁的话，可以引入虚拟dom的技术，首先将渲染完成的html转成vnode虚拟dom树，在数据变动时，令其生成新的vnode，接着进行diff和patch，可以有效减少dom的操作。</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>最后插个小广告..其实实话实说吧，我写这篇文章的目的也有点功利，就是希望看到文章的，如果在深圳并且需要招人的话，可以考虑下我…邮箱地址hpoenixf#foxmail.com, github: hpoenixf</p>
 
       
     </div>
@@ -525,7 +526,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是前后端同构"><span class="nav-number">2.</span> <span class="nav-text">什么是前后端同构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目简介"><span class="nav-number">3.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端部分"><span class="nav-number">4.</span> <span class="nav-text">前端部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后端部分"><span class="nav-number">5.</span> <span class="nav-text">后端部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升空间"><span class="nav-number">6.</span> <span class="nav-text">提升空间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是前后端同构"><span class="nav-number">2.</span> <span class="nav-text">什么是前后端同构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目简介"><span class="nav-number">3.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端部分"><span class="nav-number">4.</span> <span class="nav-text">前端部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后端部分"><span class="nav-number">5.</span> <span class="nav-text">后端部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升空间"><span class="nav-number">6.</span> <span class="nav-text">提升空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
