@@ -224,6 +224,138 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/使用原生JS进行前后端同构.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/使用原生JS进行前后端同构.html" itemprop="url">使用原生JS进行前后端同构</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T02:09:25+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/使用原生JS进行前后端同构.html" class="leancloud_visitors" data-flag-title="使用原生JS进行前后端同构">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了</p>
+<h4 id="什么是前后端同构"><a href="#什么是前后端同构" class="headerlink" title="什么是前后端同构"></a>什么是前后端同构</h4><p>明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单页面应用；「同构渲染」指前后端共用 JS，首次渲染时使用 Node.js 来直出 HTML。一般来说同构渲染是介于前后端中的共有部分。</p>
+<p>感觉前端的确是折腾，之前还在流行前后端分离，现在怎么又要做前后端同构了？</p>
+<p>原因是现在流行的SPA前端单页面应用比较沉重，首次访问需要加载文件较多，第一次加载过慢，用户需要等待前端进行渲染页面。而且不利于SEO及缓存，并且有一定的开发门槛。</p>
+<p>前后端同构通过复用模板和JS文件，让一份代码可以同时跑在服务器和浏览器，首次渲染使用nodejs渲染页面，之后使用SPA路由跳转。可以有效减少用户首次访问的等待时间，并且对SEO比较友好，也便于缓存。</p>
+<h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>本前后端同构项目主要分为两个部分，一个是基于koa2的渲染服务器，另一个是基于原生JS和zepto的前端SPA。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/使用原生JS进行前后端同构.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/一个简单的virtual-dom实现.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -303,7 +435,8 @@
       
         
           
-            <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行。。<br>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
+            <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行</p>
+<p>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
 <h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://github.com/hpoenixf/vdom" target="_blank" rel="external">项目地址</a></p>
 <p><a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a></p>
 <p><a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="external">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
@@ -948,136 +1081,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/从react到preact.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/从react到preact.html" itemprop="url">从react到preact</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T23:34:03+08:00">
-                2017-07-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/从react到preact.html" class="leancloud_visitors" data-flag-title="从react到preact">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>preact是一个体积非常小（只有3kb），性能非常优秀，api跟react基本一致的库，可以无缝兼容react的生态系统。于是我便尝试了一下将之前开发的<a href="https://github.com/hpoenixf/react-cropper" target="_blank" rel="external">react-cropper</a>迁移到preact上。<a href="https://github.com/hpoenixf/preact-cropper" target="_blank" rel="external">preact-cropper</a></p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>首先使用npm安装preact，由于react-cropper项目使用到了findDOMNode,因此还需要安装preact-compat<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i -S preact preact-compat</div></pre></td></tr></table></figure></p>
-<p>把原项目的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></div></pre></td></tr></table></figure></p>
-<p>改成</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'preact'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'preact-compat'</span>;</div></pre></td></tr></table></figure>
-<p>还可以使用通过 Webpack 设置 Alias，使得不用修改引用。<a href="https://preactjs.com/guide/switching-to-preact" target="_blank" rel="external">用 Preact 替换 React</a></p>
-<p>注意，如果不使用preact-compat，就是从preact中引入render来进行渲染，而不是使用ReactDom.render。<br>还有，Preact不支持字符串形式的ref，因此，需要改用下面的形式来保存节点索引。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ref=&#123;node =&gt; <span class="keyword">this</span>.ref_selectArea = node&#125;</div></pre></td></tr></table></figure>
-
-          
         
       
     </div>

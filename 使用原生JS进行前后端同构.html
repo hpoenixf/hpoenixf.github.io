@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
+<meta name="description" content="背景出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了 什么是前后端同构明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个简单的virtual-dom实现">
-<meta property="og:url" content="http://hpoenixf.com/一个简单的virtual-dom实现.html">
+<meta property="og:title" content="使用原生JS进行前后端同构">
+<meta property="og:url" content="http://hpoenixf.com/使用原生JS进行前后端同构.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
-<meta property="og:updated_time" content="2018-01-01T16:05:14.564Z">
+<meta property="og:description" content="背景出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了 什么是前后端同构明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单">
+<meta property="og:updated_time" content="2018-02-27T18:23:26.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个简单的virtual-dom实现">
-<meta name="twitter:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
+<meta name="twitter:title" content="使用原生JS进行前后端同构">
+<meta name="twitter:description" content="背景出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了 什么是前后端同构明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/一个简单的virtual-dom实现.html"/>
+  <link rel="canonical" href="http://hpoenixf.com/使用原生JS进行前后端同构.html"/>
 
 
 
 
 
-  <title>一个简单的virtual-dom实现 | hpoenixf's blog</title>
+  <title>使用原生JS进行前后端同构 | hpoenixf's blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +226,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/一个简单的virtual-dom实现.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/使用原生JS进行前后端同构.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -243,7 +243,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">一个简单的virtual-dom实现</h2>
+          <h2 class="post-title" itemprop="name headline">使用原生JS进行前后端同构</h2>
         
 
         <div class="post-meta">
@@ -255,8 +255,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T23:43:41+08:00">
-                2018-01-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T02:09:25+08:00">
+                2018-02-28
               </time>
             
 
@@ -274,7 +274,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/一个简单的virtual-dom实现.html#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/使用原生JS进行前后端同构.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -283,7 +283,7 @@
 
           
           
-             <span id="/一个简单的virtual-dom实现.html" class="leancloud_visitors" data-flag-title="一个简单的virtual-dom实现">
+             <span id="/使用原生JS进行前后端同构.html" class="leancloud_visitors" data-flag-title="使用原生JS进行前后端同构">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -311,11 +311,25 @@
       
 
       
-        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行</p>
-<p>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
-<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://github.com/hpoenixf/vdom" target="_blank" rel="external">项目地址</a></p>
-<p><a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a></p>
-<p><a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="external">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>出于多种原因，要离开广州回到深圳找工作，发现不少面试官都对我之前做过的一个没有使用vue和react，使用原生js写的前后端同构项目比较感兴趣，现在把它分享出来，写成文章，下次面试直接给面试官看，就不用我去费口舌一个个去讲了</p>
+<h4 id="什么是前后端同构"><a href="#什么是前后端同构" class="headerlink" title="什么是前后端同构"></a>什么是前后端同构</h4><p>明确三个概念：「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单页面应用；「同构渲染」指前后端共用 JS，首次渲染时使用 Node.js 来直出 HTML。一般来说同构渲染是介于前后端中的共有部分。</p>
+<p>感觉前端的确是折腾，之前还在流行前后端分离，现在怎么又要做前后端同构了？</p>
+<p>原因是现在流行的SPA前端单页面应用比较沉重，首次访问需要加载文件较多，第一次加载过慢，用户需要等待前端进行渲染页面。而且不利于SEO及缓存，并且有一定的开发门槛。</p>
+<p>前后端同构通过复用模板和JS文件，让一份代码可以同时跑在服务器和浏览器，首次渲染使用nodejs渲染页面，之后使用SPA路由跳转。可以有效减少用户首次访问的等待时间，并且对SEO比较友好，也便于缓存。</p>
+<h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>本前后端同构项目主要分为两个部分，一个是基于koa2的渲染服务器，另一个是基于原生JS和zepto的前端SPA。<br><a id="more"></a></p>
+<p>项目的特点是不使用vue和react等框架，门槛低，开发速度快，便于上手，比较轻巧，核心的router部分只有一百行左右的代码。适用于页面交互较少，变化不频繁的场景下，可以有效的提升性能和加载速度</p>
+<h4 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h4><p>前端部分的核心是路由部分，具体实现可以基于history API或是hash，网上有很多实现，这次主要讲下架构<br>前端部分采用MVC分层结构。</p>
+<p>router层做的主要是创建路由示例，调用路由的get方法，给特定页面绑定来自control层的函数。<br>形式如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> control <span class="keyword">from</span> <span class="string">'../control'</span></div><div class="line"></div><div class="line"><span class="comment">//路由的构造函数支持传入渲染函数，路由的全局名称，路由跳转前调用的钩子</span></div><div class="line">router = <span class="keyword">new</span> Router(render,<span class="string">'ROUTER'</span>,beforeFn)</div><div class="line"></div><div class="line">router.get(<span class="string">'/page/a'</span>, control.pageA<span class="string">')</span></div></pre></td></tr></table></figure>
+<p>control层主要做的是加载跟后端共有的渲染模板和渲染数据，渲染出页面后运行页面函数</p>
+<p>形式如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> control = &#123;</div><div class="line">  pageA(req,res) &#123;</div><div class="line">	<span class="comment">//webpack的动态加载，代码分割功能</span></div><div class="line">    <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "pageA" */</span><span class="string">'script/pageA'</span>).then(<span class="function"><span class="params">module</span>=&gt;</span> &#123;</div><div class="line">	<span class="comment">// 检测该页面是否已有服务器渲染好，是的话直接运行module.default</span></div><div class="line">	<span class="comment">//否则加载模板和数据进行渲染,最后再调用页面函数</span></div><div class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>.needRender(<span class="built_in">module</span>.default)) &#123;</div><div class="line">	<span class="comment">//加载数据时访问的地址就是当前准备渲染的页面地址，只是加上了json=1的参数</span></div><div class="line">	  loadData(<span class="string">'pageA'</span>).then(<span class="function"><span class="params">data</span> =&gt;</span> </div><div class="line">		res.render(xtpl,data,<span class="built_in">module</span>.default))</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 捕捉webpack热更新，让他只进行相当于页面跳转的操作而不是刷新页面</span></div><div class="line"><span class="keyword">if</span>(<span class="built_in">module</span>.hot) &#123;</div><div class="line">  <span class="built_in">module</span>.hot.accept([<span class="string">'script/pageA'</span>], () =&gt; &#123;</div><div class="line">	control[ROUTER.req.currentControl].call(ROUTER,<span class="literal">null</span>,ROUTER.res)</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>view层即模板，这里使用的是xtpl模板，在服务器环境和前端环境下都支持渲染页面</p>
+<p>页面函数的形式</p>
+<p>页面函数要求使用es6的模块写法，配合webpack的按需加载功能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</div><div class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, fn)</div><div class="line"><span class="comment">//页面函数支持返回一个卸载函数，在页面离开的时候会被调用</span></div><div class="line"><span class="comment">//主要用于内存的释放，定时器的清除，事件监听的移除等等</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">window</span>.removeEventListener(<span class="string">'scroll'</span>, fn)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="后端部分"><a href="#后端部分" class="headerlink" title="后端部分"></a>后端部分</h4><p>使用koa2搭建的一个渲染服务器，在收到前端传来的页面请求时，会向API服务器请求数据，并识别页面请求是否带有json=1的参数，如果带有，则为前端路由跳转时的请求，直接返回数据即可，如果没有带json参数，加载跟前端共用的模板，配合数据进行渲染，发送到浏览器。</p>
+<h4 id="提升空间"><a href="#提升空间" class="headerlink" title="提升空间"></a>提升空间</h4><p>后端可以使用bigpipe或是骨架屏来加快首屏时间。<br>前端如果DOM操作频繁的话，可以引入虚拟dom的技术，首先将渲染完成的html转成vnode虚拟dom树，在数据变动时，令其生成新的vnode，接着进行diff和patch，可以有效减少dom的操作。</p>
 
       
     </div>
@@ -352,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/加快webpack构建的三个方法.html" rel="next" title="加快webpack构建的三个方法">
-                <i class="fa fa-chevron-left"></i> 加快webpack构建的三个方法
+              <a href="/一个简单的virtual-dom实现.html" rel="next" title="一个简单的virtual-dom实现">
+                <i class="fa fa-chevron-left"></i> 一个简单的virtual-dom实现
               </a>
             
           </div>
@@ -361,10 +375,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/使用原生JS进行前后端同构.html" rel="prev" title="使用原生JS进行前后端同构">
-                使用原生JS进行前后端同构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,7 +525,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#地址"><span class="nav-number">2.</span> <span class="nav-text">地址</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是前后端同构"><span class="nav-number">2.</span> <span class="nav-text">什么是前后端同构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目简介"><span class="nav-number">3.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端部分"><span class="nav-number">4.</span> <span class="nav-text">前端部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后端部分"><span class="nav-number">5.</span> <span class="nav-text">后端部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升空间"><span class="nav-number">6.</span> <span class="nav-text">提升空间</span></a></li></ol></div>
             
 
           </div>
