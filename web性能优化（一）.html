@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="背景现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的响应式布局问题是搭建新的移动端项目的重点和难点。 REM介绍rem（font size">
+<meta name="description" content="背景在开发好页面后，如何让页面更快更好的运行，是区分一个程序猿技术水平和视野的一个重要指标。所以面试时，面试官总会问你一个问题，如何进行性能优化呢？ 如果你这时是头脑一片空白，或是像之前的我一样，靠死记硬背或是之前的经历，答一下压缩代码，打包代码，雪碧图，cdn，事件代理，这说明你对性能优化还是缺乏一个整体，系统的掌握，对性能优化还只是处于听说过一个方法就加上去的阶段。这样也就无从去更好的优化性能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="推荐一个移动端响应式布局的方案">
-<meta property="og:url" content="http://hpoenixf.com/推荐一个移动端响应式布局的方案.html">
+<meta property="og:title" content="web性能优化（一）">
+<meta property="og:url" content="http://hpoenixf.com/web性能优化（一）.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="背景现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的响应式布局问题是搭建新的移动端项目的重点和难点。 REM介绍rem（font size">
-<meta property="og:updated_time" content="2018-02-28T00:08:21.546Z">
+<meta property="og:description" content="背景在开发好页面后，如何让页面更快更好的运行，是区分一个程序猿技术水平和视野的一个重要指标。所以面试时，面试官总会问你一个问题，如何进行性能优化呢？ 如果你这时是头脑一片空白，或是像之前的我一样，靠死记硬背或是之前的经历，答一下压缩代码，打包代码，雪碧图，cdn，事件代理，这说明你对性能优化还是缺乏一个整体，系统的掌握，对性能优化还只是处于听说过一个方法就加上去的阶段。这样也就无从去更好的优化性能">
+<meta property="og:updated_time" content="2018-03-07T09:25:40.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="推荐一个移动端响应式布局的方案">
-<meta name="twitter:description" content="背景现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的响应式布局问题是搭建新的移动端项目的重点和难点。 REM介绍rem（font size">
+<meta name="twitter:title" content="web性能优化（一）">
+<meta name="twitter:description" content="背景在开发好页面后，如何让页面更快更好的运行，是区分一个程序猿技术水平和视野的一个重要指标。所以面试时，面试官总会问你一个问题，如何进行性能优化呢？ 如果你这时是头脑一片空白，或是像之前的我一样，靠死记硬背或是之前的经历，答一下压缩代码，打包代码，雪碧图，cdn，事件代理，这说明你对性能优化还是缺乏一个整体，系统的掌握，对性能优化还只是处于听说过一个方法就加上去的阶段。这样也就无从去更好的优化性能">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/推荐一个移动端响应式布局的方案.html"/>
+  <link rel="canonical" href="http://hpoenixf.com/web性能优化（一）.html"/>
 
 
 
 
 
-  <title>推荐一个移动端响应式布局的方案 | hpoenixf's blog</title>
+  <title>web性能优化（一） | hpoenixf's blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +226,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/推荐一个移动端响应式布局的方案.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/web性能优化（一）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -243,7 +243,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">推荐一个移动端响应式布局的方案</h2>
+          <h2 class="post-title" itemprop="name headline">web性能优化（一）</h2>
         
 
         <div class="post-meta">
@@ -255,8 +255,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-27T22:20:11+08:00">
-                2017-09-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T17:23:07+08:00">
+                2018-03-07
               </time>
             
 
@@ -274,7 +274,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/推荐一个移动端响应式布局的方案.html#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/web性能优化（一）.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -283,7 +283,7 @@
 
           
           
-             <span id="/推荐一个移动端响应式布局的方案.html" class="leancloud_visitors" data-flag-title="推荐一个移动端响应式布局的方案">
+             <span id="/web性能优化（一）.html" class="leancloud_visitors" data-flag-title="web性能优化（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -311,16 +311,25 @@
       
 
       
-        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的响应式布局问题是搭建新的移动端项目的重点和难点。</p>
-<h4 id="REM介绍"><a href="#REM介绍" class="headerlink" title="REM介绍"></a>REM介绍</h4><p>rem（font size of the root element）是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位，rem布局是一个流行的解决移动端响应式布局的方案。在页面初始化时，使用JS根据屏幕的尺寸和dpr等信息设置rem的大小，而在css中写下元素的高度等信息时，使用rem。如将rem设置为100px，则元素的高度为36px时，需要将元素的高度写成0.36rem。<br><a id="more"></a></p>
-<h4 id="传统的REM布局遇到的问题"><a href="#传统的REM布局遇到的问题" class="headerlink" title="传统的REM布局遇到的问题"></a>传统的REM布局遇到的问题</h4><p>以100像素为例，很多常见的属性如字体大小需要写成0.12rem等，可读性较差，输入起来也不方便，降低了工作效率。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>在webpack中使用px2rem-loader。用法如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">rules: [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">    <span class="attr">use</span>: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'px2rem-loader?remUnit=75&amp;remPrecision=8'</span>]</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
-<p>这样便可以应对常见的750px的设计图，直接按照设计图的尺寸来填写属性大小就好，<br>注意，还需要在html文件中引入flexible文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
-<h4 id="踩到的坑"><a href="#踩到的坑" class="headerlink" title="踩到的坑"></a>踩到的坑</h4><p>微信浏览器如果退回的话，页面被缓存，但是js文件没有重新调用，会导致布局混乱。需要调用pageshow事件来解决</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">e.addeventListener(<span class="string">'pageshow'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="comment">// d的作用是重新设置documentElement的fontsize为clientWidth的1/10</span></div><div class="line">	e.persisted&amp;&amp;d()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h4><p>该布局方案主要被我用于一个<a href="http://hpoenixf.com/%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9FJS%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%90%8C%E6%9E%84.html">原生JS前后端同构项目</a>，有兴趣的可以看下</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://github.com/Jinjiang/px2rem-loader" target="_blank" rel="external">https://github.com/Jinjiang/px2rem-loader</a></p>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在开发好页面后，如何让页面更快更好的运行，是区分一个程序猿技术水平和视野的一个重要指标。所以面试时，面试官总会问你一个问题，如何进行性能优化呢？</p>
+<p>如果你这时是头脑一片空白，或是像之前的我一样，靠死记硬背或是之前的经历，答一下压缩代码，打包代码，雪碧图，cdn，事件代理，这说明你对性能优化还是缺乏一个整体，系统的掌握，对性能优化还只是处于听说过一个方法就加上去的阶段。这样也就无从去更好的优化性能。</p>
+<p>最近一个星期经过疯狂的面试和查询资料，我总算积累了一些经验和思考，在这个招聘的黄金时间，分享给大家，希望大家可以有一点收获。</p>
+<h4 id="性能优化是什么"><a href="#性能优化是什么" class="headerlink" title="性能优化是什么"></a>性能优化是什么</h4><p>从前端的角度来说，性能优化可以分为两个方向。从用户角度来看，一个是页面加载的很快，另一个是页面使用起来很流畅。因此，对性能优化的探索，我们可以分为页面加载时间跟页面运行效率两个方向来进行研究</p>
+<h4 id="从浏览器打开到页面渲染完成，花费了多少时间"><a href="#从浏览器打开到页面渲染完成，花费了多少时间" class="headerlink" title="从浏览器打开到页面渲染完成，花费了多少时间"></a>从浏览器打开到页面渲染完成，花费了多少时间</h4><p>是的，这个问题有点熟悉，面试官比较常问的是从浏览器打开到页面渲染完成，发生了什么事情。这个问题网上很多回答，我也不就重复的细说了。主要的过程是：</p>
+<p>浏览器解析-&gt;查询缓存-&gt;dns查询-&gt;建立链接-&gt;服务器处理请求-&gt;服务器发送响应-&gt;客户端收到页面-&gt;解析HTML-&gt;构建渲染树-&gt;开始显示内容(白屏时间)-&gt;首屏内容加载完成(首屏时间)-&gt;用户可交互(DOMContentLoaded)-&gt;加载完成(load)</p>
+<p>很显然，如果我们要进行加载时间的优化，我们需要从这里的每一个步骤都去思考，去总结，而避免东凑一点，西凑一点。</p>
+<h5 id="页面加载时间监控"><a href="#页面加载时间监控" class="headerlink" title="页面加载时间监控"></a>页面加载时间监控</h5><p>有一句话说得好，If You Can’t Measure It, You Can’t Manage It。在对这些环节进行优化之前，我们需要知道如何监控这些环节花费了多少时间。</p>
+<p>首先推荐一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/PerformanceTiming" target="_blank" rel="external">PerformanceTiming</a>,可以获取到很多页面加载相关的数据。<br>比较常用的有</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DNS解析时间： domainLookupEnd - domainLookupStart</div><div class="line">TCP建立连接时间： connectEnd - connectStart</div><div class="line">白屏时间： responseStart - navigationStart</div><div class="line">dom渲染完成时间： domContentLoadedEventEnd - navigationStart</div><div class="line">页面onload时间： loadEventEnd - navigationStart</div></pre></td></tr></table></figure>
+<p>如果不使用该API，可以以服务器渲染返回的时间，或是SPA路由跳转离开的时间为起点，domContentLoaded，load等事件为结束点进行记录。或是直接上google analytics。方法很多，就不细说了。</p>
+<h5 id="服务器部分优化要点"><a href="#服务器部分优化要点" class="headerlink" title="服务器部分优化要点"></a>服务器部分优化要点</h5><p>后端部分可以对缓存，dns查询时间，链接时间，处理请求时间，响应时间等进行优化。</p>
+<p>缓存就不细说了。</p>
+<p>dns查询时间可以使用httpdns或是dns预加载，域名收敛等手段优化。</p>
+<p>建立连接的重点是长连接和链接复用，keep-alive，long-polling，http-straming，websocket或是自己写过别的协议，更好的是直接上http2。为了优化链接的环节，前端这里还需要对资源使用cdn，雪碧图，代码合并等手段。</p>
+<p>服务器处理请求这里可以优化的点也不少，值得注意的就是移动端访问PC端页面需要跳转到移动端页面时，要再服务器端使用302跳转，不要在前端进行跳转。还有就是启用hsts，要求浏览器在之后的访问使用https，减少无谓的http跳转https，同时还可以防止ssl剥离攻击，提升安全性。</p>
+<p>服务器发送响应环节，可以使用Transfer-Encoding=chunked，多次返回响应，具体操作查询bigpipe。还有就是减小cookie的体积等等。</p>
+<h5 id="前端部分优化要点"><a href="#前端部分优化要点" class="headerlink" title="前端部分优化要点"></a>前端部分优化要点</h5><p>前端部分可以对白屏时间，首屏事件，可交换时间，加载完成时间进行优化。</p>
+<p>-未完，待续-</p>
 
       
     </div>
@@ -357,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/iscroll-lite源码阅读.html" rel="next" title="iscroll-lite源码阅读">
-                <i class="fa fa-chevron-left"></i> iscroll-lite源码阅读
+              <a href="/使用原生JS进行前后端同构.html" rel="next" title="使用原生JS进行前后端同构">
+                <i class="fa fa-chevron-left"></i> 使用原生JS进行前后端同构
               </a>
             
           </div>
@@ -366,10 +375,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/一个简易标签间的通信方法.html" rel="prev" title="一个简易标签间的通信方法">
-                一个简易标签间的通信方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -520,7 +525,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REM介绍"><span class="nav-number">2.</span> <span class="nav-text">REM介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传统的REM布局遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">传统的REM布局遇到的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#踩到的坑"><span class="nav-number">5.</span> <span class="nav-text">踩到的坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广告"><span class="nav-number">6.</span> <span class="nav-text">广告</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能优化是什么"><span class="nav-number">2.</span> <span class="nav-text">性能优化是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从浏览器打开到页面渲染完成，花费了多少时间"><span class="nav-number">3.</span> <span class="nav-text">从浏览器打开到页面渲染完成，花费了多少时间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#页面加载时间监控"><span class="nav-number">3.1.</span> <span class="nav-text">页面加载时间监控</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#服务器部分优化要点"><span class="nav-number">3.2.</span> <span class="nav-text">服务器部分优化要点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#前端部分优化要点"><span class="nav-number">3.3.</span> <span class="nav-text">前端部分优化要点</span></a></li></ol></li></ol></div>
             
 
           </div>
