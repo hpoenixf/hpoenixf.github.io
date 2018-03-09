@@ -224,6 +224,137 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/面试必考之http状态码有哪些.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/面试必考之http状态码有哪些.html" itemprop="url">面试必考之http状态码有哪些</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T23:41:31+08:00">
+                2018-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/面试必考之http状态码有哪些.html" class="leancloud_visitors" data-flag-title="面试必考之http状态码有哪些">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>http状态码有哪些，这也是一个很高频的面试问题。<br>一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。</p>
+<p>如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。</p>
+<h4 id="304协商缓存"><a href="#304协商缓存" class="headerlink" title="304协商缓存"></a>304协商缓存</h4><p>先从304协商缓存开始吧。这是比较基础的知识。相信我，只要你提起304协商缓存，面试官一定会忍不住问你，什么是协商缓存？</p>
+<p>这时就到了你展示一下自己丰富的浏览器缓存知识的时候了。我一般会这么答：浏览器缓存分为强制缓存和协商缓存，优先读取强制缓存，这时状态码是200，强制缓存分为expires和cache-control，而expires和cache-control又分别代表着(更多自己查吧，这里不细说了)…协商缓存包括etag和last-modified，优先读etag(省略)…而协商缓存与强制缓存的区别在于强制缓存不需要访问浏览器，协商缓存需要。</p>
+<h4 id="101协议升级"><a href="#101协议升级" class="headerlink" title="101协议升级"></a>101协议升级</h4><p>主要用于websocket，也可以用于http2的升级<br>websocket不细说。http2好处多多，一般说出支持单个连接多次请求，二进制，压缩头部，服务器推送等特征面试官就比较满足了。具体也是自行谷歌百度，这里不细说。</p>
+<h4 id="307-hsts跳转"><a href="#307-hsts跳转" class="headerlink" title="307 hsts跳转"></a>307 hsts跳转</h4><p>这个比较高端，原本的用法是用于让post请求的跳转去新的post请求，但也用于hsts跳转。</p>
+<p>hsts全称HTTP严格传输安全（HTTP Strict Transport Security，縮寫：HSTS），功能是要求浏览器下次访问该站点时使用https来访问，而不再需要先是http再转https。这样可以避免ssl剥离攻击，即攻击者在用户使用http访问的过程中进行攻击，对服务器冒充自己是用户，在攻击者和服务器中使用https访问，在用户和服务器中使用http访问。</p>
+<p>具体使用方法是在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
+<p>参考<a href="https://www.barretlee.com/blog/2015/10/22/hsts-intro/" target="_blank" rel="external">你所不知道的 HSTS</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/web性能优化（一）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1123,136 +1254,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/你不知道的JS之this.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/你不知道的JS之this.html" itemprop="url">你不知道的JS之this</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-14T23:24:14+08:00">
-                2017-07-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/你不知道的JS之this.html" class="leancloud_visitors" data-flag-title="你不知道的JS之this">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>摘抄自你不知道的JS上卷</p>
-<p>this是一个完全根据调用点（函数是如何被调用的）而为每次函数调用建立的绑定。</p>
-<h4 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h4><p>独立函数调用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"></div><div class="line">foo(); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/你不知道的JS之this.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1302,7 +1303,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
