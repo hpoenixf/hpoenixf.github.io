@@ -166,7 +166,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">Travel alone</h1>
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
       
   </div>
 
@@ -214,6 +214,134 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/我的前端成长回顾.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/我的前端成长回顾.html" itemprop="url">我的前端成长回顾</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T22:32:53+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/我的前端成长回顾.html" class="leancloud_visitors" data-flag-title="我的前端成长回顾">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>转眼间，学习前端也有两年半了，从开始的不知道css是什么，到一年前感觉自己工作十分重复觉得有点迷茫，再到现在重新充满激情不再迷茫，也是多少找到了一点成为优秀前端的方向了。</p>
+<p>偶尔发现知乎上我两年前的<a href="https://www.zhihu.com/question/19637373/answer/69787687" target="_blank" rel="external">零基础开始学 Web 前端开发，有什么建议吗？</a>的回答还有人在看，在评论，有点感慨。我的分享应该也是帮助了一些人入门吧，他们或许在入门后也碰到跟我一样的迷茫，不知道他们是怎么解决的呢？现在把我在入门前端之后的发生的经历和成长也写出来，希望对大家也有点帮助。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/我的前端成长回顾.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -302,18 +430,16 @@
 
       
         
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>http状态码有哪些，这也是一个很高频的面试问题。<br>一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。</p>
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>http状态码有哪些，这也是一个很高频的面试问题。<br>一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。</p>
 <p>如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。</p>
 <h4 id="304协商缓存"><a href="#304协商缓存" class="headerlink" title="304协商缓存"></a>304协商缓存</h4><p>先从304协商缓存开始吧。这是比较基础的知识。相信我，只要你提起304协商缓存，面试官一定会忍不住问你，什么是协商缓存？</p>
-<p>这时就到了你展示一下自己丰富的浏览器缓存知识的时候了。我一般会这么答：浏览器缓存分为强制缓存和协商缓存，优先读取强制缓存，这时状态码是200，强制缓存分为expires和cache-control，而expires和cache-control又分别代表着(更多自己查吧，这里不细说了)…协商缓存包括etag和last-modified，优先读etag(省略)…而协商缓存与强制缓存的区别在于强制缓存不需要访问浏览器，协商缓存需要。</p>
-<h4 id="101协议升级"><a href="#101协议升级" class="headerlink" title="101协议升级"></a>101协议升级</h4><p>主要用于websocket，也可以用于http2的升级<br>websocket不细说。http2好处多多，一般说出支持单个连接多次请求，二进制，压缩头部，服务器推送等特征面试官就比较满足了。具体也是自行谷歌百度，这里不细说。</p>
-<h4 id="307-hsts跳转"><a href="#307-hsts跳转" class="headerlink" title="307 hsts跳转"></a>307 hsts跳转</h4><p>这个比较高端，原本的用法是用于让post请求的跳转去新的post请求，但也用于hsts跳转。</p>
-<p>hsts全称HTTP严格传输安全（HTTP Strict Transport Security，縮寫：HSTS），功能是要求浏览器下次访问该站点时使用https来访问，而不再需要先是http再转https。这样可以避免ssl剥离攻击，即攻击者在用户使用http访问的过程中进行攻击，对服务器冒充自己是用户，在攻击者和服务器中使用https访问，在用户和服务器中使用http访问。</p>
-<p>具体使用方法是在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
-<p>参考<a href="https://www.barretlee.com/blog/2015/10/22/hsts-intro/" target="_blank" rel="external">你所不知道的 HSTS</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/面试必考之http状态码有哪些.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1124,136 +1250,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/iscroll-lite源码阅读.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/iscroll-lite源码阅读.html" itemprop="url">iscroll-lite源码阅读</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T12:22:31+08:00">
-                2017-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/iscroll-lite源码阅读.html" class="leancloud_visitors" data-flag-title="iscroll-lite源码阅读">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>最近开发移动端项目用到了iscroll，踩了不少坑，因此阅读源码加深下对这个工具的了解。<br>本次阅读的是iscroll-lite，包含了主要的功能，比完整版少了鼠标滚轮，滚动后对齐到特定位置，按键绑定及定制滚动条等功能。</p>
-<h4 id="主体结构"><a href="#主体结构" class="headerlink" title="主体结构"></a>主体结构</h4><p>以当前的5.2版本为例，前三百行是工具函数，封装了一些工具。三百行到四百行是构造函数IScroll，起到配置和初始化的效果。四百行到一千修改了IScroll的原型，给IScroll实例加上了各种方法。最后是模块化相关的判断。总体的结构是很清晰的。</p>
-<h4 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h4><h5 id="prefixStyle"><a href="#prefixStyle" class="headerlink" title="_prefixStyle"></a>_prefixStyle</h5><p>用于浏览器兼容。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _vendor = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> vendors = [<span class="string">'t'</span>, <span class="string">'webkitT'</span>, <span class="string">'MozT'</span>, <span class="string">'msT'</span>, <span class="string">'OT'</span>],</div><div class="line">		transform,</div><div class="line">		i = <span class="number">0</span>,</div><div class="line">		l = vendors.length;</div><div class="line"></div><div class="line">	<span class="keyword">for</span> ( ; i &lt; l; i++ ) &#123;</div><div class="line">		transform = vendors[i] + <span class="string">'ransform'</span>;</div><div class="line">		<span class="keyword">if</span> ( transform <span class="keyword">in</span> _elementStyle ) <span class="keyword">return</span> vendors[i].substr(<span class="number">0</span>, vendors[i].length<span class="number">-1</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;)();</div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">_prefixStyle</span> (<span class="params">style</span>) </span>&#123;</div><div class="line">       <span class="keyword">if</span> ( _vendor === <span class="literal">false</span> ) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">       <span class="keyword">if</span> ( _vendor === <span class="string">''</span> ) <span class="keyword">return</span> style;</div><div class="line">       <span class="keyword">return</span> _vendor + style.charAt(<span class="number">0</span>).toUpperCase() + style.substr(<span class="number">1</span>);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/iscroll-lite源码阅读.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1303,7 +1299,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
