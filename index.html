@@ -880,7 +880,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/加快webpack构建的三个方法.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/加快webpack构建.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -899,7 +899,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/加快webpack构建的三个方法.html" itemprop="url">加快webpack构建的三个方法</a></h2>
+                <a class="post-title-link" href="/加快webpack构建.html" itemprop="url">加快webpack构建</a></h2>
         
 
         <div class="post-meta">
@@ -929,7 +929,7 @@
 
           
           
-             <span id="/加快webpack构建的三个方法.html" class="leancloud_visitors" data-flag-title="加快webpack构建的三个方法">
+             <span id="/加快webpack构建.html" class="leancloud_visitors" data-flag-title="加快webpack构建">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -962,6 +962,8 @@
             <p>随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。<br>1.在开发环境不使用babel转码，仅在生产环境使用。本地开发的chrome的es6的兼容性足够好，不需要babel转码，经测试，这一操作可以减少25%的构建时间。</p>
 <p>2.在开发环境不使用post-css，关闭压缩css，可以提升10%的速度。</p>
 <p>3.在entry中仅引入当前开发的页面，这一举措可以提升一倍的构建速度，在其他步奏完成后，还需要12秒左右的构建速度，完成该步骤后，仅需五秒的构建时间。</p>
+<p>4.启用代码热更新，想办法捕获热更新，避免热更新时刷新浏览器</p>
+<p>5.启动happypack</p>
 
           
         

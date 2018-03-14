@@ -89,7 +89,7 @@
 <meta property="og:url" content="http://hpoenixf.com/面试必考之http状态码有哪些.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
-<meta property="og:updated_time" content="2018-03-12T15:44:34.030Z">
+<meta property="og:updated_time" content="2018-03-14T14:14:47.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试必考之http状态码有哪些">
 <meta name="twitter:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
@@ -315,12 +315,25 @@
 <p>如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。</p>
 <h4 id="304协商缓存"><a href="#304协商缓存" class="headerlink" title="304协商缓存"></a>304协商缓存</h4><p>先从304协商缓存开始吧。这是比较基础的知识。相信我，只要你提起304协商缓存，面试官一定会忍不住问你，什么是协商缓存？</p>
 <a id="more"></a>
-<p>这时就到了你展示一下自己丰富的浏览器缓存知识的时候了。我一般会这么答：浏览器缓存分为强制缓存和协商缓存，优先读取强制缓存，这时状态码是200，强制缓存分为expires和cache-control，而expires和cache-control又分别代表着(更多自己查吧，这里不细说了)…协商缓存包括etag和last-modified，优先读etag(省略)…而协商缓存与强制缓存的区别在于强制缓存不需要访问浏览器，协商缓存需要。</p>
-<h4 id="101协议升级"><a href="#101协议升级" class="headerlink" title="101协议升级"></a>101协议升级</h4><p>主要用于websocket，也可以用于http2的升级<br>websocket不细说。http2好处多多，一般说出支持单个连接多次请求，二进制，压缩头部，服务器推送等特征面试官就比较满足了。具体也是自行谷歌百度，这里不细说。</p>
+<p>这时就到了你展示一下自己丰富的浏览器缓存知识的时候了。我一般会这么答：浏览器缓存分为强制缓存和协商缓存，优先读取强制缓存。</p>
+<p>强制缓存分为expires和cache-control，而expires是一个特定的时间，是比较旧的标准和cache-control通常是一个具体的时间长度，比较新，优先级也比较高。</p>
+<p>而协商缓存包括etag和last-modified，last-modified的设置标准是资源的上次修改时间，而etag是为了应对资源修改时间可能很频繁的情况出现的，是基于资源的内容计算出来的值，因此优先级也较高。</p>
+<p>协商缓存与强制缓存的区别在于强制缓存不需要访问浏览器，返回结果是200，协商缓存需要访问服务器，返回结果是304。</p>
+<h4 id="101协议升级"><a href="#101协议升级" class="headerlink" title="101协议升级"></a>101协议升级</h4><p>主要用于websocket，也可以用于http2的升级。</p>
+<p>websocket的特点和功效不细说，大家都很熟了。</p>
+<p>http2好处多多，一般说出支持单个连接多次请求，二进制，压缩头部，服务器推送等特征面试官就比较满足了。具体了解也是自行谷歌百度，这里也是不细说。</p>
+<p>当然这时候我们可能要应对一下面试官接下来的追问：到底https,http,http2以及它的原形spdy有什么区别，又分别有什么优点和不足，他们的建立连接分别又有着什么环节，这些知识就需要读者自己去充分搜索查询了。</p>
 <h4 id="307-hsts跳转"><a href="#307-hsts跳转" class="headerlink" title="307 hsts跳转"></a>307 hsts跳转</h4><p>这个比较高端，原本的用法是用于让post请求的跳转去新的post请求，但也用于hsts跳转。</p>
 <p>hsts全称HTTP严格传输安全（HTTP Strict Transport Security，縮寫：HSTS），功能是要求浏览器下次访问该站点时使用https来访问，而不再需要先是http再转https。这样可以避免ssl剥离攻击，即攻击者在用户使用http访问的过程中进行攻击，对服务器冒充自己是用户，在攻击者和服务器中使用https访问，在用户和服务器中使用http访问。</p>
 <p>具体使用方法是在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
-<p>参考<a href="https://www.barretlee.com/blog/2015/10/22/hsts-intro/" target="_blank" rel="external">你所不知道的 HSTS</a></p>
+<p>当然，提到了ssl剥离攻击，你一定很感兴趣还有什么方法可以对号称安全的https进行攻击呢？我这里了解到的有ssl劫持攻击，大概就是信任第三方的安全证书，这点被利用于代理软件监听https。如果还有更多的，欢迎补充。</p>
+<p>最后，如果我的文章对你有帮助，欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>知道你们很懒，帮你们搜索好了相关资料</p>
+<p><a href="http://www.cnblogs.com/vajoy/p/5341664.html" target="_blank" rel="external">浅谈浏览器http的缓存机制
+</a></p>
+<p><a href="https://ye11ow.gitbooks.io/http2-explained/content/" target="_blank" rel="external">http2讲解</a></p>
+<p><a href="http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/" target="_blank" rel="external">HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事</a><br><a href="https://www.barretlee.com/blog/2015/10/22/hsts-intro/" target="_blank" rel="external">你所不知道的 HSTS</a></p>
+<p><a href="https://imququ.com/post/sth-about-switch-to-https.html" target="_blank" rel="external">关于启用 HTTPS 的一些经验分享（一）</a></p>
 
       
     </div>
@@ -520,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304协商缓存"><span class="nav-number">2.</span> <span class="nav-text">304协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#101协议升级"><span class="nav-number">3.</span> <span class="nav-text">101协议升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307-hsts跳转"><span class="nav-number">4.</span> <span class="nav-text">307 hsts跳转</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304协商缓存"><span class="nav-number">2.</span> <span class="nav-text">304协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#101协议升级"><span class="nav-number">3.</span> <span class="nav-text">101协议升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307-hsts跳转"><span class="nav-number">4.</span> <span class="nav-text">307 hsts跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
