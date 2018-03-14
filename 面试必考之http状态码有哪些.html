@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
+<meta name="description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试必考之http状态码有哪些">
 <meta property="og:url" content="http://hpoenixf.com/面试必考之http状态码有哪些.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
-<meta property="og:updated_time" content="2018-03-14T14:14:47.675Z">
+<meta property="og:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
+<meta property="og:updated_time" content="2018-03-14T16:24:53.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试必考之http状态码有哪些">
-<meta name="twitter:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
+<meta name="twitter:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
 
 
 
@@ -312,7 +312,7 @@
 
       
         <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>http状态码有哪些，这也是一个很高频的面试问题。<br>一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。</p>
-<p>如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，我们需要重点关注三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。</p>
+<p>如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。</p>
 <h4 id="304协商缓存"><a href="#304协商缓存" class="headerlink" title="304协商缓存"></a>304协商缓存</h4><p>先从304协商缓存开始吧。这是比较基础的知识。相信我，只要你提起304协商缓存，面试官一定会忍不住问你，什么是协商缓存？</p>
 <a id="more"></a>
 <p>这时就到了你展示一下自己丰富的浏览器缓存知识的时候了。我一般会这么答：浏览器缓存分为强制缓存和协商缓存，优先读取强制缓存。</p>
@@ -327,6 +327,8 @@
 <p>hsts全称HTTP严格传输安全（HTTP Strict Transport Security，縮寫：HSTS），功能是要求浏览器下次访问该站点时使用https来访问，而不再需要先是http再转https。这样可以避免ssl剥离攻击，即攻击者在用户使用http访问的过程中进行攻击，对服务器冒充自己是用户，在攻击者和服务器中使用https访问，在用户和服务器中使用http访问。</p>
 <p>具体使用方法是在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
 <p>当然，提到了ssl剥离攻击，你一定很感兴趣还有什么方法可以对号称安全的https进行攻击呢？我这里了解到的有ssl劫持攻击，大概就是信任第三方的安全证书，这点被利用于代理软件监听https。如果还有更多的，欢迎补充。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>仅仅三个状态码，都可以牵涉到如此丰富的知识，对于状态码，我们不能只是片面的去背诵状态码及对应的含义，要去主动挖掘，深入，借助http状态码来建立自己的网络体系。</p>
+<p>留一个课后作业：301和302有什么区别？分别适用于什么场景？你还会只去记一个是永久重定向，一个是临时重定向吗？</p>
 <p>最后，如果我的文章对你有帮助，欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>知道你们很懒，帮你们搜索好了相关资料</p>
 <p><a href="http://www.cnblogs.com/vajoy/p/5341664.html" target="_blank" rel="external">浅谈浏览器http的缓存机制
@@ -533,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304协商缓存"><span class="nav-number">2.</span> <span class="nav-text">304协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#101协议升级"><span class="nav-number">3.</span> <span class="nav-text">101协议升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307-hsts跳转"><span class="nav-number">4.</span> <span class="nav-text">307 hsts跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304协商缓存"><span class="nav-number">2.</span> <span class="nav-text">304协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#101协议升级"><span class="nav-number">3.</span> <span class="nav-text">101协议升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307-hsts跳转"><span class="nav-number">4.</span> <span class="nav-text">307 hsts跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
