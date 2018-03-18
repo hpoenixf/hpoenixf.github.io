@@ -4,6 +4,7 @@
 
 #### 目录
 
+[为什么我想要成为前端工程师](http://hpoenixf.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%83%B3%E8%A6%81%E6%88%90%E4%B8%BA%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88.html)
 
 [我的前端成长回顾](http://hpoenixf.com/%E6%88%91%E7%9A%84%E5%89%8D%E7%AB%AF%E6%88%90%E9%95%BF%E5%9B%9E%E9%A1%BE.html)
 

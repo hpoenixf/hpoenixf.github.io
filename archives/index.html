@@ -295,7 +295,7 @@
         
           
         
-        Um..! 20 posts in total. Keep on posting.
+        Um..! 22 posts in total. Keep on posting.
       </span>
       
 
@@ -310,6 +310,80 @@
           <div class="collection-title">
             <h2 class="archive-year" id="archive-year-2018">2018</h2>
           </div>
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/我是怎么成为前端工程师的.html" itemprop="url">
+              
+                <span itemprop="name">我是怎么成为前端工程师的</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-03-19T00:08:06+08:00"
+              content="2018-03-19" >
+          03-19
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/为什么我想要成为前端工程师.html" itemprop="url">
+              
+                <span itemprop="name">我是怎么成为前端工程师的</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-03-18T16:09:31+08:00"
+              content="2018-03-18" >
+          03-18
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
         
         
 
@@ -533,80 +607,6 @@
 
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/一个简易标签间的通信方法.html" itemprop="url">
-              
-                <span itemprop="name">一个简易标签间的通信方法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-18T23:13:54+08:00"
-              content="2017-10-18" >
-          10-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/推荐一个移动端响应式布局的方案.html" itemprop="url">
-              
-                <span itemprop="name">推荐一个移动端响应式布局的方案</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-27T22:20:11+08:00"
-              content="2017-09-27" >
-          09-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
   </div>
   
@@ -659,7 +659,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -991,11 +991,11 @@
             counter.fetchWhenSave(true);
             counter.increment("time");
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text(counter.get('time'));
-            
             counter.save(null, {
               success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
                 
               },
               error: function(counter, error) {

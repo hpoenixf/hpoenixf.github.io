@@ -235,19 +235,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -366,14 +353,6 @@
              </span>
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views: 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
           
 
           
@@ -547,7 +526,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -923,11 +902,11 @@
             counter.fetchWhenSave(true);
             counter.increment("time");
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text(counter.get('time'));
-            
             counter.save(null, {
               success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
                 
               },
               error: function(counter, error) {
