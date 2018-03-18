@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">github.com/hpoenixf</p>
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
       
   </div>
 
@@ -241,6 +241,19 @@
 
   
     
+
+    
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
 
   
 
@@ -298,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[译]如何运用最新的技术提升网页速度和性能</h1>
+          <h2 class="post-title" itemprop="name headline">[译]如何运用最新的技术提升网页速度和性能</h2>
         
 
         <div class="post-meta">
@@ -537,6 +550,30 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -688,7 +725,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
                 </span>
               
@@ -751,9 +788,11 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
 </div>
 
 
+  
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -761,7 +800,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
 
 
 
@@ -919,7 +958,6 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: window.location.pathname,
             id: '1471245702000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',

@@ -191,7 +191,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">github.com/hpoenixf</p>
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
       
   </div>
 
@@ -235,6 +235,19 @@
 
   
     
+
+    
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
 
   
 
@@ -292,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">越南毕业游记</h1>
+          <h2 class="post-title" itemprop="name headline">越南毕业游记</h2>
         
 
         <div class="post-meta">
@@ -383,6 +396,30 @@
 
     
 
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -528,7 +565,7 @@
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
                 </span>
               
@@ -575,9 +612,11 @@
 </div>
 
 
+  
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -585,7 +624,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
 
 
 
@@ -743,7 +782,6 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: window.location.pathname,
             id: '1466835400000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
