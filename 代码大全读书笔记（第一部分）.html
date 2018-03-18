@@ -942,6 +942,7 @@ d. 是否指出项目的风险。
       function renderGitment(){
         var gitment = new Gitmint({
             id: window.location.pathname,
+            id: '1498377219000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
@@ -1035,11 +1036,11 @@ d. 是否指出项目的风险。
             counter.fetchWhenSave(true);
             counter.increment("time");
             
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            
             counter.save(null, {
               success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
                 
               },
               error: function(counter, error) {

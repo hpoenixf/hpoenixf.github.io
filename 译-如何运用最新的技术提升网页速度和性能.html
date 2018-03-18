@@ -933,6 +933,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
       function renderGitment(){
         var gitment = new Gitmint({
             id: window.location.pathname,
+            id: '1471245702000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
@@ -1026,11 +1027,11 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
             counter.fetchWhenSave(true);
             counter.increment("time");
             
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            
             counter.save(null, {
               success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
                 
               },
               error: function(counter, error) {

@@ -795,6 +795,7 @@
       function renderGitment(){
         var gitment = new Gitmint({
             id: window.location.pathname,
+            id: '1497065210000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
@@ -888,11 +889,11 @@
             counter.fetchWhenSave(true);
             counter.increment("time");
             
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            
             counter.save(null, {
               success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
                 
               },
               error: function(counter, error) {
