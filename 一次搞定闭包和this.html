@@ -99,23 +99,23 @@
 
 
 
-  <meta name="description" content="让代码比你来时干净 一、有意义的命名 变量、函数或者类的名称应该告诉你它为什么存在，它做什么事情，应该怎么用。 要名副其实，让人明白代码是做了什么事情 避免误导。如不是数组不要以list结尾，可以用group或者直接用复数形式。避免使用很相似的命名。 做有意义的区分。别同时用productData，productInfo。 用读的出来的名称，可搜索的名称。单字母名称仅用于短方法的本地变量。名称长短">
+  <meta name="description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文是什么123456executionContextObj = &amp;#123;    scopeChain: 作用域链,跟闭包相关,    variableObject: 变量对象，跟本篇文章无关，之后可能会再讲,    this: 对的就是你关注的那个this">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码整洁之道读书笔记">
-<meta property="og:url" content="http://hpoenixf.com/代码整洁之道读书笔记.html">
+<meta property="og:title" content="一次搞定闭包和this">
+<meta property="og:url" content="http://hpoenixf.com/一次搞定闭包和this.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="让代码比你来时干净 一、有意义的命名 变量、函数或者类的名称应该告诉你它为什么存在，它做什么事情，应该怎么用。 要名副其实，让人明白代码是做了什么事情 避免误导。如不是数组不要以list结尾，可以用group或者直接用复数形式。避免使用很相似的命名。 做有意义的区分。别同时用productData，productInfo。 用读的出来的名称，可搜索的名称。单字母名称仅用于短方法的本地变量。名称长短">
-<meta property="og:updated_time" content="2017-06-03T16:26:24.085Z">
+<meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文是什么123456executionContextObj = &amp;#123;    scopeChain: 作用域链,跟闭包相关,    variableObject: 变量对象，跟本篇文章无关，之后可能会再讲,    this: 对的就是你关注的那个this">
+<meta property="og:updated_time" content="2018-03-20T08:32:09.744Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代码整洁之道读书笔记">
-<meta name="twitter:description" content="让代码比你来时干净 一、有意义的命名 变量、函数或者类的名称应该告诉你它为什么存在，它做什么事情，应该怎么用。 要名副其实，让人明白代码是做了什么事情 避免误导。如不是数组不要以list结尾，可以用group或者直接用复数形式。避免使用很相似的命名。 做有意义的区分。别同时用productData，productInfo。 用读的出来的名称，可搜索的名称。单字母名称仅用于短方法的本地变量。名称长短">
+<meta name="twitter:title" content="一次搞定闭包和this">
+<meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文是什么123456executionContextObj = &amp;#123;    scopeChain: 作用域链,跟闭包相关,    variableObject: 变量对象，跟本篇文章无关，之后可能会再讲,    this: 对的就是你关注的那个this">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/代码整洁之道读书笔记.html"/>
+  <link rel="canonical" href="http://hpoenixf.com/一次搞定闭包和this.html"/>
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>代码整洁之道读书笔记 | hpoenixf's blog</title>
+  <title>一次搞定闭包和this | hpoenixf's blog</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/代码整洁之道读书笔记.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/一次搞定闭包和this.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -302,7 +302,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">代码整洁之道读书笔记</h2>
+          <h2 class="post-title" itemprop="name headline">一次搞定闭包和this</h2>
         
 
         <div class="post-meta">
@@ -314,7 +314,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-04T00:16:28+08:00">2017-06-04</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-19T23:05:20+08:00">2018-03-19</time>
             
 
             
@@ -332,8 +332,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/代码整洁之道读书笔记.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/代码整洁之道读书笔记.html" itemprop="commentsCount"></span>
+                <a href="/一次搞定闭包和this.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/一次搞定闭包和this.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +341,7 @@
 
           
           
-             <span id="/代码整洁之道读书笔记.html" class="leancloud_visitors" data-flag-title="代码整洁之道读书笔记">
+             <span id="/一次搞定闭包和this.html" class="leancloud_visitors" data-flag-title="一次搞定闭包和this">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,37 +372,44 @@
       
 
       
-        <p>让代码比你来时干净</p>
-<h4 id="一、有意义的命名"><a href="#一、有意义的命名" class="headerlink" title="一、有意义的命名"></a>一、有意义的命名</h4><ol>
-<li>变量、函数或者类的名称应该告诉你它为什么存在，它做什么事情，应该怎么用。</li>
-<li>要名副其实，让人明白代码是做了什么事情</li>
-<li>避免误导。如不是数组不要以list结尾，可以用group或者直接用复数形式。避免使用很相似的命名。</li>
-<li>做有意义的区分。别同时用productData，productInfo。</li>
-<li>用读的出来的名称，可搜索的名称。单字母名称仅用于短方法的本地变量。名称长短应与作用域大小相对应，变量如果可能在代码中多出使用，应赋予便于搜索的名称。</li>
-<li>类名和对象名应该是名词，不该是动词。方法名应该是动词</li>
-<li>每个概念对应一个词。类似于fetch、retrieve、get及controllers和managers只用其中的一个。</li>
-<li>避免一个单词用于不同目的。</li>
-<li>使用命名代替魔术数字。使用SECONDS_PER_DAY代替86400。</li>
+        <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
+<p>有请我们的这篇文章的主角，执行上下文</p>
+<h4 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关,</div><div class="line">    <span class="attr">variableObject</span>: 变量对象，跟本篇文章无关，之后可能会再讲,</div><div class="line">    <span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>js解释器维护了一个指定上下文栈，js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
+<h5 id="创建执行上下文的步奏"><a href="#创建执行上下文的步奏" class="headerlink" title="创建执行上下文的步奏"></a>创建执行上下文的步奏</h5><ol>
+<li><p>创建变量对象</p>
+</li>
+<li><p>根据函数怎么被调用，求出this</p>
+</li>
+<li><p>初始化作用域链，包括当前执行上下文的变量对象，以及函数创建时保存的链</p>
+</li>
 </ol>
-<h4 id="二、函数"><a href="#二、函数" class="headerlink" title="二、函数"></a>二、函数</h4><ol>
-<li>短小。函数不应该长于一屏。</li>
-<li>只做一件事情。</li>
-<li>参数。少用多参数，如果有三个以上参数，可以将其封装为对象。参数的名字与函数的名字应该有良好的关系</li>
-<li>无副作用。副作用就是做与名字无关的事情。</li>
-<li>不重复。</li>
-</ol>
-<a id="more"></a>
-<h4 id="三、注释"><a href="#三、注释" class="headerlink" title="三、注释"></a>三、注释</h4><p>注释的恰当用法是弥补我们用代码表达意图时遭遇的失败。注释的更新不及时。只有代码才是真实的。</p>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>在函数执行时，this 总是指向调用该函数的对象。要判断 this 的指向，其实就是判断 this 所在的函数属于谁。 </p>
 <ol>
-<li>注释不能美化糟糕的代码。</li>
-<li>用代码代替注释</li>
-<li>好注释。提供信息的注释，解释意图的注释。TODO。警示。</li>
-<li>坏注释。多余的注释、废弃的注释、糟糕的注释、被注释的代码。</li>
+<li><p>有对象就指向调用对象</p>
+</li>
+<li><p>没调用对象就指向全局对象</p>
+</li>
+<li><p>用new构造就指向新对象</p>
+</li>
+<li><p>通过 apply 或 call 或 bind 来改变 this 的所指。</p>
+</li>
 </ol>
-<h4 id="四、格式"><a href="#四、格式" class="headerlink" title="四、格式"></a>四、格式</h4><ol>
-<li>垂直格式。空白行分割代码，相关联的代码应该互相靠近。变量声明尽可能靠近使用位。函数调用者在被调用者的上面。</li>
-<li>水平格式。遵循代码规范。</li>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>需要先了解一下作用域</p>
+<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><p>变量与函数的可访问范围，控制着变量及函数的可见性与生命周期。分为全局作用域和局部作用域。</p>
+<p>全局作用域：</p>
+<p>  在代码中任何地方都能访问到的对象拥有全局作用域，有以下几种：</p>
+<ol>
+<li><p>在最外层定义的变量；</p>
+</li>
+<li><p>全局对象的属性</p>
+</li>
+<li><p>任何地方隐式定义的变量（未定义直接赋值的变量），在任何地方隐式定义的变量都会定义在全局作用域中，即不通过 var 声明直接赋值的变量。</p>
+</li>
 </ol>
+<p>局部作用域：</p>
+<p>  JavaScript的作用域是通过函数来定义的，在一个函数中定义的变量只对这个函数内部可见，称为函数（局部）作用域</p>
+<p>闭包按照mdn的定义是可以访问自由变量的函数。自由变量指的是不是参数也不是函数内部定义的变量。</p>
 
       
     </div>
@@ -454,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/使用gulp-tinypng-压缩图片.html" rel="next" title="使用gulp-tinypng 压缩图片">
-                <i class="fa fa-chevron-left"></i> 使用gulp-tinypng 压缩图片
+              <a href="/我是怎么成为前端工程师的.html" rel="next" title="我是怎么成为前端工程师的">
+                <i class="fa fa-chevron-left"></i> 我是怎么成为前端工程师的
               </a>
             
           </div>
@@ -464,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/一个基于react的图片裁剪组件.html" rel="prev" title="一个基于react的图片裁剪组件">
-                一个基于react的图片裁剪组件 <i class="fa fa-chevron-right"></i>
+              <a href="/大厂前端面试考什么.html" rel="prev" title="大厂前端面试考什么?">
+                大厂前端面试考什么? <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -627,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、有意义的命名"><span class="nav-number">1.</span> <span class="nav-text">一、有意义的命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、函数"><span class="nav-number">2.</span> <span class="nav-text">二、函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、注释"><span class="nav-number">3.</span> <span class="nav-text">三、注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、格式"><span class="nav-number">4.</span> <span class="nav-text">四、格式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行上下文是什么"><span class="nav-number">1.</span> <span class="nav-text">执行上下文是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建执行上下文的步奏"><span class="nav-number">1.1.</span> <span class="nav-text">创建执行上下文的步奏</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this"><span class="nav-number">2.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">3.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域"><span class="nav-number">3.1.</span> <span class="nav-text">作用域</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -829,7 +836,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: '1496506588000',
+            id: '1521471920000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
