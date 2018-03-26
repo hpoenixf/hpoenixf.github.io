@@ -16,6 +16,9 @@
 
 [使用原生JS进行前后端同构](http://hpoenixf.com/%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9FJS%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%90%8C%E6%9E%84.html)
 
+
+[一个基于react的图片裁剪组件](http://hpoenixf.com/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8Ereact%E7%9A%84%E5%9B%BE%E7%89%87%E8%A3%81%E5%89%AA%E7%BB%84%E4%BB%B6.html)
+
 [一个简单的virtual-dom实现](http://hpoenixf.com/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84virtual-dom%E5%AE%9E%E7%8E%B0.html)
 
 [加快webpack构建](http://hpoenixf.com/%E5%8A%A0%E5%BF%ABwebpack%E6%9E%84%E5%BB%BA.html)
