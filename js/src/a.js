@@ -209,7 +209,7 @@
           }
           stringifiedAttributes += '=' + attributes[attributeName];
         }
-        return (document.cookie = key + '=' + value + stringifiedAttributes);
+        return (document.cookie = key + '=' + value + stringifiedAttributks);
       }
 
       // Read
