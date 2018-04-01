@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -82,7 +80,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -511,6 +509,7 @@
           
             <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行</p>
 <p>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
+<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 <h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://github.com/hpoenixf/vdom" target="_blank" rel="external">项目地址</a></p>
 <p><a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a></p>
 <p><a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="external">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
@@ -844,7 +843,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/推荐一个移动端响应式布局的方案.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/移动端自适应布局方案.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -863,7 +862,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/推荐一个移动端响应式布局的方案.html" itemprop="url">推荐一个移动端响应式布局的方案</a></h2>
+                <a class="post-title-link" href="/移动端自适应布局方案.html" itemprop="url">移动端自适应布局方案</a></h2>
         
 
         <div class="post-meta">
@@ -892,7 +891,7 @@
 
           
           
-             <span id="/推荐一个移动端响应式布局的方案.html" class="leancloud_visitors" data-flag-title="推荐一个移动端响应式布局的方案">
+             <span id="/移动端自适应布局方案.html" class="leancloud_visitors" data-flag-title="移动端自适应布局方案">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -924,11 +923,13 @@
 
       
         
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的响应式布局问题是搭建新的移动端项目的重点和难点。</p>
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。</p>
+<p>开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的自适应布局问题是搭建新的移动端项目的重点和难点。</p>
+<p>经过研究，我在公司的多个移动端项目使用了REM布局来解决移动端自适应布局的问题。</p>
 <h4 id="REM介绍"><a href="#REM介绍" class="headerlink" title="REM介绍"></a>REM介绍</h4><p>rem（font size of the root element）是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位，rem布局是一个流行的解决移动端响应式布局的方案。在页面初始化时，使用JS根据屏幕的尺寸和dpr等信息设置rem的大小，而在css中写下元素的高度等信息时，使用rem。如将rem设置为100px，则元素的高度为36px时，需要将元素的高度写成0.36rem。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/推荐一个移动端响应式布局的方案.html#more" rel="contents">
+            <a class="btn" href="/移动端自适应布局方案.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

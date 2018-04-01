@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -82,7 +80,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -105,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/一个简单的virtual-dom实现.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
-<meta property="og:updated_time" content="2018-01-01T16:05:14.564Z">
+<meta property="og:updated_time" content="2018-04-01T00:22:21.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个简单的virtual-dom实现">
 <meta name="twitter:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
@@ -374,6 +372,7 @@
       
         <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行</p>
 <p>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
+<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 <h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://github.com/hpoenixf/vdom" target="_blank" rel="external">项目地址</a></p>
 <p><a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a></p>
 <p><a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="external">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
