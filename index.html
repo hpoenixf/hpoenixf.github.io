@@ -791,17 +791,24 @@
         
           <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
 <p>有请我们的这篇文章的主角，执行上下文</p>
-<h4 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关,</div><div class="line">    <span class="attr">variableObject</span>: 变量对象，跟本篇文章无关，之后可能会再讲,</div><div class="line">    <span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关,</div><div class="line">    VO：变量对象</div><div class="line">    <span class="keyword">this</span>: 对的就是你关注的那个<span class="keyword">this</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>js解释器维护了一个指定上下文栈，js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
-<h5 id="创建执行上下文的步奏"><a href="#创建执行上下文的步奏" class="headerlink" title="创建执行上下文的步奏"></a>创建执行上下文的步奏</h5><ol>
-<li><p>创建变量对象</p>
-</li>
-<li><p>根据函数怎么被调用，求出this</p>
-</li>
-<li><p>初始化作用域链，包括当前执行上下文的变量对象，以及函数创建时保存的链</p>
-</li>
+<h5 id="执行上下文建立的步奏"><a href="#执行上下文建立的步奏" class="headerlink" title="执行上下文建立的步奏"></a>执行上下文建立的步奏</h5><p>创建阶段</p>
+<ol>
+<li>初始化作用域链</li>
+<li>创建变量对象<ol>
+<li>创建arguments</li>
+<li>扫描函数声明</li>
+<li>扫描变量声明</li>
 </ol>
-<p>还没写完..待续<br>
+</li>
+<li>求this</li>
+</ol>
+<p>执行阶段</p>
+<ol>
+<li>初始化变量和函数的引用</li>
+<li>执行代码</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/一次搞定闭包和this.html#more" rel="contents">
@@ -1411,7 +1418,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1454,7 +1461,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
