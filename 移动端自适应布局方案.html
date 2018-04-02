@@ -356,7 +356,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,074 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -378,7 +383,7 @@
 <h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>在webpack中使用px2rem-loader。用法如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">rules: [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">    <span class="attr">use</span>: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'px2rem-loader?remUnit=75&amp;remPrecision=8'</span>]</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
 <p>这样便可以应对常见的750px的设计图，直接按照设计图的尺寸来填写属性大小就好，<br>注意，还需要在html文件中引入flexible文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <h4 id="踩到的坑"><a href="#踩到的坑" class="headerlink" title="踩到的坑"></a>踩到的坑</h4><p>微信浏览器如果退回的话，页面被缓存，但是js文件没有重新调用，会导致布局混乱。需要调用pageshow事件来解决</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">e.addeventListener(<span class="string">'pageshow'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="comment">// d的作用是重新设置documentElement的fontsize为clientWidth的1/10</span></div><div class="line">	e.persisted&amp;&amp;d()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h4 id="深入"><a href="#深入" class="headerlink" title="深入"></a>深入</h4><p>你也许会对flexible.js做了什么比较感兴趣。在这之前，需要简单了解一下viewport的知识</p>
@@ -423,6 +428,10 @@
 
       
     </div>
+
+    
+      
+
 
     
 

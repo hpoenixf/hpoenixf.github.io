@@ -348,7 +348,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>825 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -491,7 +496,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>623 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -632,7 +642,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,212 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -774,7 +789,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>2,345 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -791,8 +811,17 @@
         
           <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
 <p>有请我们的这篇文章的主角，执行上下文</p>
-<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关,</div><div class="line">    VO：变量对象</div><div class="line">    <span class="keyword">this</span>: 对的就是你关注的那个<span class="keyword">this</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>js解释器维护了一个指定上下文栈，js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，他的组成如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">	<span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span>,</div><div class="line">	VO：变量对象,</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于JS是单线程的，一次只能发生一件事情，其他事情会放在指定上下文栈中排队。js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
+<p>五个关键点：</p>
+<ol>
+<li>单线程</li>
+<li>同步执行</li>
+<li>一个全局上下文</li>
+<li>无限制函数上下文</li>
+<li>每次函数调用创建新的上下文，包括调用自己</li>
+</ol>
 <h5 id="执行上下文建立的步奏"><a href="#执行上下文建立的步奏" class="headerlink" title="执行上下文建立的步奏"></a>执行上下文建立的步奏</h5><p>创建阶段</p>
 <ol>
 <li>初始化作用域链</li>
@@ -932,7 +961,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>899 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -1072,7 +1106,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,920 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -1212,7 +1251,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,110 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -1353,7 +1397,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,099 words </span>
+        </span>
+      
         </div>
       </header>
     

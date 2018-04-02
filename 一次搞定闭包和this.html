@@ -97,16 +97,16 @@
 
 
 
-  <meta name="description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文123456executionContextObj = &amp;#123;    scopeChain: 作用域链,跟闭包相关,    VO：变量对象    this: 对的就是你关注的那个this&amp;#125; js解释器维护了一个指定上下文栈，js解释器在初始化">
+  <meta name="description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,    scopeChain: 作用域链,跟闭包相关&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一次搞定闭包和this">
 <meta property="og:url" content="http://hpoenixf.com/一次搞定闭包和this.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文123456executionContextObj = &amp;#123;    scopeChain: 作用域链,跟闭包相关,    VO：变量对象    this: 对的就是你关注的那个this&amp;#125; js解释器维护了一个指定上下文栈，js解释器在初始化">
-<meta property="og:updated_time" content="2018-04-01T09:54:48.460Z">
+<meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,    scopeChain: 作用域链,跟闭包相关&amp;">
+<meta property="og:updated_time" content="2018-04-02T12:11:36.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次搞定闭包和this">
-<meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文123456executionContextObj = &amp;#123;    scopeChain: 作用域链,跟闭包相关,    VO：变量对象    this: 对的就是你关注的那个this&amp;#125; js解释器维护了一个指定上下文栈，js解释器在初始化">
+<meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,    scopeChain: 作用域链,跟闭包相关&amp;">
 
 
 
@@ -356,7 +356,12 @@
           
 
           
-
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>2,345 words </span>
+        </span>
+      
         </div>
       </header>
     
@@ -372,8 +377,17 @@
       
         <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
 <p>有请我们的这篇文章的主角，执行上下文</p>
-<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关,</div><div class="line">    VO：变量对象</div><div class="line">    <span class="keyword">this</span>: 对的就是你关注的那个<span class="keyword">this</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>js解释器维护了一个指定上下文栈，js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，他的组成如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">	<span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span>,</div><div class="line">	VO：变量对象,</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于JS是单线程的，一次只能发生一件事情，其他事情会放在指定上下文栈中排队。js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
+<p>五个关键点：</p>
+<ol>
+<li>单线程</li>
+<li>同步执行</li>
+<li>一个全局上下文</li>
+<li>无限制函数上下文</li>
+<li>每次函数调用创建新的上下文，包括调用自己</li>
+</ol>
 <h5 id="执行上下文建立的步奏"><a href="#执行上下文建立的步奏" class="headerlink" title="执行上下文建立的步奏"></a>执行上下文建立的步奏</h5><p>创建阶段</p>
 <ol>
 <li>初始化作用域链</li>
@@ -411,7 +425,37 @@
 <h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><p>箭头函数比较特殊，没有自己的this，它使用封闭执行上下文(函数或是global)的 this 值。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x=<span class="number">11</span>;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line"> <span class="attr">x</span>:<span class="number">22</span>,</div><div class="line"> <span class="attr">say</span>:<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">//this指向window</span></div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">obj.say();<span class="comment">// 11</span></div><div class="line">obj.say.call(&#123;<span class="attr">x</span>:<span class="number">13</span>&#125;) <span class="comment">// 11</span></div><div class="line">x = <span class="number">14</span></div><div class="line">obj.say() <span class="comment">// 14</span></div><div class="line"></div><div class="line"><span class="comment">//对比一下</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2=&#123;</div><div class="line"> <span class="attr">x</span>:<span class="number">22</span>,</div><div class="line"> say() &#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">//this指向window</span></div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">obj2.say();<span class="comment">// 22</span></div><div class="line">obj2.say.call(&#123;<span class="attr">x</span>:<span class="number">13</span>&#125;) <span class="comment">// 13</span></div></pre></td></tr></table></figure>
 <h5 id="事件监听函数"><a href="#事件监听函数" class="headerlink" title="事件监听函数"></a>事件监听函数</h5><p>指向被绑定的dom元素</p>
-<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>需要先了解一下作用域和作用域链</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">&#125;</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// 点击网页</span></div><div class="line"></div><div class="line"><span class="comment">// &lt;body&gt;...&lt;/body&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h5><p>HTML标签的属性中是可能写JS的，这种情况下this指代该HTML元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span> <span class="attr">onclick</span>=<span class="string">"console.log(this);"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"foo"</span>).click(); <span class="comment">//logs &lt;div id="foo"...</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h4><p>变量对象是与执行上下文相关的数据作用域，存储了上下文中定义的变量和函数声明。</p>
+<p>变量对象式一个抽象的概念，在不同的上下文中，表示不同的对象</p>
+<h5 id="全局执行上下文的变量对象"><a href="#全局执行上下文的变量对象" class="headerlink" title="全局执行上下文的变量对象"></a>全局执行上下文的变量对象</h5><p>全局执行上下文中，变量对象就是全局对象。<br>在顶层js代码中，this指向全局对象，全局变量会作为该对象的属性来被查询。在浏览器中，window就是全局对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a) <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span><span class="number">.1</span>) <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<h5 id="函数执行上下文的变量对象"><a href="#函数执行上下文的变量对象" class="headerlink" title="函数执行上下文的变量对象"></a>函数执行上下文的变量对象</h5><p>函数上下文中，变量对象VO就是活动对象AO。</p>
+<p>初始化时，带有arguments属性。<br>函数代码分成两个阶段执行</p>
+<ol>
+<li><p>进入执行上下文时<br>此时变量对象包括</p>
+<ol>
+<li>形参</li>
+<li>函数声明，会替换已有变量对象</li>
+<li>变量声明，不会替换形参和函数</li>
+</ol>
+</li>
+<li><p>函数执行</p>
+</li>
+</ol>
+<p>根据代码修改变量对象的值</p>
+<p>举个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">a,c</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(a, b, c, d) <span class="comment">// 5 undefined [Function: c] undefined</span></div><div class="line">  <span class="keyword">var</span> b = <span class="number">3</span>;</div><div class="line">  a = <span class="number">4</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">c</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> d = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(a, b, c, d) <span class="comment">// 4 3 [Function: c] [Function: d]</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> c = <span class="number">5</span></div><div class="line">  <span class="built_in">console</span>.log(a, b, c, d) <span class="comment">// 4 3 5 [Function: d]</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">test(<span class="number">5</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
+<p>来分析一下过程</p>
+<p>1.创建执行上下文时</p>
+<p>VO = {<br>    arguments: {0:5},<br>    a: 5,<br>    b: undefined,<br>    c: [Function], //函数C覆盖了参数c，但是变量声明c无法覆盖函数c的声明<br>    d: undefined， // 函数表达式没有提升，在执行到对应语句之前为undefined<br>}</p>
+<ol>
+<li>执行代码时</li>
+</ol>
+<p>通过最后的console可以发现，函数声明可以被覆盖</p>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p>先了解一下作用域</p>
 <h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><p>变量与函数的可访问范围，控制着变量及函数的可见性与生命周期。分为全局作用域和局部作用域。</p>
 <p>全局作用域：</p>
 <p>  在代码中任何地方都能访问到的对象拥有全局作用域，有以下几种：</p>
@@ -425,12 +469,12 @@
 </ol>
 <p>局部作用域：</p>
 <p>  JavaScript的作用域是通过函数来定义的，在一个函数中定义的变量只对这个函数内部可见，称为函数（局部）作用域</p>
-<h5 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h5><p>前面提到，函数执行时会创建执行上下文，其中用到了作用域链。</p>
-<p>函数在定义的时候会把父级的变量对象AO/VO的集合保存在内部属性[[scope]]中，该集合称为作用域链。当函数需要访问数据时，会顺着作用域链来查找数据。</p>
+<h5 id="作用域链-1"><a href="#作用域链-1" class="headerlink" title="作用域链"></a>作用域链</h5><p>作用域链是一个对象列表，用以检索上下文代码中出现的标识符。<br>标识符可以理解为变量名称，参数，函数声明。</p>
+<p>函数在定义的时候会把父级的变量对象AO/VO的集合保存在内部属性[[scope]]中，该集合称为作用域链。<br>自由变量指的是不在函数内部声明的变量。<br>当函数需要访问自由变量时，会顺着作用域链来查找数据。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.[[scope]] = [</div><div class="line">  globalContext.VO</div><div class="line">];</div><div class="line"></div><div class="line">bar.[[scope]] = [</div><div class="line">    fooContext.AO,</div><div class="line">    globalContext.VO</div><div class="line">];</div></pre></td></tr></table></figure>
 <p>函数在运行激活的时候，会先复制[[scope]]属性创建作用域链，然后创建变量对象VO，然后将其加入到作用域链。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj: &#123;</div><div class="line">	<span class="attr">VO</span>:&#123;&#125;，</div><div class="line">	scopeChain: [VO, [[scope]]]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h5><p>闭包按照mdn的定义是可以访问自由变量的函数。自由变量指的是不是参数也不是函数内部定义的变量。</p>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><h5 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h5><p>闭包按照mdn的定义是可以访问自由变量的函数。自由变量前面提到过，指的是不在函数内部声明的变量。</p>
 <h5 id="闭包的形式"><a href="#闭包的形式" class="headerlink" title="闭包的形式"></a>闭包的形式</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="number">1</span></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(num++)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> b</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> c1 = a()</div><div class="line">c1() <span class="comment">// '1'</span></div><div class="line">c1() <span class="comment">// '2'</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> c2 = a()</div><div class="line">c2() <span class="comment">// '1'</span></div><div class="line">c2() <span class="comment">// '2'</span></div></pre></td></tr></table></figure>
 <h5 id="闭包的过程"><a href="#闭包的过程" class="headerlink" title="闭包的过程"></a>闭包的过程</h5><p>写的不是很严谨。可能省略了一些过程</p>
 <ol>
@@ -450,17 +494,26 @@
 </ol>
 <h5 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h5><p>通过上面的运行结果，我们可以观察到，c2所访问num变量跟c1访问的num变量不是同一个变量。我们可以修改一下代码，来确认自己的猜想</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> x = &#123;<span class="attr">y</span> : <span class="number">4</span>&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> x</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> b</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> c1 = a()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> c2 = a()</div><div class="line">c1 === c2()  <span class="comment">// false</span></div></pre></td></tr></table></figure>
-<p>因此我们可以确定，闭包所访问的变量，是每次运行父函数都重新创建，互相独立的。</p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
+<p>因此我们可以确定，闭包所访问的变量，是每次运行父函数都重新创建，互相独立的。<br>注意，同一个函数中创建的自由变量是可以在不同的闭包共享的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> x = <span class="number">0</span></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(x++)</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(x++)</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> &#123;</div><div class="line">		b,</div><div class="line">		c</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> r =  a()</div><div class="line">r.b() <span class="comment">// 0</span></div><div class="line">r.c() <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>文章写的比较长，涉及的范围也比较广，可能有不少的错误，希望大家可以指正。</p>
+<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ol>
 <li><a href="https://zhuanlan.zhihu.com/p/26475137" target="_blank" rel="external">深入理解ES6箭头函数中的this</a>    </li>
 <li>你不知道的JS上卷</li>
 <li><a href="https://juejin.im/post/58eaecdea0bb9f0069271861" target="_blank" rel="external">JavaScript深入之执行上下文栈</a></li>
 <li><a href="http://www.cnblogs.com/wilber2013/p/4909459.html" target="_blank" rel="external">理解JavaScript的作用域链</a></li>
+<li><a href="https://juejin.im/post/58ec3cc944d90400576a2cdc" target="_blank" rel="external">JavaScript深入之变量对象</a></li>
+<li><a href="http://www.cnblogs.com/TomXu/archive/2012/01/16/2309728.html" target="_blank" rel="external">深入理解JavaScript系列（12）：变量对象（Variable Object）</a></li>
+<li><a href="http://yanhaijing.com/javascript/2014/04/29/what-is-the-execution-context-in-javascript/" target="_blank" rel="external">了解JavaScript的执行上下文</a></li>
 </ol>
 
       
     </div>
+
+    
+      
+
 
     
 
@@ -682,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行上下文建立的步奏"><span class="nav-number">1.1.</span> <span class="nav-text">执行上下文建立的步奏</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this"><span class="nav-number">2.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指向调用对象"><span class="nav-number">2.1.</span> <span class="nav-text">指向调用对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指向全局对象"><span class="nav-number">2.2.</span> <span class="nav-text">指向全局对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用new构造就指向新对象"><span class="nav-number">2.3.</span> <span class="nav-text">用new构造就指向新对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#apply-call-bind"><span class="nav-number">2.4.</span> <span class="nav-text">apply/call/bind</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#箭头函数"><span class="nav-number">2.5.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事件监听函数"><span class="nav-number">2.6.</span> <span class="nav-text">事件监听函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">3.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域"><span class="nav-number">3.1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域链"><span class="nav-number">3.2.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包是什么"><span class="nav-number">3.3.</span> <span class="nav-text">闭包是什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包的形式"><span class="nav-number">3.4.</span> <span class="nav-text">闭包的形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包的过程"><span class="nav-number">3.5.</span> <span class="nav-text">闭包的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一些问题"><span class="nav-number">3.6.</span> <span class="nav-text">一些问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行上下文是什么"><span class="nav-number">1.1.</span> <span class="nav-text">执行上下文是什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行上下文建立的步奏"><span class="nav-number">1.2.</span> <span class="nav-text">执行上下文建立的步奏</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this"><span class="nav-number">2.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指向调用对象"><span class="nav-number">2.1.</span> <span class="nav-text">指向调用对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指向全局对象"><span class="nav-number">2.2.</span> <span class="nav-text">指向全局对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用new构造就指向新对象"><span class="nav-number">2.3.</span> <span class="nav-text">用new构造就指向新对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#apply-call-bind"><span class="nav-number">2.4.</span> <span class="nav-text">apply/call/bind</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#箭头函数"><span class="nav-number">2.5.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事件监听函数"><span class="nav-number">2.6.</span> <span class="nav-text">事件监听函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML"><span class="nav-number">2.7.</span> <span class="nav-text">HTML</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量对象"><span class="nav-number">3.</span> <span class="nav-text">变量对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全局执行上下文的变量对象"><span class="nav-number">3.1.</span> <span class="nav-text">全局执行上下文的变量对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数执行上下文的变量对象"><span class="nav-number">3.2.</span> <span class="nav-text">函数执行上下文的变量对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域链"><span class="nav-number">4.</span> <span class="nav-text">作用域链</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域"><span class="nav-number">4.1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域链-1"><span class="nav-number">4.2.</span> <span class="nav-text">作用域链</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">5.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包是什么"><span class="nav-number">5.1.</span> <span class="nav-text">闭包是什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包的形式"><span class="nav-number">5.2.</span> <span class="nav-text">闭包的形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包的过程"><span class="nav-number">5.3.</span> <span class="nav-text">闭包的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一些问题"><span class="nav-number">5.4.</span> <span class="nav-text">一些问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
