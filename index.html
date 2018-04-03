@@ -12,91 +12,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.0.6',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
   <meta name="description" content="blog hpoenixf">
 <meta property="og:type" content="website">
 <meta property="og:title" content="hpoenixf&#39;s blog">
@@ -351,7 +266,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>825 words </span>
+          <span>829 words </span>
         </span>
       
         </div>
@@ -792,7 +707,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>2,670 words </span>
+          <span>2,876 words </span>
         </span>
       
         </div>
@@ -811,7 +726,7 @@
         
           <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
 <p>有请我们的这篇文章的主角，执行上下文</p>
-<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，他的组成如下</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">	<span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span>,</div><div class="line">	VO：变量对象,</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>由于JS是单线程的，一次只能发生一件事情，其他事情会放在指定上下文栈中排队。js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
 <p>五个关键点：</p>

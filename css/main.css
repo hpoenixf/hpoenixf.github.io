@@ -2045,7 +2045,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #521216;
+  background: #daffa7;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2355,6 +2355,25 @@ pre .javascript .function {
 .site-pv .busuanzi-value,
 .page-pv .busuanzi-value {
   margin: 0 5px;
+}
+.popular-posts-header {
+  margin-top: 60px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  border-bottom: 1px solid #eee;
+  display: block;
+}
+ul.popular-posts {
+  padding: 0;
+}
+ul.popular-posts .popular-posts-item {
+  margin-left: 2em;
+}
+ul.popular-posts .popular-posts-item .popular-posts-title {
+  font-weight: normal;
+  font-size: 14px;
+  margin: 0;
+  line-height: 2.4;
 }
 .page-archive .archive-page-counter {
   position: relative;

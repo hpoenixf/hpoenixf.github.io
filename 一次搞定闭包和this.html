@@ -12,6 +12,8 @@
 
 
 
+  <link rel="amphtml" href="./amp/index.html">
+
 
 
 
@@ -97,16 +99,16 @@
 
 
 
-  <meta name="description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,    scopeChain: 作用域链,跟闭包相关&amp;">
+  <meta name="description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一次搞定闭包和this">
 <meta property="og:url" content="http://hpoenixf.com/一次搞定闭包和this.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,    scopeChain: 作用域链,跟闭包相关&amp;">
-<meta property="og:updated_time" content="2018-04-03T02:52:34.011Z">
+<meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
+<meta property="og:updated_time" content="2018-04-03T04:18:19.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次搞定闭包和this">
-<meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,    scopeChain: 作用域链,跟闭包相关&amp;">
+<meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
 
 
 
@@ -359,7 +361,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>2,670 words </span>
+          <span>2,876 words </span>
         </span>
       
         </div>
@@ -377,7 +379,7 @@
       
         <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
 <p>有请我们的这篇文章的主角，执行上下文</p>
-<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，他的组成如下</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">	<span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span>,</div><div class="line">	VO：变量对象,</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>由于JS是单线程的，一次只能发生一件事情，其他事情会放在指定上下文栈中排队。js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。</p>
 <p>五个关键点：</p>
@@ -470,7 +472,11 @@
 <p>局部作用域：</p>
 <p>  JavaScript的作用域是通过函数来定义的，在一个函数中定义的变量只对这个函数内部可见，称为函数（局部）作用域</p>
 <h5 id="作用域链-1"><a href="#作用域链-1" class="headerlink" title="作用域链"></a>作用域链</h5><p>作用域链是一个对象列表，用以检索上下文代码中出现的标识符。<br>标识符可以理解为变量名称，参数，函数声明。</p>
-<p>函数在定义的时候会把父级的变量对象AO/VO的集合保存在内部属性[[scope]]中，该集合称为作用域链。<br>自由变量指的是不在函数内部声明的变量。<br>当函数需要访问自由变量时，会顺着作用域链来查找数据。</p>
+<p>函数在定义的时候会把父级的变量对象AO/VO的集合保存在内部属性[[scope]]中，该集合称为作用域链。<br>自由变量指的是不在函数内部声明的变量。<br>当函数需要访问自由变量时，会顺着作用域链来查找数据。子对象会一级一级的向上查找父对象的变量，父对象的变量对子对象是可见的，反之不成立。<br>作用域链就是在所有内部环境中查找变量的链式表。</p>
+<p>可以直接的说，JS采用了词法作用域(静态作用域)，JS的函数运行在他们被定义的作用域中，而不是他们被执行的作用域。可以举一个例子说明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s = <span class="number">3</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(s)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> s = <span class="number">6</span></div><div class="line">  a()</div><div class="line">&#125;</div><div class="line"></div><div class="line">b() <span class="comment">// 3,不是6</span></div></pre></td></tr></table></figure>
+<p>如果js采用动态作用域，打印出来的应该是6而不是3，这个例子说明了js是静态作用域。</p>
+<p>函数作用域链的伪代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.[[scope]] = [</div><div class="line">  globalContext.VO</div><div class="line">];</div><div class="line"></div><div class="line">bar.[[scope]] = [</div><div class="line">    fooContext.AO,</div><div class="line">    globalContext.VO</div><div class="line">];</div></pre></td></tr></table></figure>
 <p>函数在运行激活的时候，会先复制[[scope]]属性创建作用域链，然后创建变量对象VO，然后将其加入到作用域链。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj: &#123;</div><div class="line">	<span class="attr">VO</span>:&#123;&#125;，</div><div class="line">	scopeChain: [VO, [[scope]]]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
