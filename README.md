@@ -4,6 +4,8 @@
 
 #### 部分文章
 
+[前端错误监控与收集探究](http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E9%94%99%E8%AF%AF%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%94%B6%E9%9B%86%E6%8E%A2%E7%A9%B6.html)
+
 [前端进阶系列-目录](http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html)
 
 [一次搞定this和闭包](http://hpoenixf.com/%E4%B8%80%E6%AC%A1%E6%90%9E%E5%AE%9A%E9%97%AD%E5%8C%85%E5%92%8Cthis.html)
