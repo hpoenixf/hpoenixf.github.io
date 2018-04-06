@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/前端错误监控与收集探究.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="编写代码只是做好项目的一小部分，写代码难免会碰到错误。因此，在项目上线后，我们还需要主动对项目的错误进行收集，不能等用户发现错误，再联系我们，我们再去处理。这样很容易造成大的损失，提前做好错误收集和处理，可以减少损失。 本人并没有做过相关的工作，下面的文章只是我在学习中的一点思考和总结，可能有比较多不足和错误的地方，希望大家指正和指导。 本文章为前端进阶系列的一部分,欢迎关注和star本博客或是关">
-<meta property="og:updated_time" content="2018-04-04T06:38:25.263Z">
+<meta property="og:updated_time" content="2018-04-06T04:15:15.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端错误监控与收集探究">
 <meta name="twitter:description" content="编写代码只是做好项目的一小部分，写代码难免会碰到错误。因此，在项目上线后，我们还需要主动对项目的错误进行收集，不能等用户发现错误，再联系我们，我们再去处理。这样很容易造成大的损失，提前做好错误收集和处理，可以减少损失。 本人并没有做过相关的工作，下面的文章只是我在学习中的一点思考和总结，可能有比较多不足和错误的地方，希望大家指正和指导。 本文章为前端进阶系列的一部分,欢迎关注和star本博客或是关">
@@ -368,7 +368,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,437 words </span>
+          <span>1,484 words </span>
         </span>
       
         </div>
@@ -412,16 +412,18 @@
 <li>浏览器信息</li>
 <li>设备分辨率</li>
 <li>页面的来源</li>
-<li>用户的账号信息</li>
-<li>通过performance API收集用户各个页面访问流程所消耗的时间，看错误出现在什么环节</li>
-<li>收集用户js代码报错的信息</li>
+<li>用户账号信息</li>
+<li>页面访问流程各阶段耗时</li>
+<li>js代码报错信息</li>
 </ol>
 <h4 id="如何收集错误的信息"><a href="#如何收集错误的信息" class="headerlink" title="如何收集错误的信息"></a>如何收集错误的信息</h4><p>现在话题来到了如何收集错误信息了。</p>
 <p>前端错误收集有两大流派：</p>
 <p> 一个是虚拟机监控，优点是指标齐全，并且可以进行竞品监控，缺点是反映不全，容易失真</p>
 <p>另一个是脚本监控，优点是可以收集海量真实数据，缺点是影响性能，采样少的情况下容易失真。</p>
 <p>这里暂时只讲脚本监控（挖个坑，之后可能填）</p>
-<h5 id="访问时间记录"><a href="#访问时间记录" class="headerlink" title="访问时间记录"></a>访问时间记录</h5><h6 id="performance-API"><a href="#performance-API" class="headerlink" title="performance API"></a>performance API</h6><p>在chrome浏览器控制台输入Performance.timing，会得到记录了一个浏览器访问各阶段的时间的对象。</p>
+<p>在这里，我们主要利用脚本收集用户的各阶段访问消耗时间以及错误信息</p>
+<h5 id="各阶段访问耗时记录"><a href="#各阶段访问耗时记录" class="headerlink" title="各阶段访问耗时记录"></a>各阶段访问耗时记录</h5><p>之所以要收集访问耗时，是为了查出是什么阶段消耗的时间较多，从而更好的定位错误来源。</p>
+<h6 id="performance-API"><a href="#performance-API" class="headerlink" title="performance API"></a>performance API</h6><p>在chrome浏览器控制台输入Performance.timing，会得到记录了一个浏览器访问各阶段的时间的对象。</p>
 <p>进行错误收集的时候，可以对比这些时间，看错误发生在什么阶段</p>
 <ol>
 <li>DNS 查询耗时 ：domainLookupEnd - domainLookupStart</li>
@@ -444,7 +446,7 @@
 <li>在首屏页面的所有图片加载完后进行记录，保存首屏时间</li>
 <li>捕获load事件记录页面加载完成的时间</li>
 </ol>
-<h5 id="脚本错误收集"><a href="#脚本错误收集" class="headerlink" title="脚本错误收集"></a>脚本错误收集</h5><h6 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h6><p>window.onerror可以捕捉运行时错误，可以拿到出错的信息，堆栈，出错的文件、行号、列号</p>
+<h5 id="脚本错误信息收集"><a href="#脚本错误信息收集" class="headerlink" title="脚本错误信息收集"></a>脚本错误信息收集</h5><h6 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h6><p>window.onerror可以捕捉运行时错误，可以拿到出错的信息，堆栈，出错的文件、行号、列号</p>
 <p>要注意以下几点：</p>
 <ol>
 <li><p>要把window.onerror这个代码块分离出去，并且比其他脚本先执行（注意这个前提！）即可捕捉到语法错误。</p>
@@ -700,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#收集哪些错误信息"><span class="nav-number">1.</span> <span class="nav-text">收集哪些错误信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误发生在什么环节"><span class="nav-number">1.1.</span> <span class="nav-text">错误发生在什么环节</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收集哪些信息"><span class="nav-number">1.2.</span> <span class="nav-text">收集哪些信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何收集错误的信息"><span class="nav-number">2.</span> <span class="nav-text">如何收集错误的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#访问时间记录"><span class="nav-number">2.1.</span> <span class="nav-text">访问时间记录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#performance-API"><span class="nav-number">2.1.1.</span> <span class="nav-text">performance API</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本错误收集"><span class="nav-number">2.2.</span> <span class="nav-text">脚本错误收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#window-onerror"><span class="nav-number">2.2.1.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#promise的错误处理"><span class="nav-number">2.2.2.</span> <span class="nav-text">promise的错误处理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#try-catch"><span class="nav-number">2.2.3.</span> <span class="nav-text">try catch</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上报错误的方式"><span class="nav-number">3.</span> <span class="nav-text">上报错误的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#收集哪些错误信息"><span class="nav-number">1.</span> <span class="nav-text">收集哪些错误信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误发生在什么环节"><span class="nav-number">1.1.</span> <span class="nav-text">错误发生在什么环节</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收集哪些信息"><span class="nav-number">1.2.</span> <span class="nav-text">收集哪些信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何收集错误的信息"><span class="nav-number">2.</span> <span class="nav-text">如何收集错误的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#各阶段访问耗时记录"><span class="nav-number">2.1.</span> <span class="nav-text">各阶段访问耗时记录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#performance-API"><span class="nav-number">2.1.1.</span> <span class="nav-text">performance API</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本错误信息收集"><span class="nav-number">2.2.</span> <span class="nav-text">脚本错误信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#window-onerror"><span class="nav-number">2.2.1.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#promise的错误处理"><span class="nav-number">2.2.2.</span> <span class="nav-text">promise的错误处理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#try-catch"><span class="nav-number">2.2.3.</span> <span class="nav-text">try catch</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上报错误的方式"><span class="nav-number">3.</span> <span class="nav-text">上报错误的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
