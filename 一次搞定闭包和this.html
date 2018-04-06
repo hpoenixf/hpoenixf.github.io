@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/一次搞定闭包和this.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
-<meta property="og:updated_time" content="2018-04-05T03:08:03.874Z">
+<meta property="og:updated_time" content="2018-04-06T03:31:13.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次搞定闭包和this">
 <meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
@@ -440,7 +440,7 @@
 <h4 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h4><p>变量对象是与执行上下文相关的数据作用域，存储了上下文中定义的变量和函数声明。</p>
 <p>变量对象式一个抽象的概念，在不同的上下文中，表示不同的对象</p>
 <h5 id="全局执行上下文的变量对象"><a href="#全局执行上下文的变量对象" class="headerlink" title="全局执行上下文的变量对象"></a>全局执行上下文的变量对象</h5><p>全局执行上下文中，变量对象就是全局对象。<br>在顶层js代码中，this指向全局对象，全局变量会作为该对象的属性来被查询。在浏览器中，window就是全局对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a) <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span><span class="number">.1</span>) <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a) <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.a) <span class="comment">// 1</span></div></pre></td></tr></table></figure>
 <h5 id="函数执行上下文的变量对象"><a href="#函数执行上下文的变量对象" class="headerlink" title="函数执行上下文的变量对象"></a>函数执行上下文的变量对象</h5><p>函数上下文中，变量对象VO就是活动对象AO。</p>
 <p>初始化时，带有arguments属性。<br>函数代码分成两个阶段执行</p>
 <ol>
