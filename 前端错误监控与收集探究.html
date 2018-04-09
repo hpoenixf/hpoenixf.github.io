@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/前端错误监控与收集探究.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="编写代码只是做好项目的一小部分，写代码难免会碰到错误。因此，在项目上线后，我们还需要主动对项目的错误进行收集，不能等用户发现错误，再联系我们，我们再去处理。这样很容易造成大的损失，提前做好错误收集和处理，可以减少损失。 本人并没有做过相关的工作，下面的文章只是我在学习中的一点思考和总结，可能有比较多不足和错误的地方，希望大家指正和指导。 本文章为前端进阶系列的一部分,欢迎关注和star本博客或是关">
-<meta property="og:updated_time" content="2018-04-06T04:15:15.889Z">
+<meta property="og:updated_time" content="2018-04-09T05:23:59.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端错误监控与收集探究">
 <meta name="twitter:description" content="编写代码只是做好项目的一小部分，写代码难免会碰到错误。因此，在项目上线后，我们还需要主动对项目的错误进行收集，不能等用户发现错误，再联系我们，我们再去处理。这样很容易造成大的损失，提前做好错误收集和处理，可以减少损失。 本人并没有做过相关的工作，下面的文章只是我在学习中的一点思考和总结，可能有比较多不足和错误的地方，希望大家指正和指导。 本文章为前端进阶系列的一部分,欢迎关注和star本博客或是关">
@@ -139,6 +139,16 @@
 </script>
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1a7023b4e101a4091028b344caf98de3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -368,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,484 words </span>
+          <span>1,840 words </span>
         </span>
       
         </div>
@@ -397,8 +407,10 @@
 <li>http劫持</li>
 <li>cdn或是其他资源文件访问出错</li>
 <li>服务器错误</li>
+<li>接口出错</li>
 <li>前端代码错误</li>
-<li>前端兼容性问题</li>
+<li>浏览器兼容性问题(css或是js)</li>
+<li>设备屏幕尺寸兼容问题</li>
 <li>用户操作出错</li>
 </ol>
 <h5 id="收集哪些信息"><a href="#收集哪些信息" class="headerlink" title="收集哪些信息"></a>收集哪些信息</h5><p>通过以上可能发生错误的环节，我们需要向用户手机一下以下的用户信息</p>
@@ -416,14 +428,30 @@
 <li>页面访问流程各阶段耗时</li>
 <li>js代码报错信息</li>
 </ol>
+<p>另外，参考Google Analytics数据统计的原理，我们还可以收集下面的信息</p>
+<ol>
+<li>用户的浏览器语言编码</li>
+<li>浏览器语言设置</li>
+<li>flash的版本</li>
+<li>网页的标题</li>
+<li>网页的来源</li>
+<li>cookie的数据</li>
+</ol>
 <h4 id="如何收集错误的信息"><a href="#如何收集错误的信息" class="headerlink" title="如何收集错误的信息"></a>如何收集错误的信息</h4><p>现在话题来到了如何收集错误信息了。</p>
 <p>前端错误收集有两大流派：</p>
 <p> 一个是虚拟机监控，优点是指标齐全，并且可以进行竞品监控，缺点是反映不全，容易失真</p>
+<p>下面简单列出一些虚拟机监控的方案</p>
+<ol>
+<li>图片对比，每隔一段时间使用虚拟机访问页面并截图然后进行相似度对比，如果差值超出一定的数值，进行报警</li>
+<li>定时抓取页面的HTML源码，分析是否出现异常</li>
+</ol>
 <p>另一个是脚本监控，优点是可以收集海量真实数据，缺点是影响性能，采样少的情况下容易失真。</p>
-<p>这里暂时只讲脚本监控（挖个坑，之后可能填）</p>
+<p>这里暂时只重点讲脚本监控（挖个坑，之后可能填）</p>
 <p>在这里，我们主要利用脚本收集用户的各阶段访问消耗时间以及错误信息</p>
 <h5 id="各阶段访问耗时记录"><a href="#各阶段访问耗时记录" class="headerlink" title="各阶段访问耗时记录"></a>各阶段访问耗时记录</h5><p>之所以要收集访问耗时，是为了查出是什么阶段消耗的时间较多，从而更好的定位错误来源。</p>
-<h6 id="performance-API"><a href="#performance-API" class="headerlink" title="performance API"></a>performance API</h6><p>在chrome浏览器控制台输入Performance.timing，会得到记录了一个浏览器访问各阶段的时间的对象。</p>
+<p>首先我们可以关注一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance" target="_blank" rel="external">Performance</a>,下面就先讲一下其中的两个API</p>
+<h6 id="performance-timing"><a href="#performance-timing" class="headerlink" title="performance timing"></a>performance timing</h6><p>具体可以查看<a href="https://www.w3.org/TR/navigation-timing/#sec-window.performance-attribute" target="_blank" rel="external">w3.org/TR/navigation-timing</a>、<a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API" target="_blank" rel="external">Navigation Timing API</a>。</p>
+<p>在chrome浏览器控制台输入Performance.timing，会得到记录了一个浏览器访问各阶段的时间的对象。</p>
 <p>进行错误收集的时候，可以对比这些时间，看错误发生在什么阶段</p>
 <ol>
 <li>DNS 查询耗时 ：domainLookupEnd - domainLookupStart</li>
@@ -434,6 +462,8 @@
 <li>domready 时间 ：domContentLoadedEventEnd - navigationStart</li>
 <li>onload 时间 ：loadEventEnd – navigationStart</li>
 </ol>
+<h6 id="performance-getEntries"><a href="#performance-getEntries" class="headerlink" title="performance getEntries"></a>performance getEntries</h6><p>具体参见<a href="https://www.w3.org/TR/resource-timing/" target="_blank" rel="external">W3C Resource timing</a>，<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/getEntries" target="_blank" rel="external">Performance.getEntries()</a></p>
+<p>通过performance.getEntries()，可以得到一个数字，其中的每个元素分别代表着一个资源，元素对象包括的属性跟上面的performance timing有点接近，还有不同的属性包括name代表资源的地址，请求花费的时间duration。</p>
 <h6 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h6><p>记录访问开始的时间可有以下的方法：</p>
 <ol>
 <li>服务器将访问的时间渲染到页面上</li>
@@ -470,12 +500,17 @@
 <li><p>创建一个新的图片，url参数带上错误信息</p>
 </li>
 </ol>
+<p>使用创建图片的好处是简单方便可跨域，可以防止重复请求，但要注意到地址栏可以携带的信息有限。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">report</span>(<span class="params">error</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> reportUrl = <span class="string">'http://xxxx/report'</span>;</div><div class="line">  <span class="keyword">new</span> Image().src = reportUrl + <span class="string">'error='</span> + error;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ol>
 <li><p><a href="https://www.cnblogs.com/fsjohnhuang/p/7685144.html" target="_blank" rel="external">前端魔法堂——异常不仅仅是try/catch</a></p>
 </li>
 <li><p><a href="http://www.cnblogs.com/longm/p/7382163.html" target="_blank" rel="external">前端优化-如何计算白屏和首屏时间</a></p>
+</li>
+<li><p><a href="https://www.biaodianfu.com/google-analytics-architecture.html" target="_blank" rel="external">Google Analytics数据统计的原理</a></p>
+</li>
+<li><p><a href="http://www.alloyteam.com/2015/09/explore-performance/" target="_blank" rel="external">初探 performance – 监控网页与程序性能</a></p>
 </li>
 </ol>
 
@@ -702,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#收集哪些错误信息"><span class="nav-number">1.</span> <span class="nav-text">收集哪些错误信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误发生在什么环节"><span class="nav-number">1.1.</span> <span class="nav-text">错误发生在什么环节</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收集哪些信息"><span class="nav-number">1.2.</span> <span class="nav-text">收集哪些信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何收集错误的信息"><span class="nav-number">2.</span> <span class="nav-text">如何收集错误的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#各阶段访问耗时记录"><span class="nav-number">2.1.</span> <span class="nav-text">各阶段访问耗时记录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#performance-API"><span class="nav-number">2.1.1.</span> <span class="nav-text">performance API</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本错误信息收集"><span class="nav-number">2.2.</span> <span class="nav-text">脚本错误信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#window-onerror"><span class="nav-number">2.2.1.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#promise的错误处理"><span class="nav-number">2.2.2.</span> <span class="nav-text">promise的错误处理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#try-catch"><span class="nav-number">2.2.3.</span> <span class="nav-text">try catch</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上报错误的方式"><span class="nav-number">3.</span> <span class="nav-text">上报错误的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#收集哪些错误信息"><span class="nav-number">1.</span> <span class="nav-text">收集哪些错误信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误发生在什么环节"><span class="nav-number">1.1.</span> <span class="nav-text">错误发生在什么环节</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收集哪些信息"><span class="nav-number">1.2.</span> <span class="nav-text">收集哪些信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何收集错误的信息"><span class="nav-number">2.</span> <span class="nav-text">如何收集错误的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#各阶段访问耗时记录"><span class="nav-number">2.1.</span> <span class="nav-text">各阶段访问耗时记录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#performance-timing"><span class="nav-number">2.1.1.</span> <span class="nav-text">performance timing</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#performance-getEntries"><span class="nav-number">2.1.2.</span> <span class="nav-text">performance getEntries</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.3.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本错误信息收集"><span class="nav-number">2.2.</span> <span class="nav-text">脚本错误信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#window-onerror"><span class="nav-number">2.2.1.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#promise的错误处理"><span class="nav-number">2.2.2.</span> <span class="nav-text">promise的错误处理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#try-catch"><span class="nav-number">2.2.3.</span> <span class="nav-text">try catch</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上报错误的方式"><span class="nav-number">3.</span> <span class="nav-text">上报错误的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
