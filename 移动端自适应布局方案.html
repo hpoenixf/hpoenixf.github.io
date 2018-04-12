@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/移动端自适应布局方案.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="背景现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。 开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的自适应布局问题是搭建新的移动端项目的重点和难点。 经过研究，我在公司的多个移动端项目">
-<meta property="og:updated_time" content="2018-04-07T15:12:01.597Z">
+<meta property="og:updated_time" content="2018-04-10T08:09:34.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端自适应布局方案">
 <meta name="twitter:description" content="背景现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。 开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的自适应布局问题是搭建新的移动端项目的重点和难点。 经过研究，我在公司的多个移动端项目">
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,074 words </span>
+          <span>1,049 words </span>
         </span>
       
         </div>
@@ -397,16 +397,16 @@
         <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>现在工作中有超过一半的时间用于移动端项目的开发，包括app嵌入页，微信页面和移动wap页。</p>
 <p>开发移动端页面跟开发PC页面的一个大区别就是移动端对响应式布局的要求更高，不能像PC页面一样设计几个断点利用媒体查询，两边留空白就解决。移动端页面需要把屏幕空间都利用上，而移动设备的尺寸和分辨率多种多样，解决移动端页面的自适应布局问题是搭建新的移动端项目的重点和难点。</p>
 <p>经过研究，我在公司的多个移动端项目使用了REM布局来解决移动端自适应布局的问题。</p>
-<h4 id="REM介绍"><a href="#REM介绍" class="headerlink" title="REM介绍"></a>REM介绍</h4><p>rem（font size of the root element）是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位，rem布局是一个流行的解决移动端响应式布局的方案。在页面初始化时，使用JS根据屏幕的尺寸和dpr等信息设置rem的大小，而在css中写下元素的高度等信息时，使用rem。如将rem设置为100px，则元素的高度为36px时，需要将元素的高度写成0.36rem。<br><a id="more"></a></p>
-<h4 id="传统的REM布局遇到的问题"><a href="#传统的REM布局遇到的问题" class="headerlink" title="传统的REM布局遇到的问题"></a>传统的REM布局遇到的问题</h4><p>以100像素为例，很多常见的属性如字体大小需要写成0.12rem等，可读性较差，输入起来也不方便，降低了工作效率。</p>
+<a id="more"></a>
+<h4 id="REM介绍"><a href="#REM介绍" class="headerlink" title="REM介绍"></a>REM介绍</h4><p>rem（font size of the root element）是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位，rem布局是一个流行的解决移动端响应式布局的方案。在页面初始化时，使用JS根据屏幕的尺寸和dpr等信息设置rem的大小，而在css中写下元素的高度等信息时，使用rem。如将rem设置为100px，则元素的高度为36px时，需要将元素的高度写成0.36rem。字体大小可能需要写成0.12rem等，可读性较差，输入起来也不方便，降低了工作效率。</p>
 <h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>在webpack中使用px2rem-loader。用法如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">rules: [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">    <span class="attr">use</span>: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'px2rem-loader?remUnit=75&amp;remPrecision=8'</span>]</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
 <p>这样便可以应对常见的750px的设计图，直接按照设计图的尺寸来填写属性大小就好，<br>注意，还需要在html文件中引入flexible文件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <h4 id="踩到的坑"><a href="#踩到的坑" class="headerlink" title="踩到的坑"></a>踩到的坑</h4><p>微信浏览器如果退回的话，页面被缓存，但是js文件没有重新调用，会导致布局混乱。需要调用pageshow事件来解决</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">e.addeventListener(<span class="string">'pageshow'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="comment">// d的作用是重新设置documentElement的fontsize为clientWidth的1/10</span></div><div class="line">	e.persisted&amp;&amp;d()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="深入"><a href="#深入" class="headerlink" title="深入"></a>深入</h4><p>你也许会对flexible.js做了什么比较感兴趣。在这之前，需要简单了解一下viewport的知识</p>
-<h5 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h5><h6 id="viewport-meta标签"><a href="#viewport-meta标签" class="headerlink" title="viewport meta标签"></a>viewport meta标签</h6><p>viewport meta标签有六个属性</p>
+<h4 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h4><p>你也许会对flexible.js做了什么比较感兴趣。在这之前，需要简单了解一下viewport的知识</p>
+<h5 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h5><h6 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h6><p>viewport meta标签有六个属性</p>
 <ol>
 <li>width：设置layout viewport 的宽度，为一个正整数，或字符串”width-device”</li>
 <li>initial-scale：设置页面的初始缩放值，为数字，可带小数</li>
@@ -416,19 +416,17 @@
 <li>user-scalable    是否允许用户进行缩放，值为”no”或”yes”</li>
 </ol>
 <h6 id="三种viewport"><a href="#三种viewport" class="headerlink" title="三种viewport"></a>三种viewport</h6><ol>
-<li>layout viewport 布局视窗</li>
+<li><p>layout viewport 布局视窗</p>
+<p> 网站的宽度，可以通过document.documentElement.clientWidth获取，通过viewport meta标签设置</p>
+</li>
+<li><p>visual viewport——视觉视窗 </p>
+<p> 代表浏览器可视区域的大小，可以通过 document.documentElement.innerWidth来获取</p>
+</li>
+<li><p>ideal viewport——理想视窗 </p>
+<p> 跟移动设备相关的viewport，移动设备的宽度。iPhone的值是320</p>
+</li>
 </ol>
-<p>网站的宽度，可以通过document.documentElement.clientWidth获取，通过viewport meta标签设置</p>
-<ol>
-<li>visual viewport——视觉视窗 </li>
-</ol>
-<p>代表浏览器可视区域的大小，可以通过 document.documentElement.innerWidth来获取</p>
-<ol>
-<li>ideal viewport——理想视窗 </li>
-</ol>
-<p>跟移动设备相关的viewport，移动设备的宽度。iPhone的值是320</p>
-<p>他们之间的关系</p>
-<p>visual viewport width = ideal viewport width / zoom factor</p>
+<h6 id="其他知识"><a href="#其他知识" class="headerlink" title="其他知识"></a>其他知识</h6><p>visual viewport width = ideal viewport width / zoom factor</p>
 <p>zoom factor可以设置initial-scale来控制<br>当visual viewport = layout viewport时，页面无水平滚动条，刚好显示全部内容</p>
 <p>如果不设置initial-scale，通过设置viewport meta的width为device-width，可以令layout viewport等于ideal viewport，从而达到页面无水平滚动条的效果</p>
 <h5 id="lib-flexible原理"><a href="#lib-flexible原理" class="headerlink" title="lib-flexible原理"></a>lib-flexible原理</h5><ol>
@@ -458,6 +456,14 @@
     
     
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/gzh.jpg" alt="hpoenixf wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫码获取最新博客推送</div>
+</div>
+
+      </div>
     
 
     
@@ -672,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REM介绍"><span class="nav-number">2.</span> <span class="nav-text">REM介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传统的REM布局遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">传统的REM布局遇到的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#踩到的坑"><span class="nav-number">5.</span> <span class="nav-text">踩到的坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深入"><span class="nav-number">6.</span> <span class="nav-text">深入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#viewport"><span class="nav-number">6.1.</span> <span class="nav-text">viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#viewport-meta标签"><span class="nav-number">6.1.1.</span> <span class="nav-text">viewport meta标签</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#三种viewport"><span class="nav-number">6.1.2.</span> <span class="nav-text">三种viewport</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lib-flexible原理"><span class="nav-number">6.2.</span> <span class="nav-text">lib-flexible原理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REM介绍"><span class="nav-number">2.</span> <span class="nav-text">REM介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#踩到的坑"><span class="nav-number">4.</span> <span class="nav-text">踩到的坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深入了解"><span class="nav-number">5.</span> <span class="nav-text">深入了解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#viewport"><span class="nav-number">5.1.</span> <span class="nav-text">viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#meta标签"><span class="nav-number">5.1.1.</span> <span class="nav-text">meta标签</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#三种viewport"><span class="nav-number">5.1.2.</span> <span class="nav-text">三种viewport</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其他知识"><span class="nav-number">5.1.3.</span> <span class="nav-text">其他知识</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lib-flexible原理"><span class="nav-number">5.2.</span> <span class="nav-text">lib-flexible原理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
