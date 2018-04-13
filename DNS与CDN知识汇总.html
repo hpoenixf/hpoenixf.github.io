@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/DNS与CDN知识汇总.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="在性能优化的时候，比较常见的一个建议是，把资源部署在CDN上，那么问题来了，CDN是什么？这样做有什么好处？ DNS我们先讲一下域名系统DNS(Domain Name System)吧。">
-<meta property="og:updated_time" content="2018-04-13T02:04:52.816Z">
+<meta property="og:updated_time" content="2018-04-13T02:24:42.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CDN与DNS知识汇总">
 <meta name="twitter:description" content="在性能优化的时候，比较常见的一个建议是，把资源部署在CDN上，那么问题来了，CDN是什么？这样做有什么好处？ DNS我们先讲一下域名系统DNS(Domain Name System)吧。">
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>2,487 words </span>
+          <span>2,478 words </span>
         </span>
       
         </div>
@@ -438,14 +438,15 @@
 <h5 id="DNS优化"><a href="#DNS优化" class="headerlink" title="DNS优化"></a>DNS优化</h5><p>可以看出，dns解析是一个漫长的过程，如何优化这一过程呢？</p>
 <ol>
 <li><p>DNS Prefetching</p>
-<p>用户在请求某个链接之前，浏览器先尝试解析该链接的域名再将其进行缓存。这样真正请求的时候就不需要进行DNS解析。<br>可以在服务器中响应设置<code>X-DNS-Prefetch-Control</code>的值为on启动预解析</p>
+<p>用户在请求某个链接之前，浏览器先尝试解析该链接的域名再将其进行缓存。这样真正请求的时候就不需要进行DNS解析。<br>可以</p>
+<ul>
+<li><p>在服务器中响应设置<code>X-DNS-Prefetch-Control</code>的值为<code>on</code>启动预解析</p>
 </li>
-</ol>
-<p>或者在HTML中这样配置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=<span class="string">"x-dns-prefetch-control"</span> content=<span class="string">"on"</span>&gt;</div></pre></td></tr></table></figure>
-<p>对特定域名预解析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=”dns-prefetch” href=”//fonts.googleapis.com”&gt;</div></pre></td></tr></table></figure>
-<ol>
+<li><p>HTML中，<code>&lt;meta http-equiv=&quot;x-dns-prefetch-control&quot; content=&quot;on&quot;&gt;</code></p>
+</li>
+<li>对特定域名预解析<code>&lt;link rel=”dns-prefetch” href=”//fonts.googleapis.com”&gt;</code></li>
+</ul>
+</li>
 <li><p>域名收敛</p>
 <p>建议将静态资源只放在一个域名下面，可以有效减少dns的请求</p>
 </li>
