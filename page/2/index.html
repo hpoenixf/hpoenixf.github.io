@@ -513,7 +513,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,099 words </span>
+          <span>1,110 words </span>
         </span>
       
         </div>
@@ -1028,149 +1028,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/一个简易标签间的通信方法.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/一个简易标签间的通信方法.html" itemprop="url">一个简易标签间的通信方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T23:13:54+08:00">2017-10-18</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/一个简易标签间的通信方法.html" class="leancloud_visitors" data-flag-title="一个简易标签间的通信方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-      
-        <span class="post-letters-count">
-          &nbsp; | &nbsp;
-          <span>178 words </span>
-        </span>
-      
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当使用localStorage时，会触发storage事件，该事件可以被同一浏览器，同源的标签页捕获到。因此，可以通过localStorage.setItem来进行页面间的通信。需要注意的一点是，如果存储的内容没有变化，是不会触发storage事件的，因此建议传递的内容加上随机数或者是时间戳。</p>
-<p>示例如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//标签1</span></div><div class="line">    localStorage.setItem(<span class="string">'test'</span>,<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">data</span>: <span class="number">1</span>, <span class="attr">timeStamp</span>: <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()&#125;))</div><div class="line"></div><div class="line"><span class="comment">//标签2</span></div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'storage'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(e)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
-<p>通过查看打印的事件对象e，可以看出比较有用的属性有<br>newValue,oldValue,url,key。key就是这次设置的键值，如示例的key为test。其他的就不解释了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/移动端自适应布局方案.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1449,16 +1306,168 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/修改vue第三方组件的内部方法.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/修改vue第三方组件的内部方法.html" itemprop="url">修改vue第三方组件的内部方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-04T21:19:32+08:00">2017-07-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/修改vue第三方组件的内部方法.html" class="leancloud_visitors" data-flag-title="修改vue第三方组件的内部方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>673 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的<a href="https://github.com/ElementUI/region-picker" target="_blank" rel="external">region-picker</a>比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看<a href="https://elementui.github.io/region-picker/" target="_blank" rel="external">demo</a>，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。</p>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>通过阅读源码，可以发现该组件包含了单选和多选两种组件，这次只考虑修改单选的，于是找到single.vue,从39行开始，可以简单的明白，点击选项时，会调用select方法，因此只要修改select方法就好。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/修改vue第三方组件的内部方法.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
           
 
         </div>
@@ -1496,7 +1505,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

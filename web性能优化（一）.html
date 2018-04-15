@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/web性能优化（一）.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="背景在开发好页面后，如何让页面更快更好的运行，是区分一个程序猿技术水平和视野的一个重要指标。所以面试时，面试官总会问你一个问题，如何进行性能优化呢？ 如果你这时是头脑一片空白，或是像之前的我一样，靠死记硬背或是之前的经历，答一下压缩代码，打包代码，雪碧图，cdn，事件代理，这说明你对性能优化还是缺乏一个整体，系统的掌握，对性能优化还只是处于听说过一个方法就加上去的阶段。这样也就无从去更好的优化性能">
-<meta property="og:updated_time" content="2018-04-01T00:21:53.139Z">
+<meta property="og:updated_time" content="2018-04-13T14:04:30.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web性能优化（一）">
 <meta name="twitter:description" content="背景在开发好页面后，如何让页面更快更好的运行，是区分一个程序猿技术水平和视野的一个重要指标。所以面试时，面试官总会问你一个问题，如何进行性能优化呢？ 如果你这时是头脑一片空白，或是像之前的我一样，靠死记硬背或是之前的经历，答一下压缩代码，打包代码，雪碧图，cdn，事件代理，这说明你对性能优化还是缺乏一个整体，系统的掌握，对性能优化还只是处于听说过一个方法就加上去的阶段。这样也就无从去更好的优化性能">
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,099 words </span>
+          <span>1,110 words </span>
         </span>
       
         </div>
@@ -408,7 +408,7 @@
 <p>如果不使用该API，可以以服务器渲染返回的时间，或是SPA路由跳转离开的时间为起点，domContentLoaded，load等事件为结束点进行记录。或是直接上google analytics。方法很多，就不细说了。</p>
 <h5 id="服务器部分优化要点"><a href="#服务器部分优化要点" class="headerlink" title="服务器部分优化要点"></a>服务器部分优化要点</h5><p>后端部分可以对缓存，dns查询时间，链接时间，处理请求时间，响应时间等进行优化。</p>
 <p>缓存就不细说了。</p>
-<p>dns查询时间可以使用httpdns或是dns预加载，域名收敛等手段优化。</p>
+<p>dns查询时间可以使用httpdns或是dns预加载，域名收敛等手段优化。我写了篇<a href="http://hpoenixf.com/DNS%E4%B8%8ECDN%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB.html">介绍DNS和CDN的文章</a></p>
 <p>建立连接的重点是长连接和链接复用，keep-alive，long-polling，http-straming，websocket或是自己写过别的协议，更好的是直接上http2。为了优化链接的环节，前端这里还需要对资源使用cdn，雪碧图，代码合并等手段。</p>
 <p>服务器处理请求这里可以优化的点也不少，值得注意的就是移动端访问PC端页面需要跳转到移动端页面时，要再服务器端使用302跳转，不要在前端进行跳转。还有就是启用hsts，要求浏览器在之后的访问使用https，减少无谓的http跳转https，同时还可以防止ssl剥离攻击，提升安全性。</p>
 <p>服务器发送响应环节，可以使用Transfer-Encoding=chunked，多次返回响应，具体操作查询bigpipe。还有就是减小cookie的体积等等。</p>
@@ -514,6 +514,13 @@
 
 
           </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
           
 
   
@@ -571,7 +578,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
