@@ -97,23 +97,23 @@
 
 
 
-  <meta name="description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
+  <meta name="description" content="找工作的时候最痛苦的时候，莫过于看到心仪的公司在招人，简历投给hr，然而hr看了一眼然后没有下文，静静的等候STAR法则和不匹配。这种情况对于我这种没有大公司背景的人来说尤其容易发生。 那么怎么避免这种情况呢？努力做事，丰富简历是一个方法，然而更好的方法，就是不投简历，等他们来找你。 想要让他们来找你，需要解决两个问题，一个是让他们知道你的存在，另一个是让他们想要来找你。这篇文章就先解决第一个问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个简单的virtual-dom实现">
-<meta property="og:url" content="http://hpoenixf.com/一个简单的virtual-dom实现.html">
+<meta property="og:title" content="别再投简历了，让面试官来找你">
+<meta property="og:url" content="http://hpoenixf.com/别再投简历了，让面试官来找你.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
-<meta property="og:updated_time" content="2018-04-01T00:22:21.988Z">
+<meta property="og:description" content="找工作的时候最痛苦的时候，莫过于看到心仪的公司在招人，简历投给hr，然而hr看了一眼然后没有下文，静静的等候STAR法则和不匹配。这种情况对于我这种没有大公司背景的人来说尤其容易发生。 那么怎么避免这种情况呢？努力做事，丰富简历是一个方法，然而更好的方法，就是不投简历，等他们来找你。 想要让他们来找你，需要解决两个问题，一个是让他们知道你的存在，另一个是让他们想要来找你。这篇文章就先解决第一个问题">
+<meta property="og:updated_time" content="2018-04-16T16:12:45.107Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个简单的virtual-dom实现">
-<meta name="twitter:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
+<meta name="twitter:title" content="别再投简历了，让面试官来找你">
+<meta name="twitter:description" content="找工作的时候最痛苦的时候，莫过于看到心仪的公司在招人，简历投给hr，然而hr看了一眼然后没有下文，静静的等候STAR法则和不匹配。这种情况对于我这种没有大公司背景的人来说尤其容易发生。 那么怎么避免这种情况呢？努力做事，丰富简历是一个方法，然而更好的方法，就是不投简历，等他们来找你。 想要让他们来找你，需要解决两个问题，一个是让他们知道你的存在，另一个是让他们想要来找你。这篇文章就先解决第一个问题">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/一个简单的virtual-dom实现.html"/>
+  <link rel="canonical" href="http://hpoenixf.com/别再投简历了，让面试官来找你.html"/>
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>一个简单的virtual-dom实现 | hpoenixf's blog</title>
+  <title>别再投简历了，让面试官来找你 | hpoenixf's blog</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/一个简单的virtual-dom实现.html">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/别再投简历了，让面试官来找你.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -319,7 +319,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">一个简单的virtual-dom实现</h2>
+          <h2 class="post-title" itemprop="name headline">别再投简历了，让面试官来找你</h2>
         
 
         <div class="post-meta">
@@ -331,7 +331,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-01T23:43:41+08:00">2018-01-01</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T22:19:39+08:00">2018-04-16</time>
             
 
             
@@ -349,8 +349,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/一个简单的virtual-dom实现.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/一个简单的virtual-dom实现.html" itemprop="commentsCount"></span>
+                <a href="/别再投简历了，让面试官来找你.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/别再投简历了，让面试官来找你.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/一个简单的virtual-dom实现.html" class="leancloud_visitors" data-flag-title="一个简单的virtual-dom实现">
+             <span id="/别再投简历了，让面试官来找你.html" class="leancloud_visitors" data-flag-title="别再投简历了，让面试官来找你">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>197 words </span>
+          <span>1,378 words </span>
         </span>
       
         </div>
@@ -394,12 +394,37 @@
       
 
       
-        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行</p>
-<p>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
+        <p>找工作的时候最痛苦的时候，莫过于看到心仪的公司在招人，简历投给hr，然而hr看了一眼然后没有下文，静静的等候STAR法则和不匹配。这种情况对于我这种没有大公司背景的人来说尤其容易发生。</p>
+<p>那么怎么避免这种情况呢？努力做事，丰富简历是一个方法，然而更好的方法，就是不投简历，等他们来找你。</p>
+<p>想要让他们来找你，需要解决两个问题，一个是让他们知道你的存在，另一个是让他们想要来找你。这篇文章就先解决第一个问题，这时候就需要我们懂点运营知识，打造自己的个人品牌了。</p>
+<h4 id="个人品牌的好处"><a href="#个人品牌的好处" class="headerlink" title="个人品牌的好处"></a>个人品牌的好处</h4><p>有个有影响力的个人品牌的好处除了容易有面试机会，还可以给面试官更多机会去了解你，如果有优秀的文章或是项目，也会适当的加分。还可以认识一些优秀的朋友，多点交流的机会</p>
+<p>打造个人品牌，我们可以有下面几个方法</p>
+<ol>
+<li><p>打造产品</p>
+</li>
+<li><p>github展现项目</p>
+</li>
+<li><p>搭建个人博客</p>
+</li>
+<li><p>在技术社区活跃</p>
+</li>
+<li><p>微信公众号</p>
+</li>
+</ol>
+<h4 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h4><p>提起qq邮箱我们想起张小龙，提起wps我们想起求伯君，做为程序员，有个自己负责开发的，广为人知的产品，就是最好的背书。</p>
+<p>虽然现在的时代越来越难发生一个程序员做好一个产品的情况了，但是作为一个程序员，如果能参与甚至主导一个小有名气的产品的开发，那对提升影响力很有帮助的。</p>
+<h4 id="github项目"><a href="#github项目" class="headerlink" title="github项目"></a>github项目</h4><p>现在的hr都懂得招人时github上star超过50的优先了，不少程序员也有着开源改变世界的梦想，都想在github上放些项目证明自己。</p>
+<p>那么项目怎么来呢？可以是你学了新技术，把之前的老项目用新技术重新写一遍，并找出他们的不同，比如我学react时就把之前做的用vue写的项目重新用react写了一遍。也可以是做些仿站，vue版网易云音乐，滴滴打车什么的，可以让人了解到你是有独立做完整项目的能力的，也可以是一些工具。也可以是解决了工作中碰到的问题的工具。</p>
+<h4 id="搭建个人博客"><a href="#搭建个人博客" class="headerlink" title="搭建个人博客"></a>搭建个人博客</h4><p>个人博客就是自己的独立天地，可以在上面放自己的作品，放自己的奇思妙想，自己的简历等等等。</p>
+<p>搭建个人博客不是一件很难的事情，可以利用hexo工具来在github的github page上搭建技术博客，文章很多，我就不重复写了，可以看看<a href="http://www.lovebxm.com/2017/05/30/buildBlog/" target="_blank" rel="external">这篇文章</a>,博客可以使用主题，比较主流的就有next，<a href="http://hpoenixf.com">我的技术博客</a>就是这样做的。</p>
+<p>利用github page搭建的个人博客地址是类似于hpoenixf.github.io，总给人一种冗余的感觉。我们可以自己买一个域名，然后把这个地址重定向过去，价钱也不贵,我的网名对应的域名，最贵的.com也就五六十一年，便宜的几块钱一年也有。</p>
+<p>github page有一点不好的地方是屏蔽了百度的爬虫，导致很少有来自百度的流量过来，解决方法有不少，我使用的方法是在自己的vps上重新部署一套博客，在dns控制台上配置，指定百度的爬虫去爬vps的地址。</p>
+<h4 id="技术社区"><a href="#技术社区" class="headerlink" title="技术社区"></a>技术社区</h4><p>比较推荐的技术社区有掘金和segmentfault以及博客园等，个人博客上如果有写的不错的文章，可以同步分享过去。英文水平比较好的小伙伴还可以混混stackoverflow，帮人解答问题。</p>
+<p>由于精力有限，目前我就只在掘金和segmentfault上分享文章，如果还有合适的技术社区，希望可以告知一下。</p>
+<h4 id="微信公众号"><a href="#微信公众号" class="headerlink" title="微信公众号"></a>微信公众号</h4><p>我觉得开微信公众号的好处有下面几个，一个是方便在微信上分享传播，另一个公众号可以主动去推送新的文章，不用让用户主动去浏览博客，可以有效增加文章的阅读量，从而增加影响。另外是粉丝多了，或许可以打点小广告赚点零花钱？</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>以上几个方法其实都是互相联系的，不同的只是渠道，相同的核心还是要有自己的输出，可以是项目，也可以是心得文章。建议平衡好构建影响力与技术积累，毕竟获得面试机会只是一个开始，最终还是要有技术实力。</p>
+<p>有人可能觉得运营自己，打造品牌可能会分心，影响技术方面的学习成长。我觉得还是要注意精力的分配，做好平衡。以我自己为例，在分享自己的文章后，发现有不少人观看，喜欢，也给我带来了一些面试机会，这也促进了我去学习积累，毕竟想要写文章也是要有自己的干货的。</p>
 <p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
-<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://github.com/hpoenixf/vdom" target="_blank" rel="external">项目地址</a></p>
-<p><a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a></p>
-<p><a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="external">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
 
       
     </div>
@@ -463,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/加快webpack构建.html" rel="next" title="加快webpack构建">
-                <i class="fa fa-chevron-left"></i> 加快webpack构建
+              <a href="/DNS与CDN知识汇总.html" rel="next" title="CDN与DNS知识汇总">
+                <i class="fa fa-chevron-left"></i> CDN与DNS知识汇总
               </a>
             
           </div>
@@ -473,8 +498,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/使用原生JS进行前后端同构.html" rel="prev" title="使用原生JS进行前后端同构">
-                使用原生JS进行前后端同构 <i class="fa fa-chevron-right"></i>
+              <a href="/前端进阶系列-目录.html" rel="prev" title="（置顶）前端进阶系列-目录">
+                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -643,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#地址"><span class="nav-number">2.</span> <span class="nav-text">地址</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#个人品牌的好处"><span class="nav-number">1.</span> <span class="nav-text">个人品牌的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产品"><span class="nav-number">2.</span> <span class="nav-text">产品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#github项目"><span class="nav-number">3.</span> <span class="nav-text">github项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建个人博客"><span class="nav-number">4.</span> <span class="nav-text">搭建个人博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#技术社区"><span class="nav-number">5.</span> <span class="nav-text">技术社区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#微信公众号"><span class="nav-number">6.</span> <span class="nav-text">微信公众号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
@@ -845,7 +870,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: '1514821421000',
+            id: '1523888379000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
