@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="设计和构建你自己的JavaScript代码库：提示与技巧 本文转载自：众成翻译译者：hpoenixf链接：http://www.zcfy.cc/article/939原文：https://www.sitepoint.com/design-and-build-your-own-javascript-library/  代码库：我们一直在使用它们。代码库是开发者把他们会在项目中使用到的代码打包起来形成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]设计和构建你自己的JavaScript代码库：提示与技巧">
+<meta property="og:url" content="http://hpoenixf.com/posts/2914/index.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="设计和构建你自己的JavaScript代码库：提示与技巧 本文转载自：众成翻译译者：hpoenixf链接：http://www.zcfy.cc/article/939原文：https://www.sitepoint.com/design-and-build-your-own-javascript-library/  代码库：我们一直在使用它们。代码库是开发者把他们会在项目中使用到的代码打包起来形成">
+<meta property="og:image" content="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1463750487Christ_Church_Library_Oxford-17189963462.jpg">
+<meta property="og:updated_time" content="2018-04-17T00:35:44.680Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]设计和构建你自己的JavaScript代码库：提示与技巧">
+<meta name="twitter:description" content="设计和构建你自己的JavaScript代码库：提示与技巧 本文转载自：众成翻译译者：hpoenixf链接：http://www.zcfy.cc/article/939原文：https://www.sitepoint.com/design-and-build-your-own-javascript-library/  代码库：我们一直在使用它们。代码库是开发者把他们会在项目中使用到的代码打包起来形成">
+<meta name="twitter:image" content="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1463750487Christ_Church_Library_Oxford-17189963462.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/posts/2914/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[译]设计和构建你自己的JavaScript代码库：提示与技巧 | hpoenixf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116923512-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116923512-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1a7023b4e101a4091028b344caf98de3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/hpoenixf" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/2914/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">[译]设计和构建你自己的JavaScript代码库：提示与技巧</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-26T11:53:06+08:00">2016-07-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/2914/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/2914/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/2914/" class="leancloud_visitors" data-flag-title="[译]设计和构建你自己的JavaScript代码库：提示与技巧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>4,496 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="设计和构建你自己的JavaScript代码库：提示与技巧"><a href="#设计和构建你自己的JavaScript代码库：提示与技巧" class="headerlink" title="设计和构建你自己的JavaScript代码库：提示与技巧"></a>设计和构建你自己的JavaScript代码库：提示与技巧</h1><blockquote>
+<p>本文转载自：<a href="http://www.zcfy.cc" target="_blank" rel="external">众成翻译</a><br>译者：<a href="http://www.zcfy.cc/@hpoenixf" target="_blank" rel="external">hpoenixf</a><br>链接：<a href="http://www.zcfy.cc/article/939" target="_blank" rel="external">http://www.zcfy.cc/article/939</a><br>原文：<a href="https://www.sitepoint.com/design-and-build-your-own-javascript-library/" target="_blank" rel="external">https://www.sitepoint.com/design-and-build-your-own-javascript-library/</a></p>
+</blockquote>
+<p>代码库：我们一直在使用它们。代码库是开发者把他们会在项目中使用到的代码打包起来形成的，这总能节省时间和避免重复造轮子。拥有一个可重复使用的包，不管是开源的还是闭源的，总比重复构建一样特性的包或者从过去的项目中手动复制粘贴要好。</p>
+<h3 id="来自作者的更多文章"><a href="#来自作者的更多文章" class="headerlink" title="来自作者的更多文章"></a>来自作者的更多文章</h3><ul>
+<li><a href="https://www.sitepoint.com/stop-maiming-bodies-the-perils-of-pixel-font-size/?utm_source=sitepoint&amp;utm_medium=relatedinline&amp;utm_term=javascript&amp;utm_campaign=relatedauthor" target="_blank" rel="external">Stop Maiming Bodies: The Perils of Pixel Font-Size</a></li>
+<li><a href="https://www.sitepoint.com/es2016-should-future-of-javascript-be-developer-driven/?utm_source=sitepoint&amp;utm_medium=relatedinline&amp;utm_term=javascript&amp;utm_campaign=relatedauthor" target="_blank" rel="external">ES2016: Should the Future of JavaScript Be Developer-Driven?</a></li>
+</ul>
+<p>除了被打包的代码，还可以更精确的形容代码库吗？除了少数的例外，代码库通常只是一个文件，或者是在同一个文件夹里的几个文件。它的代码应该可以单独保存和在你的项目中正常使用。库文件允许你根据项目的不同来调整结构或者行为。想象一下只能通过USB接口进行通讯的USB设备。一些设备，例如鼠标和键盘，可以通过设备提供的接口来进行配置。</p>
+<p>在这篇文章，我会解释如何构建库文件。尽管大部分的方法可以应用到其他语言，但这篇文章主要讲述的是构建JavaScript库文件。</p>
+<p>##为什么构建你自己的Javascript库？</p>
+<p>首先和最重要的，库文件可以让现有的代码方便的重复利用。你不需要挖出陈旧的项目来复制文件，只需要引入库文件。这也可以让你的应用组件化，让应用的代码库更小更易维护。</p>
+<p><img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1463750487Christ_Church_Library_Oxford-17189963462.jpg" alt="Christ Church Library, Oxford"></p>
+<p>Christ Church Library (<a href="https://commons.wikimedia.org/wiki/File:Christ_Church_Library,_Oxford-17189963462.jpg" target="_blank" rel="external">source</a>)</p>
+<p>任何可以让实现一个具体的功能更容易或者可以被重复利用的抽象的代码，都可以被打包进去库文件。jQuery是一个有趣的例子。尽管jQuery的API有大量的简化的DOM API，在跨浏览器DOM操作比较困难的过去有着相当重要的意义。</p>
+<a id="more"></a>
+<p>如果一个开源项目变得流行并且让许多开发者使用它，人们很有可能通过提出问题或者贡献代码来参加它的开发。不管怎样，都对库和依赖它的项目有所帮助。</p>
+<p>一个流行的开源库也会带来很好的机会。公司可能会对你的工作质量表示认可并给你发offer。可能公司会要求你把你的项目整合进他们的应用。毕竟，没人可以比你更了解你的项目。</p>
+<p>当然它可能只是一个习惯——享受敲码，帮助他人并在这个过程中学习和成长。你可以提升你的极限和尝试新的东西。</p>
+<p>##范围和目标</p>
+<p>在写下第一行代码之前，你需要确定你的库的功能——你需要设置一个目标。通过这个目标，你可以专注于你想利用这个库来解决的问题。要牢记你的代码库的原本的形式在解决问题上要更容易使用和记忆。API越简单，使用者学习你的代码库就更容易。引入一个Unix的设计哲学：</p>
+<blockquote>
+<p>只做一件事情并把它做好</p>
+</blockquote>
+<p>问下你自己：你的代码库解决了什么问题？你打算怎么取解决它？你将会一个人完成全部工作，还是引入别人的代码库？</p>
+<p>不管代码库体积有多大，尝试制作一个路线图。列出你想要的每一个特性，并将它们尽可能的打散，知道你有一个小巧但是能解决问题的代码库，就像 <a href="http://www.sitepoint.com/mvp-minimum-viable-product/" target="_blank" rel="external">minimum viable product</a>。这会成为你的第一个版本。从这里开始，你可以在每一个新特性建立里程碑。从本质上来说，你把你的项目变成了比特级的代码块，让每一个特性完成的更好和更有趣。相信我，这会让你保持状态良好。</p>
+<p>##API设计</p>
+<p>在我看来，我想以使用者的角度来开发我的代码库。你可以称呼它为以用户为中心的设计。在本质上，你正在创造你的代码库的大纲，给予它更多的思考和让选择它的人使用起来更方便。在同时，你需要思考在什么地方需要可以定制，这会在这篇文章的后面讨论。</p>
+<p>终极的API测试是尝试一下自己的技术，在你的项目使用你的代码库。试着用你的代码库替换之前的代码，看它是否满足了你想要的特性。试着让你的代码库尽可能的直观，让它可以更灵活的在边界条件下使用，还有定制化（在之后的文章会讲述）。</p>
+<p>这是一个关于用户代理字符串的代码库的大纲的可能会有样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// Start with empty UserAgent string</div><div class="line">var userAgent = new UserAgent;</div><div class="line"></div><div class="line">// Create and add first product: EvilCorpBrowser/1.2 (X11; Linux; en-us)</div><div class="line">var application = new UserAgent.Product(&apos;EvilCorpBrowser&apos;, &apos;1.2&apos;);</div><div class="line">application.setComment(&apos;X11&apos;, &apos;Linux&apos;, &apos;en-us&apos;);</div><div class="line">userAgent.addProduct(application);</div><div class="line"></div><div class="line">// Create and add second product: Blink/20420101</div><div class="line">var engine = new UserAgent.Product(&apos;Blink&apos;, &apos;20420101&apos;);</div><div class="line">userAgent.addProduct(engine);</div><div class="line"></div><div class="line">// EvilCorpBrowser/1.2 (X11; Linux; en-us) Blink/20420101</div><div class="line">userAgent.toString();</div><div class="line"></div><div class="line">// Make some more changes to engine product</div><div class="line">engine.setComment(&apos;Hello World&apos;);</div><div class="line"></div><div class="line">// EvilCorpBrowser/1.2 (X11; Linux; en-us) Blink/20420101 (Hello World)</div><div class="line">userAgent.toString();</div></pre></td></tr></table></figure>
+<p>根据你的代码的复杂度，你可能会在组织结构上花费一些时间。利用设计模式是组织你的代码库的好办法，甚至可以解决一些技术问题。这还能避免加入新特性带来的大面积重构。</p>
+<p>##灵活性和定制性</p>
+<p>灵活性是让代码库变得强大的要素，但是确定可以定制与不能定制的界限是很困难的。 <a href="http://www.chartjs.org/" target="_blank" rel="external">chart.js</a> 和<a href="https://d3js.org/" target="_blank" rel="external">D3.js</a>是很好的例子。这两个代码库都是用来进行数据可视化的。Chart.js可以很简单的创建不同形式的内置图表。但是如果你想对图像进行更多的掌控，D3.js才是你需要的。</p>
+<p>有好几种方法可以把控制权交给用户：配置，暴露公共方法，通过回调和事件。</p>
+<p>配置代码库通常在初始化之前完成。但是一些代码库允许尼在运行时对配置进行修改。配置通常被细小的部分限制，只有为了之后的使用而修改它们的数值才是被允许的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Configure at initialization</div><div class="line">var userAgent = new UserAgent(&#123;</div><div class="line">  commentSeparator: &apos;;&apos;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// Run-time configuration using a public method</div><div class="line">userAgent.setOption(&apos;commentSeparator&apos;, &apos;-&apos;);</div><div class="line"></div><div class="line">// Run-time configuration using a public property</div><div class="line">userAgent.commentSeparator = &apos;-&apos;;</div></pre></td></tr></table></figure>
+<p>方法通常是暴露给实例使用的，比如说从实例中获取数据，或者设置实例的数据和执行操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var userAgent = new UserAgent;</div><div class="line"></div><div class="line">// A getter to retrieve comments from all products</div><div class="line">userAgent.getComments();</div><div class="line"></div><div class="line">// An action to shuffle the order of all products</div><div class="line">userAgent.shuffleProducts();</div></pre></td></tr></table></figure>
+<p>回调通常是在公共的方法中被传递的，通常在异步操作后执行用户的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var userAgent = new UserAgent;</div><div class="line"></div><div class="line">userAgent.doAsyncThing(function asyncThingDone() &#123;</div><div class="line">  // Run code after async thing is done</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>事件有很多种可能。有点像回调，除了增加事件句柄是不应该触发操作的。事件通常用于监听，你可能会猜到，这可是事件！更像回调的是，你可以提供更多的信息和返回一个数值给代码库去进行操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var userAgent = new UserAgent;</div><div class="line"></div><div class="line">// Validate a product on addition</div><div class="line">userAgent.on(&apos;product.add&apos;, function onProductAdd(e, product) &#123;</div><div class="line">  var shouldAddProduct = product.toString().length &lt; 5;</div><div class="line"></div><div class="line">  // Tell the library to add the product or not</div><div class="line">  return shouldAddProduct;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在一些例子中，你可能允许用户对你的代码库进行扩展。因此，你需要暴露一些公共方法或者属性来让用户填充，像Angular的模块 (<code>angular.module(&#39;myModule&#39;)</code>)和Jquery的 <code>fn</code> (<code>jQuery.fn.myPlugin</code>)或者什么都不做，只是简单的让用户获取你的代码库的命名空间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// AngryUserAgent module</div><div class="line">// Has access to UserAgent namespace</div><div class="line">(function AngryUserAgent(UserAgent) &#123;</div><div class="line"></div><div class="line">  // Create new method .toAngryString()</div><div class="line">  UserAgent.prototype.toAngryString = function() &#123;</div><div class="line">    return this.toString().toUpperCase();</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">&#125;)(UserAgent);</div><div class="line"></div><div class="line">// Application code</div><div class="line">var userAgent = new UserAgent;</div><div class="line">// ...</div><div class="line"></div><div class="line">// EVILCORPBROWSER/1.2 (X11; LINUX; EN-US) BLINK/20420101</div><div class="line">userAgent.toAngryString();</div></pre></td></tr></table></figure>
+<p>类似的，这允许你重写方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// AngryUserAgent module</div><div class="line">(function AngryUserAgent(UserAgent) &#123;</div><div class="line"></div><div class="line">  // Store old .toString() method for later use</div><div class="line">  var _toString = UserAgent.prototype.toString;</div><div class="line"></div><div class="line">  // Overwrite .toString()</div><div class="line">  UserAgent.prototype.toString = function() &#123;</div><div class="line">    return _toString.call(this).toUpperCase();</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">&#125;)(UserAgent);</div><div class="line"></div><div class="line">var userAgent = new UserAgent;</div><div class="line">// ...</div><div class="line"></div><div class="line">// EVILCORPBROWSER/1.2 (X11; LINUX; EN-US) BLINK/20420101</div><div class="line">userAgent.toString();</div></pre></td></tr></table></figure>
+<p>在后面的例子中，允许你的用户获取代码库的命名空间，让你在对扩展和插件的定义方面上的控制变小了。为了让插件遵循一些约定，你可以（或者是应该）写下文档。</p>
+<p>##测试</p>
+<p>对测试驱动开发<a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="external">（test-driven development）</a>来说，写下大纲是良好的开始。简单来说，指的是在你写实际的代码库之前，在你写下测试准则的时候。如果测试检查的是你的代码特性是否跟期待的一样，以及你在写代码库之前写测试，这就是行为驱动开发。不管怎样，如果你的测试覆盖了你的代码库的每一个特性，而且你的代码通过了所有的测试。你可以确定你的代码是可以正常工作的。</p>
+<p>Jani Hartikainen讲述了如何利用Mocha来进行单元测试 <a href="http://www.sitepoint.com/unit-test-javascript-mocha-chai/" target="_blank" rel="external">Unit Test Your JavaScript Using Mocha and Chai</a>。在使用Jsmine，Travis，Karma测试JavaScript <a href="http://www.sitepoint.com/testing-javascript-jasmine-travis-karma/" target="_blank" rel="external">（Testing JavaScript with Jasmine, Travis, and Karma）</a>这篇文章中，Tim Evko展示了怎么通过另一个叫做Jasmine的框架来设置良好的测试流程。这两个测试框架都是非常流行的，但还有适应别的需求的其他框架。</p>
+<p>我在这篇文章前面撰写的大纲，已经讲述了它期待怎样的输出。这是一切测试的开始：从期望出发。关于我的代码库的一个Jasmine测试像是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">describe(&apos;Basic usage&apos;, function () &#123;</div><div class="line">  it(&apos;should generate a single product&apos;, function () &#123;</div><div class="line">    // Create a single product</div><div class="line">    var product = new UserAgent.Product(&apos;EvilCorpBrowser&apos;, &apos;1.2&apos;);</div><div class="line">    product.setComment(&apos;X11&apos;, &apos;Linux&apos;, &apos;en-us&apos;);</div><div class="line"></div><div class="line">    expect(product.toString())</div><div class="line">      .toBe(&apos;EvilCorpBrowser/1.2 (X11; Linux; en-us)&apos;);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it(&apos;should combine several products&apos;, function () &#123;</div><div class="line">    var userAgent = new UserAgent;</div><div class="line"></div><div class="line">    // Create and add first product</div><div class="line">    var application = new UserAgent.Product(&apos;EvilCorpBrowser&apos;, &apos;1.2&apos;);</div><div class="line">    application.setComment(&apos;X11&apos;, &apos;Linux&apos;, &apos;en-us&apos;);</div><div class="line">    userAgent.addProduct(application);</div><div class="line"></div><div class="line">    // Create and add second product</div><div class="line">    var engine = new UserAgent.Product(&apos;Blink&apos;, &apos;20420101&apos;);</div><div class="line">    userAgent.addProduct(engine);</div><div class="line"></div><div class="line">    expect(userAgent.toString())</div><div class="line">      .toBe(&apos;EvilCorpBrowser/1.2 (X11; Linux; en-us) Blink/20420101&apos;);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it(&apos;should update products correctly&apos;, function () &#123;</div><div class="line">    var userAgent = new UserAgent;</div><div class="line"></div><div class="line">    // Create and add first product</div><div class="line">    var application = new UserAgent.Product(&apos;EvilCorpBrowser&apos;, &apos;1.2&apos;);</div><div class="line">    application.setComment(&apos;X11&apos;, &apos;Linux&apos;, &apos;en-us&apos;);</div><div class="line">    userAgent.addProduct(application);</div><div class="line"></div><div class="line">    // Update first product</div><div class="line">    application.setComment(&apos;X11&apos;, &apos;Linux&apos;, &apos;nl-nl&apos;);</div><div class="line"></div><div class="line">    expect(userAgent.toString())</div><div class="line">      .toBe(&apos;EvilCorpBrowser/1.2 (X11; Linux; nl-nl)&apos;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>一旦你对你的API设计的第一个版本完全满意，是时候开始思考结构和你的代码库应该如何被使用。</p>
+<p>##模块加载器兼容性</p>
+<p>你或许使用过模块加载器。使用你的代码库的开发者有可能使用加载器，所以你会希望自己的代码库与模块加载器是兼容的。但兼容哪一个呢？应该怎么从CommonJS，RequireJS，AMD和其他加载器中挑选呢？</p>
+<p>实际上，你不需要挑选！通用模块定义（UMD）是一个目标就是支持多种加载器的规则。你可以在网上找到不同风格的代码段，或者从这里 <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD GitHub repository</a>学习并让它与你的代码库兼容。从其中的某个模板开始，或者使用你喜欢的构建工具<a href="https://github.com/umdjs/umd#build-tools" target="_blank" rel="external">add UMD with your favorite build tool</a>,你就不必再担心模块加载器的问题了。</p>
+<p>如果你希望用上ES2015的 <code>import</code>/<code>export</code> 语法，我建议使用Babel和<a href="http://babeljs.io/docs/plugins/transform-es2015-modules-umd/" target="_blank" rel="external">Babel’s UMD plugin</a>来将代码转换成ES5。通过这个方法你可以在你的项目中使用ES2015,同时生成兼容性良好的代码库。</p>
+<p>##文档</p>
+<p>我完全赞成在每一个项目中使用文档。但这通常牵涉到大量的工作，导致编写文档被推迟和在最后被遗忘。</p>
+<p>###基本信息</p>
+<p>文档的编写应当从项目的名字和描述之类基本的信息开始。这会对别人明白你的代码库做了什么和是否对他们有用有所帮助。</p>
+<p>你可以提供像是适用范围和目标之类的信息来更好的给用户提供信息，而提供路线图可以让他们明白在未来可能会有什么新变化以及他们可以提供怎样的帮助。</p>
+<p>###API，教程和例子</p>
+<p>当然，你需要确保用户知道如何去使用你的代码库。这从API文档开始。教程和例子是很好的补充，但编写他们会是一个庞大的工作。然而，内联文档<a href="http://usejsdoc.org/" target="_blank" rel="external">Inline documentation</a>不会这样。下面是一些利用<a href="https://github.com/jsdoc3/jsdoc" target="_blank" rel="external">JSDoc</a>的，可以被解析和转换成文档页的注释</p>
+<p>###元任务</p>
+<p>一些用户想对你的代码库作出改进。在大多数情况中，会是贡献代码，但有一些会创建一个私人使用的定制版本。对于这些用户，为类似构建代码库，运行测试，生成，转换和下载数据之类的元任务提供文档很有帮助的。</p>
+<p>###贡献</p>
+<p>当你对你的代码库进行开源，得到代码贡献是很有帮助的。为了引导贡献者，你可以增加一些关于贡献代码的步骤和需要满足的标准的文档。这会对你审阅和接纳贡献的代码和他们正确的贡献代码有所帮助。</p>
+<p>###授权许可</p>
+<p>最后一点，使用授权许可。从技术上讲，即时你没有选择任何一种技术许可，你的代码库依然是拥有版权的，但不是每一个人都知道这一点。</p>
+<p>我发现 <a href="http://choosealicense.com/" target="_blank" rel="external">ChooseALicense.com</a>这个网站可以让你一个不需要成为法律专家也能挑选授权许可。在挑选授权许可之后，只需要在项目的根目录下添加 <code>LICENSE.txt</code> 文件。</p>
+<p>##将它打包和发布到包管理器</p>
+<p>对一个好的代码库来说，版本是很重要的。如果你想要加入重大的变化，用户可能需要保留他们现在正在使用的版本。</p>
+<p><a href="http://semver.org/" target="_blank" rel="external">Semantic Versioning</a>是流行的版本命名标准，或者叫它SemVer。SemVer版本包括三个数字，每一个代表不同程度的改变：重大改变，微小的改变和补丁</p>
+<p>###在你的Git仓库加入版本和发布</p>
+<p>如果你有一个git仓库，你可以在你的仓库添加版本数字。你可以把它想象成你的仓库的快照。我们也叫它标签 <a href="https://git-scm.com/book/en/Git-Basics-Tagging" target="_blank" rel="external">Tags</a>。可以通过开启终端和输入下面的文字来创造标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># git tag -a [version] -m [version message]</div><div class="line">git tag -a v1.2.0 -m &quot;Awesome Library v1.2.0&quot;</div></pre></td></tr></table></figure>
+<p>很多类似GitHub的服务会提供关于所有版本的概览和提供它们的下载链接。</p>
+<p>###发布一个通用仓库</p>
+<p>####npm</p>
+<p>许多编程语言自带有包管理器，或者是第三方包管理器。这可以允许我们下载关于这些语言的特定代码库。比如PHP的<a href="http://www.sitepoint.com/mastering-composer-tips-tricks/" target="_blank" rel="external">Composer</a> 和Ruby的<a href="https://rubygems.org/" target="_blank" rel="external">RubyGems</a></p>
+<p>Node.js,一种独立的JavaScript引擎，拥有 <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a>，如果你对npm不熟悉，我们有一个很好的教程 <a href="http://www.sitepoint.com/beginners-guide-node-package-manager/" target="_blank" rel="external">beginner’s guide</a>。</p>
+<p>默认情况下，你的npm包会发布为公共包。不要害怕，你也可以发布私有包 <a href="https://www.npmjs.com/npm/private-packages" target="_blank" rel="external">private packages</a>, 设置一个私有的注册<a href="https://docs.npmjs.com/misc/registry#can-i-run-my-own-private-registry" target="_blank" rel="external">private registry</a>， 或者根本不发布<a href="https://docs.npmjs.com/misc/registry#i-dont-want-my-package-published-in-the-official-registry-its-private" target="_blank" rel="external">avoid publishing</a>.</p>
+<p>为了发布你的包，你的项目需要有一个 <code>package.json</code> 文件。你可以手动或者交互问答的方式来创建。通过输入下面的代码来开始问答：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`npm init`</div></pre></td></tr></table></figure>
+<p>这个版本属性需要跟你的git标签吻合。另外，请确定有<code>README.md</code> 文件。像是GitHub，npm在你的包的展示页使用它。</p>
+<p>之后，你可以通过输入下面的代码来发布你的包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`npm publish`</div></pre></td></tr></table></figure>
+<p>就是这样！你已经成功发布了你的npm包。</p>
+<p>####Bower</p>
+<p>几年前，有另一个叫做Bower的包管理器。这个包管理器，实际上不是为了特定的语言准备的，而是为了互联网准备的。你可以发现大部分是前端资源。在Bower发布你的包的关键一点是你的代码库是否跟它兼容。</p>
+<p>如果你对Bower不熟悉，我们也有一个教程<a href="http://www.sitepoint.com/package-management-for-the-browser-with-bower/" target="_blank" rel="external">beginner’s guide</a> 。</p>
+<p>跟npm一样，你也可以设置一个私有仓库<a href="https://github.com/bower/registry#installation" target="_blank" rel="external">private repository</a>。你可以通过问答的方式避免发布。</p>
+<p>有趣的是，在最近的一两年，很多人转为使用npm管理前端资源。近段npm包主要是跟JavaScript相关，大部分的前端资源也发布在了npm上。不管怎样，Bower仍然流行。我明确的推荐你在Bower上发布你的包。</p>
+<p>我有提到Bower实际上是npm的一种模块，并最初是得到它的启发吗？它们的命令是很相似的，通过输入下面的代码产生<code>bower.json</code>文件： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`bower init`</div></pre></td></tr></table></figure>
+<p>跟<code>npm init</code>类似，指令是很直白的，最后，发布你的包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`bower register awesomelib https://github.com/you/awesomelib`</div></pre></td></tr></table></figure>
+<p>像是把你的代码库放到了野外，任何人可以在他们的Node项目或者网络上使用它！</p>
+<p>##总结</p>
+<p>核心的产品是库文件。确定它解决了问题，容易和适合使用，你会使得你的团队或者许多开发者变得高兴。</p>
+<p>我提到的很多任务都是自动化的，比如：运行测试，创建标签，在<code>package.json</code>升级版本或者在npm或者bower重发布你的包。 这是你像Travis CI 或 Jenkins一样踏入持续集成和使用工具的开始。我之前提到的文章 <a href="https://www.sitepoint.com/testing-javascript-jasmine-travis-karma/" target="_blank" rel="external">article by Tim Evko</a> 也讲述到了这点。</p>
+<p>你构建和发布代码库了吗？请在下面的评论区分享！</p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/gzh.jpg" alt="hpoenixf wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫码获取最新博客推送</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/2732/" rel="next" title="越南毕业游记">
+                <i class="fa fa-chevron-left"></i> 越南毕业游记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/8342/" rel="prev" title="[译]如何运用最新的技术提升网页速度和性能">
+                [译]如何运用最新的技术提升网页速度和性能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hpoenixf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hpoenixf@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计和构建你自己的JavaScript代码库：提示与技巧"><span class="nav-number">1.</span> <span class="nav-text">设计和构建你自己的JavaScript代码库：提示与技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#来自作者的更多文章"><span class="nav-number">1.0.1.</span> <span class="nav-text">来自作者的更多文章</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: '1469505186000',
+            owner: 'hpoenixf',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+            
+                client_id: 'd81a0dc3cee29d34be76'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

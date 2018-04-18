@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次搞定闭包和this">
+<meta property="og:url" content="http://hpoenixf.com/posts/10126/index.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
+<meta property="og:updated_time" content="2018-04-18T04:14:34.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次搞定闭包和this">
+<meta name="twitter:description" content="闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？ 有请我们的这篇文章的主角，执行上下文 执行上下文执行上下文是什么可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下 123456executionContextObj = &amp;#123;	this: 对的就是你关注的那个this,	VO：变量对象,">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/posts/10126/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一次搞定闭包和this | hpoenixf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116923512-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116923512-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1a7023b4e101a4091028b344caf98de3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/hpoenixf" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/10126/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">一次搞定闭包和this</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-19T23:05:20+08:00">2018-03-19</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/10126/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/10126/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/10126/" class="leancloud_visitors" data-flag-title="一次搞定闭包和this">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>2,937 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>闭包和this，是两个相当高频的考点，然而你有没有想过，实际上他们两个都跟同一个知识点相关？</p>
+<p>有请我们的这篇文章的主角，执行上下文</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><h5 id="执行上下文是什么"><a href="#执行上下文是什么" class="headerlink" title="执行上下文是什么"></a>执行上下文是什么</h5><p>可以简单理解执行上下文是js代码执行的环境，当js执行一段可执行代码时，会创建对应的执行上下文。他的组成如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj = &#123;</div><div class="line">	<span class="attr">this</span>: 对的就是你关注的那个<span class="keyword">this</span>,</div><div class="line">	VO：变量对象,</div><div class="line">    <span class="attr">scopeChain</span>: 作用域链,跟闭包相关</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于JS是单线程的，一次只能发生一件事情，其他事情会放在指定上下文栈中排队。js解释器在初始化执行代码时，会创建一个全局执行上下文到栈中，接着随着每次函数的调用都会创建并压入一个新的执行上下文栈。函数执行后，该执行上下文被弹出。<br><a id="more"></a></p>
+<p>五个关键点：</p>
+<ol>
+<li>单线程</li>
+<li>同步执行</li>
+<li>一个全局上下文</li>
+<li>无限制函数上下文</li>
+<li>每次函数调用创建新的上下文，包括调用自己</li>
+</ol>
+<h5 id="执行上下文建立的步奏"><a href="#执行上下文建立的步奏" class="headerlink" title="执行上下文建立的步奏"></a>执行上下文建立的步奏</h5><p>创建阶段</p>
+<ol>
+<li>初始化作用域链</li>
+<li>创建变量对象<ol>
+<li>创建arguments</li>
+<li>扫描函数声明</li>
+<li>扫描变量声明</li>
+</ol>
+</li>
+<li>求this</li>
+</ol>
+<p>执行阶段</p>
+<ol>
+<li>初始化变量和函数的引用</li>
+<li>执行代码</li>
+</ol>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>在函数执行时，this 总是指向调用该函数的对象。要判断 this 的指向，其实就是判断 this 所在的函数属于谁。 </p>
+<h5 id="指向调用对象"><a href="#指向调用对象" class="headerlink" title="指向调用对象"></a>指向调用对象</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">foo</span>: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.foo(); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<h5 id="指向全局对象"><a href="#指向全局对象" class="headerlink" title="指向全局对象"></a>指向全局对象</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"></div><div class="line">foo(); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>注意</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//接上</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = foo</div><div class="line"></div><div class="line">a = <span class="number">3</span></div><div class="line">bar() <span class="comment">// 3不是2</span></div></pre></td></tr></table></figure>
+<p>通过这个例子可以更加了解this是函数调用时才确定的</p>
+<p>再绕一点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = <span class="number">4</span></div><div class="line">	fn();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">foo</span>: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a =<span class="number">3</span></div><div class="line"></div><div class="line">doFoo( obj.foo ); <span class="comment">// 4</span></div></pre></td></tr></table></figure>
+<p>而</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = <span class="number">1</span></div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = <span class="number">4</span></div><div class="line">	fn();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">foo</span>: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a =<span class="number">3</span></div><div class="line"></div><div class="line">doFoo( obj.foo ); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>这是为什么呢？是因为优先读取foo中设置的a，类似作用域的原理吗？</p>
+<p>通过打印foo和doFoo的this，可以知道，他们的this都是指向window的，他们的操作会修改window中的a的值。并不是优先读取foo中设置的a</p>
+<p>因此如果把代码改成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.a = <span class="number">1</span>,<span class="number">0</span>)</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = <span class="number">4</span></div><div class="line">	fn();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">foo</span>: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a =<span class="number">3</span></div><div class="line"></div><div class="line">doFoo( obj.foo ); <span class="comment">// 4</span></div><div class="line">setTimeout(obj.foo,<span class="number">0</span>) <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>上面的代码结果可以证实我们的猜测。</p>
+<h5 id="用new构造就指向新对象"><a href="#用new构造就指向新对象" class="headerlink" title="用new构造就指向新对象"></a>用new构造就指向新对象</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">a = <span class="number">4</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">this</span>.a = <span class="number">3</span></div><div class="line">	<span class="keyword">this</span>.callA = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">A() <span class="comment">// 返回undefined, A().callA会报错。callA被保存在window上</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A()</div><div class="line"></div><div class="line">a.callA() <span class="comment">// 3,callA在new A返回的对象里</span></div></pre></td></tr></table></figure>
+<h5 id="apply-call-bind"><a href="#apply-call-bind" class="headerlink" title="apply/call/bind"></a>apply/call/bind</h5><p>大家应该都很熟悉，令this指向传递的第一个参数，如果第一个参数为null，undefined或是不传，则指向全局变量<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">a = <span class="number">3</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo.call( obj ); <span class="comment">// 2</span></div><div class="line"></div><div class="line">foo.call( <span class="literal">null</span> ); <span class="comment">// 3</span></div><div class="line"></div><div class="line">foo.call( <span class="literal">undefined</span> ); <span class="comment">// 3</span></div><div class="line"></div><div class="line">foo.call(  ); <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">5</span>,</div><div class="line">	foo</div><div class="line">&#125;</div><div class="line"></div><div class="line">obj2.foo.call() <span class="comment">// 3，不是5!</span></div><div class="line"></div><div class="line"><span class="comment">//bind返回一个新的函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a, something );</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.a + something;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj =</div><div class="line">	a: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = foo.bind( obj );</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = bar( <span class="number">3</span> ); <span class="comment">// 2 3</span></div><div class="line"><span class="built_in">console</span>.log( b ); <span class="comment">// 5</span></div></pre></td></tr></table></figure></p>
+<h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><p>箭头函数比较特殊，没有自己的this，它使用封闭执行上下文(函数或是global)的 this 值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x=<span class="number">11</span>;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line"> <span class="attr">x</span>:<span class="number">22</span>,</div><div class="line"> <span class="attr">say</span>:<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">//this指向window</span></div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">obj.say();<span class="comment">// 11</span></div><div class="line">obj.say.call(&#123;<span class="attr">x</span>:<span class="number">13</span>&#125;) <span class="comment">// 11</span></div><div class="line">x = <span class="number">14</span></div><div class="line">obj.say() <span class="comment">// 14</span></div><div class="line"></div><div class="line"><span class="comment">//对比一下</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2=&#123;</div><div class="line"> <span class="attr">x</span>:<span class="number">22</span>,</div><div class="line"> say() &#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">//this指向obj2</span></div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">obj2.say();<span class="comment">// 22</span></div><div class="line">obj2.say.call(&#123;<span class="attr">x</span>:<span class="number">13</span>&#125;) <span class="comment">// 13</span></div></pre></td></tr></table></figure>
+<h5 id="事件监听函数"><a href="#事件监听函数" class="headerlink" title="事件监听函数"></a>事件监听函数</h5><p>指向被绑定的dom元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">&#125;</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// 点击网页</span></div><div class="line"></div><div class="line"><span class="comment">// &lt;body&gt;...&lt;/body&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h5><p>HTML标签的属性中是可能写JS的，这种情况下this指代该HTML元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span> <span class="attr">onclick</span>=<span class="string">"console.log(this);"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"foo"</span>).click(); <span class="comment">//logs &lt;div id="foo"...</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h4><p>变量对象是与执行上下文相关的数据作用域，存储了上下文中定义的变量和函数声明。</p>
+<p>变量对象式一个抽象的概念，在不同的上下文中，表示不同的对象</p>
+<h5 id="全局执行上下文的变量对象"><a href="#全局执行上下文的变量对象" class="headerlink" title="全局执行上下文的变量对象"></a>全局执行上下文的变量对象</h5><p>全局执行上下文中，变量对象就是全局对象。<br>在顶层js代码中，this指向全局对象，全局变量会作为该对象的属性来被查询。在浏览器中，window就是全局对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a) <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.a) <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<h5 id="函数执行上下文的变量对象"><a href="#函数执行上下文的变量对象" class="headerlink" title="函数执行上下文的变量对象"></a>函数执行上下文的变量对象</h5><p>函数上下文中，变量对象VO就是活动对象AO。</p>
+<p>初始化时，带有arguments属性。<br>函数代码分成两个阶段执行</p>
+<ol>
+<li><p>进入执行上下文时<br>此时变量对象包括</p>
+<ol>
+<li>形参</li>
+<li>函数声明，会替换已有变量对象</li>
+<li>变量声明，不会替换形参和函数</li>
+</ol>
+</li>
+<li><p>函数执行</p>
+</li>
+</ol>
+<p>根据代码修改变量对象的值</p>
+<p>举个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">a,c</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(a, b, c, d) <span class="comment">// 5 undefined [Function: c] undefined</span></div><div class="line">  <span class="keyword">var</span> b = <span class="number">3</span>;</div><div class="line">  a = <span class="number">4</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">c</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> d = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(a, b, c, d) <span class="comment">// 4 3 [Function: c] [Function: d]</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> c = <span class="number">5</span></div><div class="line">  <span class="built_in">console</span>.log(a, b, c, d) <span class="comment">// 4 3 5 [Function: d]</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">test(<span class="number">5</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
+<p>来分析一下过程</p>
+<p>1.创建执行上下文时</p>
+<p>VO = {<br>    arguments: {0:5},<br>    a: 5,<br>    b: undefined,<br>    c: [Function], //函数C覆盖了参数c，但是变量声明c无法覆盖函数c的声明<br>    d: undefined， // 函数表达式没有提升，在执行到对应语句之前为undefined<br>}</p>
+<ol>
+<li>执行代码时</li>
+</ol>
+<p>通过最后的console可以发现，函数声明可以被覆盖</p>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p>先了解一下作用域</p>
+<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><p>变量与函数的可访问范围，控制着变量及函数的可见性与生命周期。分为全局作用域和局部作用域。</p>
+<p>全局作用域：</p>
+<p>  在代码中任何地方都能访问到的对象拥有全局作用域，有以下几种：</p>
+<ol>
+<li><p>在最外层定义的变量；</p>
+</li>
+<li><p>全局对象的属性</p>
+</li>
+<li><p>任何地方隐式定义的变量（未定义直接赋值的变量），在任何地方隐式定义的变量都会定义在全局作用域中，即不通过 var 声明直接赋值的变量。</p>
+</li>
+</ol>
+<p>局部作用域：</p>
+<p>  JavaScript的作用域是通过函数来定义的，在一个函数中定义的变量只对这个函数内部可见，称为函数（局部）作用域</p>
+<h5 id="作用域链-1"><a href="#作用域链-1" class="headerlink" title="作用域链"></a>作用域链</h5><p>作用域链是一个对象列表，用以检索上下文代码中出现的标识符。<br>标识符可以理解为变量名称，参数，函数声明。</p>
+<p>函数在定义的时候会把父级的变量对象AO/VO的集合保存在内部属性[[scope]]中，该集合称为作用域链。<br>自由变量指的是不在函数内部声明的变量。<br>当函数需要访问自由变量时，会顺着作用域链来查找数据。子对象会一级一级的向上查找父对象的变量，父对象的变量对子对象是可见的，反之不成立。<br>作用域链就是在所有内部环境中查找变量的链式表。</p>
+<p>可以直接的说，JS采用了词法作用域(静态作用域)，JS的函数运行在他们被定义的作用域中，而不是他们被执行的作用域。可以举一个例子说明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s = <span class="number">3</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(s)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> s = <span class="number">6</span></div><div class="line">  a()</div><div class="line">&#125;</div><div class="line"></div><div class="line">b() <span class="comment">// 3,不是6</span></div></pre></td></tr></table></figure>
+<p>如果js采用动态作用域，打印出来的应该是6而不是3，这个例子说明了js是静态作用域。</p>
+<p>函数作用域链的伪代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.[[scope]] = [</div><div class="line">  globalContext.VO</div><div class="line">];</div><div class="line"></div><div class="line">bar.[[scope]] = [</div><div class="line">    fooContext.AO,</div><div class="line">    globalContext.VO</div><div class="line">];</div></pre></td></tr></table></figure>
+<p>函数在运行激活的时候，会先复制[[scope]]属性创建作用域链，然后创建变量对象VO，然后将其加入到作用域链。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">executionContextObj: &#123;</div><div class="line">	<span class="attr">VO</span>:&#123;&#125;，</div><div class="line">	scopeChain: [VO, [[scope]]]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><h5 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h5><p>闭包按照mdn的定义是可以访问自由变量的函数。自由变量前面提到过，指的是不在函数内部声明的变量。</p>
+<h5 id="闭包的形式"><a href="#闭包的形式" class="headerlink" title="闭包的形式"></a>闭包的形式</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="number">1</span></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(num++)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> b</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> c1 = a()</div><div class="line">c1() <span class="comment">// '1'</span></div><div class="line">c1() <span class="comment">// '2'</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> c2 = a()</div><div class="line">c2() <span class="comment">// '1'</span></div><div class="line">c2() <span class="comment">// '2'</span></div></pre></td></tr></table></figure>
+<h5 id="闭包的过程"><a href="#闭包的过程" class="headerlink" title="闭包的过程"></a>闭包的过程</h5><p>写的不是很严谨。可能省略了一些过程</p>
+<ol>
+<li>运行函数a<ol>
+<li>创建函数a的VO，包括变量num和函数b</li>
+<li>定义函数b的时候，会保存a的变量对象VO和全局变量对象到[[scope]]中</li>
+<li>返回函数b，保存到c1</li>
+</ol>
+</li>
+<li>运行c1<ol>
+<li>创建c1的作用域链，该作用域链保存了a的变量对象VO</li>
+<li>创建c1的VO</li>
+<li>运行c1，这是发现需要访问变量num，在当前VO中不存在，于是通过作用域链进行访问，找到了保存在a的VO中的num，对它进行操作，num的值被设置成2</li>
+</ol>
+</li>
+<li>再次运行c1，重复第二步的操作，num的值设置成3</li>
+</ol>
+<h5 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h5><p>通过上面的运行结果，我们可以观察到，c2所访问num变量跟c1访问的num变量不是同一个变量。我们可以修改一下代码，来确认自己的猜想</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> x = &#123;<span class="attr">y</span> : <span class="number">4</span>&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> x</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> b</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> c1 = a()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> c2 = a()</div><div class="line">c1 === c2()  <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>因此我们可以确定，闭包所访问的变量，是每次运行父函数都重新创建，互相独立的。<br>注意，同一个函数中创建的自由变量是可以在不同的闭包共享的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> x = <span class="number">0</span></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(x++)</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(x++)</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> &#123;</div><div class="line">		b,</div><div class="line">		c</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> r =  a()</div><div class="line">r.b() <span class="comment">// 0</span></div><div class="line">r.c() <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>补充一个查看作用域链和闭包的技巧<br>打开chrome控制台</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.dir(r.b)</div><div class="line"></div><div class="line">f b() &#123;</div><div class="line">	[[Scopes]]: [</div><div class="line">		&#123;<span class="attr">x</span>:<span class="number">0</span>&#125;, </div><div class="line">		&#123;<span class="attr">type</span>: <span class="string">'global'</span>, <span class="attr">name</span>: <span class="string">''</span>, <span class="attr">object</span>: Window&#125;</div><div class="line">	]	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>最后，我们再来总结一下执行上下文的过程,加深下印象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> scope = <span class="string">"global scope"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> scope2 = <span class="string">'local scope'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkscope(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<h5 id="创建全局上下文执行栈"><a href="#创建全局上下文执行栈" class="headerlink" title="创建全局上下文执行栈"></a>创建全局上下文执行栈</h5><p>创建全局变量globalContext.VO.</p>
+<h5 id="创建checkscope函数"><a href="#创建checkscope函数" class="headerlink" title="创建checkscope函数"></a>创建checkscope函数</h5><p>将全局变量VO保存为作用域链，设置到函数的内部属性[[scope]]</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">checkscope.[[scope]] = [</div><div class="line">    globalContext.VO</div><div class="line">];</div></pre></td></tr></table></figure>
+<h5 id="执行checkscope函数"><a href="#执行checkscope函数" class="headerlink" title="执行checkscope函数"></a>执行checkscope函数</h5><p>创建函数执行上下文，将checkscope函数执行上下文压入执行上下文栈</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ECStack = [</div><div class="line">    checkscopeContext,</div><div class="line">    globalContext</div><div class="line">];</div></pre></td></tr></table></figure>
+<h5 id="函数执行上下文创建阶段"><a href="#函数执行上下文创建阶段" class="headerlink" title="函数执行上下文创建阶段"></a>函数执行上下文创建阶段</h5><p>第一步是复制[[scope]]，创建作用域链</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">checkscopeContext = &#123;</div><div class="line">    <span class="attr">Scope</span>: checkscope.[[scope]],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二步是创建活动对象AO</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">checkscopeContext = &#123;</div><div class="line">    <span class="attr">AO</span>: &#123;</div><div class="line">        <span class="attr">arguments</span>: &#123;</div><div class="line">			<span class="number">0</span>: <span class="number">5</span></div><div class="line">            length: <span class="number">1</span></div><div class="line">        &#125;,</div><div class="line">		<span class="attr">a</span>: <span class="number">5</span></div><div class="line">        scope2: <span class="literal">undefined</span></div><div class="line">    &#125;，</div><div class="line">    Scope: checkscope.[[scope]],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第三步是将活动对象AO放入作用域链顶端</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">checkscopeContext = &#123;</div><div class="line">    <span class="attr">AO</span>: &#123;</div><div class="line">        <span class="attr">arguments</span>: &#123;</div><div class="line">			<span class="number">0</span>: <span class="number">5</span></div><div class="line">            length: <span class="number">1</span></div><div class="line">        &#125;,</div><div class="line">		<span class="attr">a</span>: <span class="number">5</span></div><div class="line">        scope2: <span class="literal">undefined</span></div><div class="line">    &#125;，</div><div class="line">    Scope:  [AO, checkscope.[[scope]]],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第四步，求出this，上下文创建阶段结束</p>
+<p>这里的this等于window</p>
+<h5 id="进入函数执行阶段"><a href="#进入函数执行阶段" class="headerlink" title="进入函数执行阶段"></a>进入函数执行阶段</h5><p>随着函数执行，修改AO的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  AO: &#123;</div><div class="line">      <span class="attr">arguments</span>: &#123;</div><div class="line">	<span class="number">0</span>: <span class="number">5</span></div><div class="line">          length: <span class="number">1</span></div><div class="line">      &#125;,</div><div class="line"><span class="attr">a</span>: <span class="number">5</span></div><div class="line">      scope2: <span class="string">'local scope'</span></div><div class="line">  &#125;，</div></pre></td></tr></table></figure>
+<h5 id="函数执行完毕"><a href="#函数执行完毕" class="headerlink" title="函数执行完毕"></a>函数执行完毕</h5><p>函数上下文从执行上下文栈弹出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ECStack = [</div><div class="line">    globalContext</div><div class="line">];</div></pre></td></tr></table></figure>
+<p>文章写的比较长，涉及的范围也比较广，可能有不少的错误，希望大家可以指正。</p>
+<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ol>
+<li><a href="https://zhuanlan.zhihu.com/p/26475137" target="_blank" rel="external">深入理解ES6箭头函数中的this</a>    </li>
+<li>你不知道的JS上卷</li>
+<li><a href="https://juejin.im/post/58eaecdea0bb9f0069271861" target="_blank" rel="external">JavaScript深入之执行上下文栈</a></li>
+<li><a href="http://www.cnblogs.com/wilber2013/p/4909459.html" target="_blank" rel="external">理解JavaScript的作用域链</a></li>
+<li><a href="https://juejin.im/post/58ec3cc944d90400576a2cdc" target="_blank" rel="external">JavaScript深入之变量对象</a></li>
+<li><a href="http://www.cnblogs.com/TomXu/archive/2012/01/16/2309728.html" target="_blank" rel="external">深入理解JavaScript系列（12）：变量对象（Variable Object）</a></li>
+<li><a href="http://yanhaijing.com/javascript/2014/04/29/what-is-the-execution-context-in-javascript/" target="_blank" rel="external">了解JavaScript的执行上下文</a></li>
+</ol>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/gzh.jpg" alt="hpoenixf wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫码获取最新博客推送</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/60659/" rel="next" title="我是怎么成为前端工程师的">
+                <i class="fa fa-chevron-left"></i> 我是怎么成为前端工程师的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/4100/" rel="prev" title="大厂前端面试考什么?">
+                大厂前端面试考什么? <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hpoenixf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hpoenixf@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行上下文是什么"><span class="nav-number">1.1.</span> <span class="nav-text">执行上下文是什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行上下文建立的步奏"><span class="nav-number">1.2.</span> <span class="nav-text">执行上下文建立的步奏</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this"><span class="nav-number">2.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指向调用对象"><span class="nav-number">2.1.</span> <span class="nav-text">指向调用对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指向全局对象"><span class="nav-number">2.2.</span> <span class="nav-text">指向全局对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用new构造就指向新对象"><span class="nav-number">2.3.</span> <span class="nav-text">用new构造就指向新对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#apply-call-bind"><span class="nav-number">2.4.</span> <span class="nav-text">apply/call/bind</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#箭头函数"><span class="nav-number">2.5.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事件监听函数"><span class="nav-number">2.6.</span> <span class="nav-text">事件监听函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML"><span class="nav-number">2.7.</span> <span class="nav-text">HTML</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量对象"><span class="nav-number">3.</span> <span class="nav-text">变量对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全局执行上下文的变量对象"><span class="nav-number">3.1.</span> <span class="nav-text">全局执行上下文的变量对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数执行上下文的变量对象"><span class="nav-number">3.2.</span> <span class="nav-text">函数执行上下文的变量对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域链"><span class="nav-number">4.</span> <span class="nav-text">作用域链</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域"><span class="nav-number">4.1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#作用域链-1"><span class="nav-number">4.2.</span> <span class="nav-text">作用域链</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">5.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包是什么"><span class="nav-number">5.1.</span> <span class="nav-text">闭包是什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包的形式"><span class="nav-number">5.2.</span> <span class="nav-text">闭包的形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包的过程"><span class="nav-number">5.3.</span> <span class="nav-text">闭包的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一些问题"><span class="nav-number">5.4.</span> <span class="nav-text">一些问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建全局上下文执行栈"><span class="nav-number">6.1.</span> <span class="nav-text">创建全局上下文执行栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建checkscope函数"><span class="nav-number">6.2.</span> <span class="nav-text">创建checkscope函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行checkscope函数"><span class="nav-number">6.3.</span> <span class="nav-text">执行checkscope函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数执行上下文创建阶段"><span class="nav-number">6.4.</span> <span class="nav-text">函数执行上下文创建阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进入函数执行阶段"><span class="nav-number">6.5.</span> <span class="nav-text">进入函数执行阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数执行完毕"><span class="nav-number">6.6.</span> <span class="nav-text">函数执行完毕</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: '1521471920000',
+            owner: 'hpoenixf',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+            
+                client_id: 'd81a0dc3cee29d34be76'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

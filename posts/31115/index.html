@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="开始写了一年多vue，感觉碰到了点瓶颈，学习下react找找感觉。刚好最近使用vue写了个基于cropperJS的图片裁剪的组件，便花费了几个晚上的功夫用react再写一遍。代码地址，demo地址项目是使用create-react-app来开发的，省去了很多webpack配置的功夫，支持eslint，自动刷新等功能，使用前npm install并npm start即可。推荐同样是新学习react的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个基于react的图片裁剪组件">
+<meta property="og:url" content="http://hpoenixf.com/posts/31115/index.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="开始写了一年多vue，感觉碰到了点瓶颈，学习下react找找感觉。刚好最近使用vue写了个基于cropperJS的图片裁剪的组件，便花费了几个晚上的功夫用react再写一遍。代码地址，demo地址项目是使用create-react-app来开发的，省去了很多webpack配置的功夫，支持eslint，自动刷新等功能，使用前npm install并npm start即可。推荐同样是新学习react的">
+<meta property="og:updated_time" content="2018-04-17T00:35:44.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个基于react的图片裁剪组件">
+<meta name="twitter:description" content="开始写了一年多vue，感觉碰到了点瓶颈，学习下react找找感觉。刚好最近使用vue写了个基于cropperJS的图片裁剪的组件，便花费了几个晚上的功夫用react再写一遍。代码地址，demo地址项目是使用create-react-app来开发的，省去了很多webpack配置的功夫，支持eslint，自动刷新等功能，使用前npm install并npm start即可。推荐同样是新学习react的">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/posts/31115/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一个基于react的图片裁剪组件 | hpoenixf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116923512-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116923512-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1a7023b4e101a4091028b344caf98de3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/hpoenixf" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/31115/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">一个基于react的图片裁剪组件</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-10T11:26:50+08:00">2017-06-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/31115/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/31115/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/31115/" class="leancloud_visitors" data-flag-title="一个基于react的图片裁剪组件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>2,000 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>写了一年多vue，感觉碰到了点瓶颈，学习下react找找感觉。刚好最近使用vue写了个基于cropperJS的图片裁剪的组件，便花费了几个晚上的功夫用react再写一遍。<a href="https://github.com/hpoenixf/react-cropper/blob/master/src/index.js" target="_blank" rel="external">代码地址</a>，<a href="/demo/cropper.html">demo地址</a><br>项目是使用create-react-app来开发的，省去了很多webpack配置的功夫，支持eslint，自动刷新等功能，使用前npm install并npm start即可。推荐同样是新学习react的人也用用看。<br>项目写的比较简陋，自定义配置比较差，不过也是完成了裁剪图片的基本功能，希望可以帮助到初学react和想了解裁剪图片组件的朋友。<br>组件的结构是这样的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--Cropper--&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">ImageUploader</span> <span class="attr">handleImgChange</span>=<span class="string">&#123;this.handleImgChange&#125;</span> <span class="attr">getCropData</span>=<span class="string">&#123;this.getCropData&#125;/</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"image-principal"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;this.state.imageValue&#125;</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">className</span>=<span class="string">"img"</span> <span class="attr">ref</span>=<span class="string">"img"</span> <span class="attr">onLoad</span>=<span class="string">&#123;this.setSize&#125;/</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">SelectArea</span> <span class="attr">ref</span>=<span class="string">"selectArea"</span>&gt;</span><span class="tag">&lt;/<span class="name">SelectArea</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--ImageUploader     --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">form</span> <span class="attr">className</span>=<span class="string">"image-upload-form"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">encType</span>=<span class="string">"multipart/form-data"</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"inputOfFile"</span> <span class="attr">ref</span>=<span class="string">"imgInput"</span> <span class="attr">id</span>=<span class="string">"imgInput"</span> <span class="attr">onChange</span>=<span class="string">&#123;this.props.handleImgChange&#125;/</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.props.getCropData&#125;</span>&gt;</span>获取裁剪参数<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--SelectArea     --&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"select-area"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">this.dragStart</span>&#125; <span class="attr">ref</span>=<span class="string">"selectArea"</span> &gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"top-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'top')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"right-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'right')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"bottom-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'bottom')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"left-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'left')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"right-bottom-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'right')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"left-top-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'left')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="ImageUploader-amp-Cropper"><a href="#ImageUploader-amp-Cropper" class="headerlink" title="ImageUploader &amp; Cropper"></a>ImageUploader &amp; Cropper</h4><p>ImageUploader主要做的就是上传图片，监听了input的change事件，并调用了父组件Cropper的的handleImgChange方法,该方法设置了绑定到img元素的imageValue，会使得img元素出发load事件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">handleImgChange = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> fileReader = <span class="keyword">new</span> FileReader()</div><div class="line">  fileReader.readAsDataURL(e.target.files[<span class="number">0</span>])</div><div class="line">  fileReader.onload = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;...this.state, <span class="attr">imageValue</span>: e.target.result&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>load事件触发了Cropper的setSize方法，该方法可以设置了图片和裁剪选择框的初始位置和大小。目前裁剪选择框是默认设置是大小为图片的80%，中间显示。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">setSize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> img = <span class="keyword">this</span>.refs.img</div><div class="line">  <span class="keyword">let</span> widthNum = <span class="built_in">parseInt</span>(<span class="keyword">this</span>.props.width, <span class="number">10</span>)</div><div class="line">  <span class="keyword">let</span> heightNum = <span class="built_in">parseInt</span>(<span class="keyword">this</span>.props.height, <span class="number">10</span>)</div><div class="line">  <span class="keyword">this</span>.setState(&#123;</div><div class="line">    ...this.state,</div><div class="line">    <span class="attr">naturalSize</span>: &#123;</div><div class="line">      <span class="attr">width</span>: img.naturalWidth,</div><div class="line">      <span class="attr">height</span>: img.naturalHeight</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  <span class="keyword">let</span> imgStyle = img.style</div><div class="line">  imgStyle.height = <span class="string">'auto'</span></div><div class="line">  imgStyle.width = <span class="string">'auto'</span></div><div class="line">  <span class="keyword">let</span> principalStyle = ReactDOM.findDOMNode(<span class="keyword">this</span>.refs.selectArea).parentElement.style</div><div class="line">  <span class="keyword">const</span> ratio = img.width / img.height</div><div class="line">  <span class="comment">// 设置图片大小、位置</span></div><div class="line">  <span class="keyword">if</span> (img.width &gt; img.height) &#123;</div><div class="line">    imgStyle.width = principalStyle.width = <span class="keyword">this</span>.props.width</div><div class="line">    imgStyle.height = principalStyle.height = widthNum / ratio + <span class="string">'px'</span></div><div class="line">    principalStyle.marginTop = (widthNum - <span class="built_in">parseInt</span>(principalStyle.height, <span class="number">10</span>)) / <span class="number">2</span> + <span class="string">'px'</span></div><div class="line">    principalStyle.marginLeft = <span class="number">0</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    imgStyle.height = principalStyle.height = <span class="keyword">this</span>.props.height</div><div class="line">    imgStyle.width = principalStyle.width = heightNum * ratio + <span class="string">'px'</span></div><div class="line">    principalStyle.marginLeft = (heightNum - <span class="built_in">parseInt</span>(principalStyle.width, <span class="number">10</span>)) / <span class="number">2</span> + <span class="string">'px'</span></div><div class="line">    principalStyle.marginTop = <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 设置选择框样式</span></div><div class="line">  <span class="keyword">let</span> selectAreaStyle = ReactDOM.findDOMNode(<span class="keyword">this</span>.refs.selectArea).style</div><div class="line">  <span class="keyword">let</span> principalHeight = <span class="built_in">parseInt</span>(principalStyle.height, <span class="number">10</span>)</div><div class="line">  <span class="keyword">let</span> principalWidth = <span class="built_in">parseInt</span>(principalStyle.width, <span class="number">10</span>)</div><div class="line">  <span class="keyword">if</span> (principalWidth &gt; principalHeight) &#123;</div><div class="line">    selectAreaStyle.top = principalHeight * <span class="number">0.1</span> + <span class="string">'px'</span></div><div class="line">    selectAreaStyle.width = selectAreaStyle.height = principalHeight * <span class="number">0.8</span> + <span class="string">'px'</span></div><div class="line">    selectAreaStyle.left = (principalWidth - <span class="built_in">parseInt</span>(selectAreaStyle.width, <span class="number">10</span>)) / <span class="number">2</span> + <span class="string">'px'</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    selectAreaStyle.left = principalWidth * <span class="number">0.1</span> + <span class="string">'px'</span></div><div class="line">    selectAreaStyle.width = selectAreaStyle.height = principalWidth * <span class="number">0.8</span> + <span class="string">'px'</span></div><div class="line">    selectAreaStyle.top = (principalHeight - <span class="built_in">parseInt</span>(selectAreaStyle.height, <span class="number">10</span>)) / <span class="number">2</span> + <span class="string">'px'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Cropper上还有一个getCropData方法，方法会打印并返回裁剪参数,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">getCropData = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">  e.preventDefault()</div><div class="line">  <span class="keyword">let</span> SelectArea = ReactDOM.findDOMNode(<span class="keyword">this</span>.refs.selectArea).style</div><div class="line"></div><div class="line">  <span class="keyword">let</span> a = &#123;</div><div class="line">    <span class="attr">width</span>: <span class="built_in">parseInt</span>(SelectArea.width, <span class="number">10</span>),</div><div class="line">    <span class="attr">height</span>: <span class="built_in">parseInt</span>(SelectArea.height, <span class="number">10</span>),</div><div class="line">    <span class="attr">left</span>: <span class="built_in">parseInt</span>(SelectArea.left, <span class="number">10</span>),</div><div class="line">    <span class="attr">top</span>: <span class="built_in">parseInt</span>(SelectArea.top, <span class="number">10</span>)</div><div class="line">  &#125;</div><div class="line">  a.radio = <span class="keyword">this</span>.state.naturalSize.width / a.width</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(a)</div><div class="line">  <span class="keyword">return</span> a</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="SelectArea"><a href="#SelectArea" class="headerlink" title="SelectArea"></a>SelectArea</h4><p>重新放一遍selectArea的结构。要注意，.top-resize的cursor属性是 n-resize，而和left，right，bottom对应的分别是w-resize，e-resize，s-resize<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"select-area"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">this.dragStart</span>&#125; <span class="attr">ref</span>=<span class="string">"selectArea"</span> &gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"top-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'top')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"right-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'right')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"bottom-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'bottom')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"left-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'left')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"right-bottom-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'right')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"left-top-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'left')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>selectArea的state值设为这样，selectArea保存拖拽选择框时的参数，resizeArea保存裁剪选择框时的参数，container为.image-principal元素，el为触发事件时的event.target。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.state = &#123;</div><div class="line">  <span class="attr">selectArea</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">el</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">container</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">resizeArea</span>: <span class="literal">null</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="拖拽选择框"><a href="#拖拽选择框" class="headerlink" title="拖拽选择框"></a>拖拽选择框</h4><p>在.select-area按下鼠标，触发mouseDown事件，调用dragStart方法。<br>使用method = e =&gt; {}的形式可以避免在jsx中使用this.method.bind(this)<br>在这个方法中，首先保存按下鼠标时的鼠标位置，裁剪框与图片的相对距离和裁剪框的最大位移距离，接着添加事件监听<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">dragStart = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> el = e.target</div><div class="line">  <span class="keyword">const</span> container = <span class="keyword">this</span>.state.container</div><div class="line">  <span class="keyword">let</span> selectArea = &#123;</div><div class="line">    <span class="attr">posLeft</span>: e.clientX,</div><div class="line">    <span class="attr">posTop</span>: e.clientY,</div><div class="line">    <span class="attr">left</span>: e.clientX - el.offsetLeft,</div><div class="line">    <span class="attr">top</span>: e.clientY - el.offsetTop,</div><div class="line">    <span class="attr">maxMoveX</span>: container.offsetWidth - el.offsetWidth,</div><div class="line">    <span class="attr">maxMoveY</span>: container.offsetHeight - el.offsetHeight,</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.setState(&#123; ...this.state, selectArea, el&#125;)</div><div class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, <span class="keyword">this</span>.moveBind, <span class="literal">false</span>)</div><div class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">'mouseup'</span>, <span class="keyword">this</span>.stopBind, <span class="literal">false</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>moveBind和stopBind来自于<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.moveBind = <span class="keyword">this</span>.move.bind(<span class="keyword">this</span>)</div><div class="line"><span class="keyword">this</span>.stopBind = <span class="keyword">this</span>.stop.bind(<span class="keyword">this</span>)</div></pre></td></tr></table></figure></p>
+<p>move方法,在鼠标移动中根据记录新的鼠标位置来计算新的相对位置newPosLeft和newPosTop,并控制该值在合理范围内</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">move(e) &#123;</div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.state || !<span class="keyword">this</span>.state.el || !<span class="keyword">this</span>.state.selectArea) &#123;</div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> selectArea = <span class="keyword">this</span>.state.selectArea</div><div class="line">  <span class="keyword">let</span> newPosLeft = e.clientX- selectArea.left</div><div class="line">  <span class="keyword">let</span> newPosTop = e.clientY - selectArea.top</div><div class="line">  <span class="comment">// 控制移动范围</span></div><div class="line">  <span class="keyword">if</span> (newPosLeft &lt;= <span class="number">0</span>) &#123;</div><div class="line">    newPosLeft = <span class="number">0</span></div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (newPosLeft &gt; selectArea.maxMoveX) &#123;</div><div class="line">    newPosLeft = selectArea.maxMoveX</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (newPosTop &lt;= <span class="number">0</span>) &#123;</div><div class="line">    newPosTop = <span class="number">0</span></div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (newPosTop &gt; selectArea.maxMoveY) &#123;</div><div class="line">    newPosTop = selectArea.maxMoveY</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> elStyle = <span class="keyword">this</span>.state.el.style</div><div class="line">  elStyle.left = newPosLeft + <span class="string">'px'</span></div><div class="line">  elStyle.top = newPosTop + <span class="string">'px'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>stop方法，移除事件监听，清除state,避免方法错误调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">stop() &#123;</div><div class="line">  <span class="built_in">document</span>.removeEventListener(<span class="string">'mousemove'</span>, <span class="keyword">this</span>.moveBind , <span class="literal">false</span>)</div><div class="line">  <span class="built_in">document</span>.removeEventListener(<span class="string">'mousemove'</span>, <span class="keyword">this</span>.resizeBind , <span class="literal">false</span>)</div><div class="line">  <span class="built_in">document</span>.removeEventListener(<span class="string">'mouseup'</span>, <span class="keyword">this</span>.stopBind, <span class="literal">false</span>)</div><div class="line">  <span class="keyword">this</span>.setState(&#123;...this.state, <span class="attr">el</span>: <span class="literal">null</span>, <span class="attr">resizeArea</span>: <span class="literal">null</span>, <span class="attr">selectArea</span>: <span class="literal">null</span>&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="裁剪选择框"><a href="#裁剪选择框" class="headerlink" title="裁剪选择框"></a>裁剪选择框</h4><p>跟拖拽一样，首先调用resizeStart方法，保存开始裁剪的鼠标位置，裁剪框的尺寸和位置，添加关于resizeBind和stopBind的事件监听，注意，由于react的事件机制特点，需要使用stopPropagation来禁止事件冒泡，事件监听的第三个参数使用false是无效的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">resizeStart = <span class="function">(<span class="params">e, type</span>) =&gt;</span> &#123;</div><div class="line">  e.stopPropagation()</div><div class="line">  <span class="keyword">const</span> el = e.target.parentElement</div><div class="line">  <span class="keyword">let</span> resizeArea = &#123;</div><div class="line">    <span class="attr">posLeft</span>: e.clientX,</div><div class="line">    <span class="attr">posTop</span>: e.clientY,</div><div class="line">    <span class="attr">width</span>: el.offsetWidth,</div><div class="line">    <span class="attr">height</span>: el.offsetHeight,</div><div class="line">    <span class="attr">left</span>: <span class="built_in">parseInt</span>(el.style.left, <span class="number">10</span>),</div><div class="line">    <span class="attr">top</span>: <span class="built_in">parseInt</span>(el.style.top, <span class="number">10</span>)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.setState(&#123; ...this.state, resizeArea, el&#125;)</div><div class="line">  <span class="keyword">this</span>.resizeBind = <span class="keyword">this</span>.resize.bind(<span class="keyword">this</span>, type)</div><div class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, <span class="keyword">this</span>.resizeBind, <span class="literal">false</span>)</div><div class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">'mouseup'</span>, <span class="keyword">this</span>.stopBind, <span class="literal">false</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>裁剪的方法，将裁剪分为两种情况，一种是右侧，下侧和右下侧的拉伸。另一种是左侧，上侧和左上侧的拉伸。<br>第一种情况下，选择框的位置是不会变的，只有尺寸会变，处理起来相对简单。新的尺寸大小为原大小加上当前的鼠标的位置再减去开始拖拽处的鼠标的位置，如果宽度或者高度有一个超标了，则将尺寸设置为刚好到边界的大小。均为超标，设置为新的尺寸。<br>第二种情况下，选择框的位置和大小同时会变，要同时控制尺寸和位置不超出边界。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">resize(type, e) &#123;</div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.state || !<span class="keyword">this</span>.state.el || !<span class="keyword">this</span>.state.resizeArea) &#123;</div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> container = <span class="keyword">this</span>.state.container</div><div class="line">  <span class="keyword">const</span> containerHeight = container.offsetHeight</div><div class="line">  <span class="keyword">const</span> containerWidth = container.offsetWidth</div><div class="line">  <span class="keyword">const</span> containerLeft = <span class="built_in">parseInt</span>(container.style.left || <span class="number">0</span>, <span class="number">10</span>)</div><div class="line">  <span class="keyword">const</span> containerTop = <span class="built_in">parseInt</span>(container.style.top || <span class="number">0</span>, <span class="number">10</span>)</div><div class="line">  <span class="keyword">let</span> resizeArea = <span class="keyword">this</span>.state.resizeArea</div><div class="line">  <span class="keyword">let</span> el = <span class="keyword">this</span>.state.el</div><div class="line">  <span class="keyword">let</span> elStyle = el.style</div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'right'</span> || type === <span class="string">'bottom'</span>) &#123;</div><div class="line">    <span class="keyword">let</span> length</div><div class="line">    <span class="keyword">if</span> (type === <span class="string">'right'</span>) &#123;</div><div class="line">      length = resizeArea.width + e.clientX - resizeArea.posLeft</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      length = resizeArea.height + e.clientY - resizeArea.posTop</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(el.style.left, <span class="number">10</span>) + length &gt; containerWidth || <span class="built_in">parseInt</span>(el.style.top, <span class="number">10</span>) + length &gt; containerHeight) &#123;</div><div class="line">      <span class="keyword">const</span> w = containerWidth - <span class="built_in">parseInt</span>(el.style.left, <span class="number">10</span>)</div><div class="line">      <span class="keyword">const</span> h = containerHeight - <span class="built_in">parseInt</span>(el.style.top, <span class="number">10</span>)</div><div class="line">      elStyle.width = elStyle.height = <span class="built_in">Math</span>.min(w, h) + <span class="string">'px'</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      elStyle.width = length + <span class="string">'px'</span></div><div class="line">      elStyle.height = length + <span class="string">'px'</span></div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">let</span> posChange</div><div class="line">    <span class="keyword">let</span> newPosLeft</div><div class="line">    <span class="keyword">let</span> newPosTop</div><div class="line">    <span class="keyword">if</span> (type === <span class="string">'left'</span>) &#123;</div><div class="line">      posChange = resizeArea.posLeft - e.clientX</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      posChange = resizeArea.posTop - e.clientY</div><div class="line">    &#125;</div><div class="line">    newPosLeft = resizeArea.left - posChange</div><div class="line">    <span class="comment">// 防止过度缩小</span></div><div class="line">    <span class="keyword">if</span> (newPosLeft &gt; resizeArea.left + resizeArea.width) &#123;</div><div class="line">      elStyle.left = resizeArea.left + resizeArea.width + <span class="string">'px'</span></div><div class="line">      elStyle.top = resizeArea.top + resizeArea.height + <span class="string">'px'</span></div><div class="line">      elStyle.width = elStyle.height = <span class="string">'2px'</span></div><div class="line">      <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">    newPosTop = resizeArea.top - posChange</div><div class="line">    <span class="comment">// 到达边界</span></div><div class="line">    <span class="keyword">if</span> (newPosLeft &lt;= containerLeft || newPosTop &lt; containerTop) &#123;</div><div class="line">      <span class="comment">// 让选择框到图片最左边</span></div><div class="line">      <span class="keyword">let</span> newPosLeft2 = resizeArea.left -containerLeft</div><div class="line">      <span class="comment">// 判断顶部会不会超出边界</span></div><div class="line">      <span class="keyword">if</span> (newPosLeft2 &lt; resizeArea.top) &#123;</div><div class="line">        <span class="comment">// 未超出边界</span></div><div class="line">        elStyle.top = resizeArea.top - newPosLeft2 + <span class="string">'px'</span></div><div class="line">        elStyle.left = containerLeft + <span class="string">'px'</span></div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 让选择框到达图片顶部</span></div><div class="line">        elStyle.top = containerTop + <span class="string">'px'</span></div><div class="line">        elStyle.left = resizeArea.left + containerTop - resizeArea.top + <span class="string">'px'</span></div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">if</span> (newPosLeft &lt; <span class="number">0</span>) &#123;</div><div class="line">        elStyle.left = <span class="number">0</span>;</div><div class="line">        elStyle.width = <span class="built_in">Math</span>.min(resizeArea.width + posChange - newPosLeft, containerWidth) + <span class="string">'px'</span></div><div class="line">        elStyle.top = newPosTop - newPosLeft;</div><div class="line">        elStyle.height = <span class="built_in">Math</span>.min(resizeArea.height + posChange - newPosLeft, containerHeight) + <span class="string">'px'</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (newPosTop &lt; <span class="number">0</span>) &#123;</div><div class="line">        elStyle.left = newPosLeft - newPosTop;</div><div class="line">        elStyle.width = <span class="built_in">Math</span>.min(resizeArea.width + posChange - newPosTop, containerWidth) + <span class="string">'px'</span></div><div class="line">        elStyle.top = <span class="number">0</span>;</div><div class="line">        elStyle.height = <span class="built_in">Math</span>.min(resizeArea.height + posChange - newPosTop, containerHeight) + <span class="string">'px'</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">      &#125;</div><div class="line">      elStyle.left = newPosLeft + <span class="string">'px'</span></div><div class="line">      elStyle.top = newPosTop + <span class="string">'px'</span></div><div class="line">      elStyle.width = resizeArea.width + posChange + <span class="string">'px'</span></div><div class="line">      elStyle.height = resizeArea.height + posChange + <span class="string">'px'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><p>通过这些组件的编写，感觉想要学好react，需要加深对this和事件模型的了解，这几天在这上面踩了不少的坑。如果觉得这篇文章有帮助的话，欢迎star我的<a href="https://github.com/hpoenixf/react-cropper" target="_blank" rel="external">项目</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/gzh.jpg" alt="hpoenixf wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫码获取最新博客推送</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/22565/" rel="next" title="代码整洁之道读书笔记">
+                <i class="fa fa-chevron-left"></i> 代码整洁之道读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/28359/" rel="prev" title="用RxJS和react开发mac地址输入框">
+                用RxJS和react开发mac地址输入框 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hpoenixf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hpoenixf@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageUploader-amp-Cropper"><span class="nav-number">2.</span> <span class="nav-text">ImageUploader & Cropper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SelectArea"><span class="nav-number">3.</span> <span class="nav-text">SelectArea</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拖拽选择框"><span class="nav-number">4.</span> <span class="nav-text">拖拽选择框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#裁剪选择框"><span class="nav-number">5.</span> <span class="nav-text">裁剪选择框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结束"><span class="nav-number">6.</span> <span class="nav-text">结束</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: '1497065210000',
+            owner: 'hpoenixf',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+            
+                client_id: 'd81a0dc3cee29d34be76'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
