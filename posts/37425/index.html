@@ -97,23 +97,23 @@
 
 
 
-  <meta name="description" content="面向对象有三个特点 封装利用闭包实现对象的私有变量。 12345678910function Animal (age) &amp;#123;  this.getAge = function () &amp;#123;    return age  &amp;#125;&amp;#125;var dog = new Animal(3)console.log(dog.age) // undefinedconsole.log(dog.">
+  <meta name="description" content="面向对象有三个特点，一个个来说 封装私有变量利用闭包实现对象的私有变量。 12345678910function Animal (age) &amp;#123;  this.getAge = function () &amp;#123;    return age  &amp;#125;&amp;#125;var dog = new Animal(3)console.log(dog.age) // undefinedconsol">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js面向对象探究">
-<meta property="og:url" content="http://hpoenixf.com/posts/37436/index.html">
+<meta property="og:url" content="http://hpoenixf.com/posts/37425/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="面向对象有三个特点 封装利用闭包实现对象的私有变量。 12345678910function Animal (age) &amp;#123;  this.getAge = function () &amp;#123;    return age  &amp;#125;&amp;#125;var dog = new Animal(3)console.log(dog.age) // undefinedconsole.log(dog.">
-<meta property="og:updated_time" content="2018-05-11T08:18:12.809Z">
+<meta property="og:description" content="面向对象有三个特点，一个个来说 封装私有变量利用闭包实现对象的私有变量。 12345678910function Animal (age) &amp;#123;  this.getAge = function () &amp;#123;    return age  &amp;#125;&amp;#125;var dog = new Animal(3)console.log(dog.age) // undefinedconsol">
+<meta property="og:updated_time" content="2018-05-11T15:11:03.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js面向对象探究">
-<meta name="twitter:description" content="面向对象有三个特点 封装利用闭包实现对象的私有变量。 12345678910function Animal (age) &amp;#123;  this.getAge = function () &amp;#123;    return age  &amp;#125;&amp;#125;var dog = new Animal(3)console.log(dog.age) // undefinedconsole.log(dog.">
+<meta name="twitter:description" content="面向对象有三个特点，一个个来说 封装私有变量利用闭包实现对象的私有变量。 12345678910function Animal (age) &amp;#123;  this.getAge = function () &amp;#123;    return age  &amp;#125;&amp;#125;var dog = new Animal(3)console.log(dog.age) // undefinedconsol">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/posts/37436/"/>
+  <link rel="canonical" href="http://hpoenixf.com/posts/37425/"/>
 
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/37436/">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/37425/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -349,8 +349,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/37436/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/37436/" itemprop="commentsCount"></span>
+                <a href="/posts/37425/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/37425/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/posts/37436/" class="leancloud_visitors" data-flag-title="js面向对象探究">
+             <span id="/posts/37425/" class="leancloud_visitors" data-flag-title="js面向对象探究">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>732 words </span>
+          <span>800 words </span>
         </span>
       
         </div>
@@ -394,17 +394,21 @@
       
 
       
-        <p>面向对象有三个特点</p>
-<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><p>利用闭包实现对象的私有变量。</p>
+        <p>面向对象有三个特点，一个个来说</p>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><h5 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h5><p>利用闭包实现对象的私有变量。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span> (<span class="params">age</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.getAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> age</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> dog = <span class="keyword">new</span> Animal(<span class="number">3</span>)</div><div class="line"><span class="built_in">console</span>.log(dog.age) <span class="comment">// undefined</span></div><div class="line"><span class="built_in">console</span>.log(dog.getAge()) <span class="comment">// 3</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>碰过的一个有趣的问题：<br>实现一个book构造函数，有一个属性id，每次调用该值加1。<br>运用闭包和立刻执行函数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> Book = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> id = <span class="number">1</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.id = id++</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="keyword">let</span> bok1 = <span class="keyword">new</span> Book() </div><div class="line"><span class="keyword">let</span> bok2 = <span class="keyword">new</span> Book() </div><div class="line"><span class="keyword">let</span> bok3 = <span class="keyword">new</span> Book() </div><div class="line"><span class="built_in">console</span>.log(bok3.id) <span class="comment">// 3</span></div></pre></td></tr></table></figure>
+<h5 id="共有方法"><a href="#共有方法" class="headerlink" title="共有方法"></a>共有方法</h5><p>看下面的代码可以发现，getAge被重复创建了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dog = <span class="keyword">new</span> Animal(<span class="number">3</span>)</div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Animal(<span class="number">5</span>)</div><div class="line"><span class="built_in">console</span>.log(dog.getAge === dog.getAge) <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>如果不想方法或者属性在每次new时新创建一份，可以将其设置在构造函数的原型prototype上。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Animal.prototype.feed = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'feed'</span>)</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(dog.feed === cat.feed) <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>听说继承有六种方法，假设让Dog继承Animal，<br>，无非就是<code>for in</code> 复制属性，修改原型链如<code>dog.prototype = new Animal</code>，直接<code>Object.create</code>，在Dog中使用<code>Animal.call</code><br>然而我们记住最好的一种就够了,就是组合继承。</p>
 <p>先试下这样写，利用call的继承</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// *1</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span> (<span class="params">color, name</span>) </span>&#123;</div><div class="line">  Animal.call(<span class="keyword">this</span>, name)</div><div class="line">  <span class="keyword">this</span>.color = color</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// *2</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> wangcai = <span class="keyword">new</span> Dog(<span class="string">'blue'</span>, <span class="string">'wangcai'</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(wangcai) <span class="comment">// &#123;color: 'blue', name: 'wangcai')</span></div><div class="line"></div><div class="line">wangcai.say() <span class="comment">// 'wangcal'</span></div><div class="line"></div><div class="line"><span class="comment">// *3</span></div></pre></td></tr></table></figure>
 <p>可是如果在*1处加上这样的代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Animal.prototype.say2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Animal.prototype.say2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在*3处输入</p>
 <p><code>wangcai.say2()</code>，会报错提示不存在该方法，说明我们的继承是不完整的。dog没有继承原型链上的方法</p>
 <p>我们需要在*2补上</p>
@@ -424,7 +428,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert([<span class="keyword">this</span>.a, <span class="keyword">this</span>.b]);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">test.call(&#123;<span class="attr">a</span>: <span class="number">10</span>, <span class="attr">b</span>: <span class="number">20</span>&#125;); <span class="comment">// 10, 20</span></div><div class="line">test.call(&#123;<span class="attr">a</span>: <span class="number">100</span>, <span class="attr">b</span>: <span class="number">200</span>&#125;); <span class="comment">// 100, 200</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</div><div class="line"> </div><div class="line">test(); <span class="comment">// 1, 2</span></div></pre></td></tr></table></figure>
 <p>或是在函数中检测arguments的数量和类型来实现多态</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">arguments</span>.length  === <span class="number">2</span>) &#123;</div><div class="line">    <span class="keyword">return</span> a + b</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> a + <span class="number">1</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">4</span>))</div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>))</div></pre></td></tr></table></figure>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>本文章为<a href="https://hpoenixf.com/posts/25280/">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 
       
     </div>
@@ -498,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/25280/" rel="prev" title="（置顶）前端进阶系列-目录">
-                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/0/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -588,7 +591,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -668,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">3.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#私有变量"><span class="nav-number">1.1.</span> <span class="nav-text">私有变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共有方法"><span class="nav-number">1.2.</span> <span class="nav-text">共有方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">3.</span> <span class="nav-text">多态</span></a></li></ol></div>
             
 
           </div>

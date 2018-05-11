@@ -299,6 +299,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/28359/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/28359/" itemprop="url">用RxJS和react开发mac地址输入框</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-18T23:33:54+08:00">2017-06-18</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/28359/" class="leancloud_visitors" data-flag-title="用RxJS和react开发mac地址输入框">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,717 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>本次使用了RxJS和react开发了一个mac地址输入框，主要实现的功能有限制输入符合条件的字符1-9,a-f,并每隔两位可以自动添加用于分割的冒号。项目屏蔽了react的事件处理，同时使用setSelectionRange来手动控制光标。可以查看项目的<a href="http://hpoenixf.com/demo/macInput.html">demo</a>,<a href="https://github.com/hpoenixf/rx-macInput" target="_blank" rel="external">项目地址</a></p>
+<h4 id="RxJS简介"><a href="#RxJS简介" class="headerlink" title="RxJS简介"></a>RxJS简介</h4><p>RxJS 是 Reactive Extensions 在 JavaScript 上的实现，具体来说是一系列工具库，包括事件处理，函数节流，延时等函数，RxJS应用了’流‘的思想，同时具有事件和时间的概念。RxJS也可以用于处理异步流程，比起Promise具有可取消和可延迟，重试等优点。<a href="https://yuyang041060120.github.io/2016/05/16/observable-vs-promise/" target="_blank" rel="external">Promise vs Observable</a><br>RxJS中有两个比较重要的概念，分别是Observable和observer。Observable可以使用create,of,from,fromEvent等方法来产生流，而Observer可以对流进行观察。最后两者通过subscribe来结合,例子如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> Observable = Rx.Observable.create(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">    observer.next(<span class="number">2</span>);</div><div class="line">    observer.complete();</div><div class="line">    <span class="keyword">return</span>  <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'disposed'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> Observer = Rx.Observer.create(</div><div class="line">    <span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Next:'</span>, x),</div><div class="line">    err =&gt; <span class="built_in">console</span>.log(<span class="string">'Error:'</span>, err),</div><div class="line">    () =&gt; <span class="built_in">console</span>.log(<span class="string">'Completed'</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">var</span> subscription = Observable.subscribe(Observer);</div></pre></td></tr></table></figure></p>
+<p>来自<a href="http://www.alloyteam.com/2016/12/learn-rxjs/" target="_blank" rel="external">构建流式应用—RxJS详解</a></p>
+<p>更多关于RxJS,可以阅读<a href="https://xgrommx.github.io/rx-book/index.html" target="_blank" rel="external">Introduction | RxJS - Javascript library for functional reactive programming.</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/28359/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/31115/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1122,7 +1269,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

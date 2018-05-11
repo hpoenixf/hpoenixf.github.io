@@ -97,23 +97,20 @@
 
 
 
-  <meta name="description" content="随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="加快webpack构建">
-<meta property="og:url" content="http://hpoenixf.com/posts/21589/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="hpoenixf&#39;s blog">
+<meta property="og:url" content="http://hpoenixf.com/posts/0/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。">
-<meta property="og:updated_time" content="2018-04-17T00:35:44.670Z">
+<meta property="og:updated_time" content="2018-05-11T15:12:13.388Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加快webpack构建">
-<meta name="twitter:description" content="随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。">
+<meta name="twitter:title" content="hpoenixf&#39;s blog">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/posts/21589/"/>
+  <link rel="canonical" href="http://hpoenixf.com/posts/0/"/>
 
 
 
@@ -123,7 +120,7 @@
   };
 </script>
 
-  <title>加快webpack构建 | hpoenixf's blog</title>
+  <title> | hpoenixf's blog</title>
   
 
 
@@ -302,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/21589/">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -319,7 +316,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">加快webpack构建</h2>
+          <h2 class="post-title" itemprop="name headline"></h2>
         
 
         <div class="post-meta">
@@ -331,7 +328,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-10T20:40:59+08:00">2017-12-10</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-11T23:12:13+08:00">2018-05-11</time>
             
 
             
@@ -349,8 +346,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/21589/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/21589/" itemprop="commentsCount"></span>
+                <a href="/posts/0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/0/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -358,7 +355,7 @@
 
           
           
-             <span id="/posts/21589/" class="leancloud_visitors" data-flag-title="加快webpack构建">
+             <span id="/posts/0/" class="leancloud_visitors" data-flag-title="">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +375,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>336 words </span>
+          <span>0 words </span>
         </span>
       
         </div>
@@ -394,18 +391,7 @@
       
 
       
-        <p>随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。</p>
-<a id="more"></a>
-<p>1.在开发环境不使用babel转码，仅在生产环境使用。本地开发的chrome的es6的兼容性足够好，不需要babel转码，经测试，这一操作可以减少25%的构建时间。如果使用babel，可以开启babel的缓存</p>
-<p>2.在开发环境不使用post-css，关闭压缩css，可以提升10%的速度。</p>
-<p>3.在entry中仅引入当前开发的页面，这一举措可以提升一倍的构建速度，在其他步奏完成后，还需要12秒左右的构建速度，完成该步骤后，仅需五秒的构建时间。</p>
-<p>4.启用代码热更新，想办法捕获热更新，避免热更新时刷新浏览器</p>
-<p>5.启动happypack，并行编译</p>
-<p>6.第三方代码库使用cdn</p>
-<p>7.使用resolve.alias 优化资源的搜索路径，noParse忽略。</p>
-<p>8.使用dll</p>
-<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
-
+        
       
     </div>
 
@@ -468,8 +454,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/17726/" rel="next" title="移动端自适应布局方案">
-                <i class="fa fa-chevron-left"></i> 移动端自适应布局方案
+              <a href="/posts/37425/" rel="next" title="js面向对象探究">
+                <i class="fa fa-chevron-left"></i> js面向对象探究
               </a>
             
           </div>
@@ -478,8 +464,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/8215/" rel="prev" title="一个简单的virtual-dom实现">
-                一个简单的virtual-dom实现 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/25280/" rel="prev" title="（置顶）前端进阶系列-目录">
+                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -819,7 +805,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: '1512909659000',
+            id: '1526051533387',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
