@@ -299,6 +299,313 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/31115/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/31115/" itemprop="url">一个基于react的图片裁剪组件</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-10T11:26:50+08:00">2017-06-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/31115/" class="leancloud_visitors" data-flag-title="一个基于react的图片裁剪组件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>2,000 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>写了一年多vue，感觉碰到了点瓶颈，学习下react找找感觉。刚好最近使用vue写了个基于cropperJS的图片裁剪的组件，便花费了几个晚上的功夫用react再写一遍。<a href="https://github.com/hpoenixf/react-cropper/blob/master/src/index.js" target="_blank" rel="external">代码地址</a>，<a href="/demo/cropper.html">demo地址</a><br>项目是使用create-react-app来开发的，省去了很多webpack配置的功夫，支持eslint，自动刷新等功能，使用前npm install并npm start即可。推荐同样是新学习react的人也用用看。<br>项目写的比较简陋，自定义配置比较差，不过也是完成了裁剪图片的基本功能，希望可以帮助到初学react和想了解裁剪图片组件的朋友。<br>组件的结构是这样的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--Cropper--&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">ImageUploader</span> <span class="attr">handleImgChange</span>=<span class="string">&#123;this.handleImgChange&#125;</span> <span class="attr">getCropData</span>=<span class="string">&#123;this.getCropData&#125;/</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"image-principal"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;this.state.imageValue&#125;</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">className</span>=<span class="string">"img"</span> <span class="attr">ref</span>=<span class="string">"img"</span> <span class="attr">onLoad</span>=<span class="string">&#123;this.setSize&#125;/</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">SelectArea</span> <span class="attr">ref</span>=<span class="string">"selectArea"</span>&gt;</span><span class="tag">&lt;/<span class="name">SelectArea</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--ImageUploader     --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">form</span> <span class="attr">className</span>=<span class="string">"image-upload-form"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">encType</span>=<span class="string">"multipart/form-data"</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"inputOfFile"</span> <span class="attr">ref</span>=<span class="string">"imgInput"</span> <span class="attr">id</span>=<span class="string">"imgInput"</span> <span class="attr">onChange</span>=<span class="string">&#123;this.props.handleImgChange&#125;/</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.props.getCropData&#125;</span>&gt;</span>获取裁剪参数<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--SelectArea     --&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"select-area"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">this.dragStart</span>&#125; <span class="attr">ref</span>=<span class="string">"selectArea"</span> &gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"top-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'top')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"right-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'right')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"bottom-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'bottom')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"left-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'left')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"right-bottom-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'right')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"left-top-resize"</span> <span class="attr">onMouseDown</span>=<span class="string">&#123;</span> <span class="attr">event</span> =&gt;</span> this.resizeStart(event, 'left')&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/31115/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/22565/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/22565/" itemprop="url">代码整洁之道读书笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-04T00:16:28+08:00">2017-06-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/22565/" class="leancloud_visitors" data-flag-title="代码整洁之道读书笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>533 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>让代码比你来时干净</p>
+<h4 id="一、有意义的命名"><a href="#一、有意义的命名" class="headerlink" title="一、有意义的命名"></a>一、有意义的命名</h4><ol>
+<li>变量、函数或者类的名称应该告诉你它为什么存在，它做什么事情，应该怎么用。</li>
+<li>要名副其实，让人明白代码是做了什么事情</li>
+<li>避免误导。如不是数组不要以list结尾，可以用group或者直接用复数形式。避免使用很相似的命名。</li>
+<li>做有意义的区分。别同时用productData，productInfo。</li>
+<li>用读的出来的名称，可搜索的名称。单字母名称仅用于短方法的本地变量。名称长短应与作用域大小相对应，变量如果可能在代码中多出使用，应赋予便于搜索的名称。</li>
+<li>类名和对象名应该是名词，不该是动词。方法名应该是动词</li>
+<li>每个概念对应一个词。类似于fetch、retrieve、get及controllers和managers只用其中的一个。</li>
+<li>避免一个单词用于不同目的。</li>
+<li>使用命名代替魔术数字。使用SECONDS_PER_DAY代替86400。</li>
+</ol>
+<h4 id="二、函数"><a href="#二、函数" class="headerlink" title="二、函数"></a>二、函数</h4><ol>
+<li>短小。函数不应该长于一屏。</li>
+<li>只做一件事情。</li>
+<li>参数。少用多参数，如果有三个以上参数，可以将其封装为对象。参数的名字与函数的名字应该有良好的关系</li>
+<li>无副作用。副作用就是做与名字无关的事情。</li>
+<li>不重复。</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/22565/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/8342/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -815,7 +1122,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
