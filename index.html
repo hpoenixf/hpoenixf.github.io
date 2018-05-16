@@ -367,7 +367,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>926 words </span>
+          <span>922 words </span>
         </span>
       
         </div>
@@ -392,6 +392,151 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/posts/25280/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/18923/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/18923/" itemprop="url">强大而难懂的迭代器</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-16T11:38:10+08:00">2018-05-16</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/18923/" class="leancloud_visitors" data-flag-title="强大而难懂的迭代器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>758 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><h5 id="什么是迭代器"><a href="#什么是迭代器" class="headerlink" title="什么是迭代器"></a>什么是迭代器</h5><p>js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeIterator</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> nextIndex = <span class="number">0</span>;<span class="number">4</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">       <span class="attr">next</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">           <span class="keyword">return</span> nextIndex &lt; array.length ?</div><div class="line">               &#123;<span class="attr">value</span>: array[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span>&#125; :</div><div class="line">               &#123;<span class="attr">done</span>: <span class="literal">true</span>&#125;;</div><div class="line">       &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/18923/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -515,7 +660,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,404 words </span>
+          <span>1,568 words </span>
         </span>
       
         </div>
@@ -532,8 +677,7 @@
 
       
         
-          <p>promise是es6的一个重要特性，用于实现异步。promise对象拥有一个状态的属性，该属性不受外界影响，修改后不能再次变化。</p>
-<h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><p>promise是一个构造函数，常见用法是</p>
+          <h4 id="什么是promise"><a href="#什么是promise" class="headerlink" title="什么是promise"></a>什么是promise</h4><p>promise是es6的一个重要特性，用于实现异步。promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。<br>常见用法是</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = new Promise(function (res, rej) &#123;</div><div class="line">  console.log(&apos;1&apos;)</div><div class="line">  if (1) &#123;</div><div class="line">    res(3)</div><div class="line">  &#125; else &#123;</div><div class="line">    rej()</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">a.then(function (val) &#123;</div><div class="line">  console.log(val)</div><div class="line">&#125;)</div><div class="line">console.log(2)</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1330,151 +1474,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/64382/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/64382/" itemprop="url">CDN与DNS知识汇总</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T16:56:32+08:00">2018-04-10</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/64382/" class="leancloud_visitors" data-flag-title="CDN与DNS知识汇总">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-      
-        <span class="post-letters-count">
-          &nbsp; | &nbsp;
-          <span>2,478 words </span>
-        </span>
-      
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在性能优化的时候，比较常见的一个建议是，把资源部署在CDN上，那么问题来了，CDN是什么？这样做有什么好处？</p>
-<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>我们先讲一下域名系统DNS(Domain Name System)吧。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/64382/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1529,7 +1528,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

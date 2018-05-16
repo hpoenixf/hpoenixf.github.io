@@ -97,17 +97,17 @@
 
 
 
-  <meta name="description" content="promise是es6的一个重要特性，用于实现异步。promise对象拥有一个状态的属性，该属性不受外界影响，修改后不能再次变化。 入门promise是一个构造函数，常见用法是 123456789101112var a = new Promise(function (res, rej) &amp;#123;  console.log(&amp;apos;1&amp;apos;)  if (1) &amp;#123;    res">
+  <meta name="description" content="什么是promisepromise是es6的一个重要特性，用于实现异步。promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。常见用法是 123456789101112var a = new Promise(function (res, rej) &amp;#123;  console.log(&amp;apos;1&amp;apos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="来聊聊promise">
 <meta property="og:url" content="http://hpoenixf.com/posts/10947/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="promise是es6的一个重要特性，用于实现异步。promise对象拥有一个状态的属性，该属性不受外界影响，修改后不能再次变化。 入门promise是一个构造函数，常见用法是 123456789101112var a = new Promise(function (res, rej) &amp;#123;  console.log(&amp;apos;1&amp;apos;)  if (1) &amp;#123;    res">
+<meta property="og:description" content="什么是promisepromise是es6的一个重要特性，用于实现异步。promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。常见用法是 123456789101112var a = new Promise(function (res, rej) &amp;#123;  console.log(&amp;apos;1&amp;apos">
 <meta property="og:image" content="http://7xu8rd.com1.z0.glb.clouddn.com/promise.png">
-<meta property="og:updated_time" content="2018-05-14T07:35:49.328Z">
+<meta property="og:updated_time" content="2018-05-15T14:10:45.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="来聊聊promise">
-<meta name="twitter:description" content="promise是es6的一个重要特性，用于实现异步。promise对象拥有一个状态的属性，该属性不受外界影响，修改后不能再次变化。 入门promise是一个构造函数，常见用法是 123456789101112var a = new Promise(function (res, rej) &amp;#123;  console.log(&amp;apos;1&amp;apos;)  if (1) &amp;#123;    res">
+<meta name="twitter:description" content="什么是promisepromise是es6的一个重要特性，用于实现异步。promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。常见用法是 123456789101112var a = new Promise(function (res, rej) &amp;#123;  console.log(&amp;apos;1&amp;apos">
 <meta name="twitter:image" content="http://7xu8rd.com1.z0.glb.clouddn.com/promise.png">
 
 
@@ -380,7 +380,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,404 words </span>
+          <span>1,568 words </span>
         </span>
       
         </div>
@@ -396,16 +396,15 @@
       
 
       
-        <p>promise是es6的一个重要特性，用于实现异步。promise对象拥有一个状态的属性，该属性不受外界影响，修改后不能再次变化。</p>
-<h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><p>promise是一个构造函数，常见用法是</p>
+        <h4 id="什么是promise"><a href="#什么是promise" class="headerlink" title="什么是promise"></a>什么是promise</h4><p>promise是es6的一个重要特性，用于实现异步。promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。<br>常见用法是</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = new Promise(function (res, rej) &#123;</div><div class="line">  console.log(&apos;1&apos;)</div><div class="line">  if (1) &#123;</div><div class="line">    res(3)</div><div class="line">  &#125; else &#123;</div><div class="line">    rej()</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">a.then(function (val) &#123;</div><div class="line">  console.log(val)</div><div class="line">&#125;)</div><div class="line">console.log(2)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>输出顺序是<code>1,2,3</code>,为什么呢？<br>new Promise处的函数是同步执行的，马上输出1，而then中的方法是被放到mircotask队列中，在当前的代码执行完后在执行。因此先输出2，再输出3</p>
+<p>输出顺序是<code>1,2,3</code>,为什么呢？<br>new Promise接受的参数函数是同步执行的，因此会马上输出1，而then中的方法是被放到mircotask队列中，在当前的代码执行完后在执行。因此先输出2，再输出3</p>
 <p>现在让我们来打印一下Promise，看看他还有什么别的功能</p>
 <p><img src="http://7xu8rd.com1.z0.glb.clouddn.com/promise.png" alt="img"></p>
-<h4 id="构造函数的四个方法"><a href="#构造函数的四个方法" class="headerlink" title="构造函数的四个方法"></a>构造函数的四个方法</h4><p>从图片中我们可以发现Promise构造函数上带有resolve，race，all，reject四个方法，让我们来了解下</p>
+<h4 id="构造函数的四个方法"><a href="#构造函数的四个方法" class="headerlink" title="构造函数的四个方法"></a>构造函数的四个方法</h4><p>从图片中我们可以发现Promise构造函数上带有resolve，race，all，reject四个方法，他们的共同点是都会返回一个promise。让我们来分别了解下。</p>
 <h5 id="resolve"><a href="#resolve" class="headerlink" title="resolve"></a>resolve</h5><p>先来了解下resolve</p>
-<p>resolve接受一个值或是promise对象，返回一个新的promise对象，如果接受的是promise对象，会直接返回该promise对象，否则返回完成状态的promise</p>
+<p>resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promise对象，否则返回完成状态的promise对象。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Promise</span>.resolve(<span class="number">3</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> <span class="built_in">console</span>.log(res))<span class="comment">// 3</span></div><div class="line"><span class="keyword">var</span> a = <span class="built_in">Promise</span>.resolve(<span class="number">3</span>)</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Promise</span>.resolve(a) === a) <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <h5 id="reject"><a href="#reject" class="headerlink" title="reject"></a>reject</h5><p>类似resolve，返回的是拒绝状态的promise</p>
 <h5 id="all"><a href="#all" class="headerlink" title="all"></a>all</h5><p>Promise.all接受一个数组，分为三种情况</p>
@@ -456,8 +455,19 @@
 <li>执行marcotask中的函数，输出4</li>
 </ul>
 <p>我们可以修改一下函数来加深下印象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="number">0</span>)</div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">res, rej</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1'</span>)</div><div class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'4'</span>))</div><div class="line">  res(<span class="number">3</span>)</div><div class="line">&#125;)</div><div class="line">a.then(<span class="function"><span class="params">v</span> =&gt;</span> loop(a))</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span> (<span class="params">p</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">while</span> (i++ &lt; 5)</div><div class="line">  p.then(v =&gt; console.log(v))</div><div class="line">&#125;</div><div class="line">console.log(2)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="number">0</span>)</div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">res, rej</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1'</span>)</div><div class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'4'</span>))</div><div class="line">  res(<span class="number">3</span>)</div><div class="line">&#125;)</div><div class="line">a.then(<span class="function"><span class="params">v</span> =&gt;</span> loop(a))</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span> (<span class="params">p</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">while</span> (i++ <span class="xml"><span class="tag">&lt; <span class="attr">5</span>)</span></span></div><div class="line">  <span class="attr">p.then</span>(<span class="attr">v</span> =&gt; console.log(v))</div><div class="line">&#125;</div><div class="line">console.log(2)</div></pre></td></tr></table></figure>
 <p>可以发现，最后是输出了5个3，他的执行过程跟刚刚的很接近，区别在于倒数第二步，在调用mircotask队列中的loop函数时，又加入新的mircotask，而只有mircotask中的任务都完成后，才能执行marcotask中的函数。</p>
+<h4 id="promise的优缺点"><a href="#promise的优缺点" class="headerlink" title="promise的优缺点"></a>promise的优缺点</h4><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
+<li>跟callback相比，避免的回调地域无限嵌套，可以使用链式写法</li>
+<li>约束了异步处理的写法</li>
+<li>便于捕捉错误</li>
+</ol>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ol>
+<li>无法取消promise</li>
+<li>无法处理多次触发的事件</li>
+<li>无法获取当前执行的进度信息</li>
+</ol>
+<p>注意，一些情况下可以使用Promise.race来取消promise。比如设置异步请求在三秒不成功的话取消，可以在Promise.race的第二个参数加一个三秒的定时器。</p>
 
       
     </div>
@@ -531,8 +541,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/25280/" rel="prev" title="（置顶）前端进阶系列-目录">
-                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/18923/" rel="prev" title="强大而难懂的迭代器">
+                强大而难懂的迭代器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -621,7 +631,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -701,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#入门"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数的四个方法"><span class="nav-number">2.</span> <span class="nav-text">构造函数的四个方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#resolve"><span class="nav-number">2.1.</span> <span class="nav-text">resolve</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reject"><span class="nav-number">2.2.</span> <span class="nav-text">reject</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#all"><span class="nav-number">2.3.</span> <span class="nav-text">all</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#race"><span class="nav-number">2.4.</span> <span class="nav-text">race</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise对象的方法"><span class="nav-number">3.</span> <span class="nav-text">promise对象的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#then"><span class="nav-number">3.1.</span> <span class="nav-text">then</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#catch"><span class="nav-number">3.2.</span> <span class="nav-text">catch</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise对象的属性"><span class="nav-number">4.</span> <span class="nav-text">promise对象的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise与任务队列"><span class="nav-number">5.</span> <span class="nav-text">promise与任务队列</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是promise"><span class="nav-number">1.</span> <span class="nav-text">什么是promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数的四个方法"><span class="nav-number">2.</span> <span class="nav-text">构造函数的四个方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#resolve"><span class="nav-number">2.1.</span> <span class="nav-text">resolve</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reject"><span class="nav-number">2.2.</span> <span class="nav-text">reject</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#all"><span class="nav-number">2.3.</span> <span class="nav-text">all</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#race"><span class="nav-number">2.4.</span> <span class="nav-text">race</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise对象的方法"><span class="nav-number">3.</span> <span class="nav-text">promise对象的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#then"><span class="nav-number">3.1.</span> <span class="nav-text">then</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#catch"><span class="nav-number">3.2.</span> <span class="nav-text">catch</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise对象的属性"><span class="nav-number">4.</span> <span class="nav-text">promise对象的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise与任务队列"><span class="nav-number">5.</span> <span class="nav-text">promise与任务队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise的优缺点"><span class="nav-number">6.</span> <span class="nav-text">promise的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点"><span class="nav-number">6.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点"><span class="nav-number">6.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></div>
             
 
           </div>

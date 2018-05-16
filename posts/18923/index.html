@@ -97,23 +97,23 @@
 
 
 
-  <meta name="description" content="背景公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的region-picker比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看demo，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。 过程通过阅读源码，可以发">
+  <meta name="description" content="迭代器什么是迭代器js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。 1234567891011function makeIterator(array)&amp;#123;    var nextIndex = 0;4    return &amp;#123;       next: function()&amp;#123;           return nextInd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="修改vue第三方组件的内部方法">
-<meta property="og:url" content="http://hpoenixf.com/posts/61797/index.html">
+<meta property="og:title" content="强大而难懂的迭代器">
+<meta property="og:url" content="http://hpoenixf.com/posts/18923/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="背景公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的region-picker比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看demo，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。 过程通过阅读源码，可以发">
-<meta property="og:updated_time" content="2018-04-17T00:35:44.670Z">
+<meta property="og:description" content="迭代器什么是迭代器js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。 1234567891011function makeIterator(array)&amp;#123;    var nextIndex = 0;4    return &amp;#123;       next: function()&amp;#123;           return nextInd">
+<meta property="og:updated_time" content="2018-05-16T03:39:34.986Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="修改vue第三方组件的内部方法">
-<meta name="twitter:description" content="背景公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的region-picker比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看demo，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。 过程通过阅读源码，可以发">
+<meta name="twitter:title" content="强大而难懂的迭代器">
+<meta name="twitter:description" content="迭代器什么是迭代器js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。 1234567891011function makeIterator(array)&amp;#123;    var nextIndex = 0;4    return &amp;#123;       next: function()&amp;#123;           return nextInd">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/posts/61797/"/>
+  <link rel="canonical" href="http://hpoenixf.com/posts/18923/"/>
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>修改vue第三方组件的内部方法 | hpoenixf's blog</title>
+  <title>强大而难懂的迭代器 | hpoenixf's blog</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/61797/">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/18923/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -319,7 +319,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">修改vue第三方组件的内部方法</h2>
+          <h2 class="post-title" itemprop="name headline">强大而难懂的迭代器</h2>
         
 
         <div class="post-meta">
@@ -331,7 +331,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-04T21:19:32+08:00">2017-07-04</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-16T11:38:10+08:00">2018-05-16</time>
             
 
             
@@ -349,8 +349,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/61797/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/61797/" itemprop="commentsCount"></span>
+                <a href="/posts/18923/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/18923/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/posts/61797/" class="leancloud_visitors" data-flag-title="修改vue第三方组件的内部方法">
+             <span id="/posts/18923/" class="leancloud_visitors" data-flag-title="强大而难懂的迭代器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>673 words </span>
+          <span>758 words </span>
         </span>
       
         </div>
@@ -394,14 +394,29 @@
       
 
       
-        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>公司项目需要用到省市区选择器，找了一阵，感觉饿了么团队的<a href="https://github.com/ElementUI/region-picker" target="_blank" rel="external">region-picker</a>比较美观且好用。然而有一点不太满意，该组件在点击省份/城市时，下拉选择框就会关闭，导致只选择了省份或城市的信息，导致信息选择的不完整，可以查看<a href="https://elementui.github.io/region-picker/" target="_blank" rel="external">demo</a>，本来打算在关闭后，再使用事件触发来模拟一个点击事件让选择框重新打开的，但这样用户体验不好，可能会看到选择框闪动，于是便打算修改组件本身。</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>通过阅读源码，可以发现该组件包含了单选和多选两种组件，这次只考虑修改单选的，于是找到single.vue,从39行开始，可以简单的明白，点击选项时，会调用select方法，因此只要修改select方法就好。</p>
+        <h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><h5 id="什么是迭代器"><a href="#什么是迭代器" class="headerlink" title="什么是迭代器"></a>什么是迭代器</h5><p>js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeIterator</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> nextIndex = <span class="number">0</span>;<span class="number">4</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">       <span class="attr">next</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">           <span class="keyword">return</span> nextIndex &lt; array.length ?</div><div class="line">               &#123;<span class="attr">value</span>: array[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span>&#125; :</div><div class="line">               &#123;<span class="attr">done</span>: <span class="literal">true</span>&#125;;</div><div class="line">       &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">ul.scroll-option(ref=<span class="string">"province"</span>)</div><div class="line">  li(</div><div class="line">      v-<span class="keyword">for</span>=<span class="string">"province in provinces"</span></div><div class="line">      :key=<span class="string">"province.adcode"</span></div><div class="line">      :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; hover: current.province === province &#125;"</span></div><div class="line">      @mouseenter=<span class="string">"current.province = province; current.city = null"</span></div><div class="line">      @click=<span class="string">"select(province)"</span></div><div class="line">    )</div><div class="line">    span &#123;&#123; province.name &#125;&#125;</div><div class="line">ul.scroll-option(ref=<span class="string">"city"</span>)</div><div class="line">  li(</div><div class="line">      v-<span class="keyword">for</span>=<span class="string">"city in cities"</span></div><div class="line">      :key=<span class="string">"city.adcode"</span></div><div class="line">      :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; hover: current.city === city &#125;"</span></div><div class="line">      @mouseenter=<span class="string">"current.city = city"</span></div><div class="line">      @click=<span class="string">"select(city)"</span></div><div class="line">    )</div><div class="line">    span &#123;&#123; city.name &#125;&#125;</div><div class="line">ul.scroll-option(ref=<span class="string">"district"</span>, v-<span class="keyword">if</span>=<span class="string">"maxLevel &gt; 2"</span>)</div><div class="line">  li(</div><div class="line">      v-<span class="keyword">for</span>=<span class="string">"district in districts"</span></div><div class="line">      :key=<span class="string">"district.adcode"</span></div><div class="line">      :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; hover: current.district === district &#125;"</span></div><div class="line">      @mouseenter=<span class="string">"current.district = district"</span></div><div class="line">      @click=<span class="string">"select(district)"</span></div><div class="line">    )</div><div class="line">    span &#123;&#123; district.name &#125;&#125;</div></pre></td></tr></table></figure>
-<p>select方法的代码如下。通过console调试可以知道，传给select的place参数是一个具有level的对象，如果传入的是省份，level为1，城市为2，区为3，因此，我们需要让select只接受level为1的参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">select(place) &#123;</div><div class="line">  <span class="keyword">this</span>.hidePicker();</div><div class="line">  <span class="keyword">this</span>.selected = place;</div><div class="line">  <span class="keyword">const</span> map = [<span class="string">'country'</span>, <span class="string">'province'</span>, <span class="string">'city'</span>, <span class="string">'district'</span>];</div><div class="line">  <span class="keyword">if</span> (!place.adcode) &#123;</div><div class="line">    <span class="keyword">this</span>.current.province = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.current.city = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.current.district = <span class="literal">null</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">const</span> set = <span class="function">(<span class="params">p</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> &#123; level &#125; = p;</div><div class="line">    <span class="keyword">if</span> (level &gt; <span class="number">1</span>) &#123;</div><div class="line">      set(p.parent);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.current[map[p.level]] = p;</div><div class="line">  &#125;;</div><div class="line">  set(place);</div><div class="line">  <span class="keyword">this</span>.clearSearch();</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>首先引入该组件，给该组件加上ref，这里取名为regionPicker。<br>接着在mounted的钩子上加入一个函数，hackRegionPicker,注意要在mounted的钩子中调用该方法，如果是在created中调用，由于组件尚未加载，通过$refs是获取不到该组件的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hackRegionPicker() &#123;</div><div class="line">  <span class="comment">// singlePicker 是regionPiker的第一个子组件</span></div><div class="line">  <span class="keyword">let</span> singlePicker = <span class="keyword">this</span>.$refs.regionPicker.children[<span class="number">0</span>]</div><div class="line">  <span class="comment">// 保存singlePicker的select方法</span></div><div class="line">  <span class="keyword">let</span> select = &#123;...singlePicker&#125;.select</div><div class="line">  singlePicker.select = <span class="function"><span class="params">place</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">// 只有点击区时才关闭选项</span></div><div class="line">    <span class="keyword">if</span> (place.level ===<span class="number">3</span>) &#123;</div><div class="line">      select(place)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="跳过的坑"><a href="#跳过的坑" class="headerlink" title="跳过的坑"></a>跳过的坑</h4><p>原本是直接给select赋值为singlePicker.select的，然而实际上select只是保存了在singlePicker对象中select方法的引用，因此在新的singlePicker.select中调用的select并不是旧的select，而是新的singlePicker.select，实际上这样就成了没有结束条件的递归，导致浏览器卡死。<br>而使用便利的{…Obj}语法可以成功的保存旧的select函数。</p>
+<h5 id="迭代器接口"><a href="#迭代器接口" class="headerlink" title="迭代器接口"></a>迭代器接口</h5><p>可迭代对象如Map，Set，Array，String的实例拥有一个名为Symbol.iterator的接口函数，调用该函数会返回迭代器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="keyword">var</span> b = a[<span class="built_in">Symbol</span>.iterator]()</div><div class="line"><span class="built_in">console</span>.log(b + <span class="string">''</span>) <span class="comment">//[object Array Iterator]</span></div><div class="line"><span class="built_in">console</span>.log(b.next()) <span class="comment">//&#123; value: 1, done: false &#125;</span></div><div class="line"><span class="built_in">console</span>.log(b.next())&#123; <span class="attr">value</span>: <span class="number">3</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line"><span class="built_in">console</span>.log(b.next())&#123; <span class="attr">value</span>: <span class="number">4</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line"><span class="built_in">console</span>.log(b.next())&#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</div></pre></td></tr></table></figure>
+<p>拥有该接口函数的，可以使用<code>for of</code>循环,优点是可以使用break，只会遍历可迭代对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> a) &#123;</div><div class="line">  <span class="built_in">console</span>.log(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出<code>1,3,4</code></p>
+<p>还可以使用展开运算符，yield*以及结构赋值</p>
+<h4 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h4><h5 id="function"><a href="#function" class="headerlink" title="function*"></a>function*</h5><p>function* 可以生成generator生成器对象。函数在调用generator的next方法时才会运行，运行到yield处会暂停，注意，会把yield处的语句执行。等到下一个next方法运行时才继续执行，<br>调用 next()方法时，如果传入了参数，那么这个参数会作为上一条执行的  yield 语句的返回值，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> *<span class="title">gen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">yield</span> <span class="number">10</span>;</div><div class="line">    y=<span class="keyword">yield</span> <span class="string">'foo'</span>;</div><div class="line">    <span class="keyword">yield</span> y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> gen_obj=gen();</div><div class="line"><span class="built_in">console</span>.log(gen_obj.next());<span class="comment">// 执行 yield 10，返回 10</span></div><div class="line"><span class="built_in">console</span>.log(gen_obj.next());<span class="comment">// 执行 yield 'foo'，返回 'foo'</span></div><div class="line"><span class="built_in">console</span>.log(gen_obj.next(<span class="number">10</span>));<span class="comment">// 将 10 赋给上一条 yield 'foo' 的左值，即执行 y=10，返回 10</span></div><div class="line"><span class="built_in">console</span>.log(gen_obj.next());<span class="comment">// 执行完毕，value 为 undefined，done 为 true</span></div></pre></td></tr></table></figure>
+<h5 id="generator生成器对象"><a href="#generator生成器对象" class="headerlink" title="generator生成器对象"></a>generator生成器对象</h5><p>生成器对象即是可迭代对象又是迭代器，由generator function返回，具有next方法和return方法。<br>next方法可以获得下一项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123; </div><div class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</div><div class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> g = gen()</div><div class="line"></div><div class="line">g.next()</div><div class="line"><span class="built_in">console</span>.log(g.next()) <span class="comment">// &#123;value:1,done: false&#125;</span></div><div class="line"><span class="built_in">console</span>.log(g.next()) <span class="comment">// &#123;value:2,done: false&#125;</span></div><div class="line"><span class="built_in">console</span>.log(g.next()) <span class="comment">// &#123;value:undefined,done: true&#125;</span></div></pre></td></tr></table></figure>
+<p>return结束迭代。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(g.return()) <span class="comment">// &#123;value:undefined,done: true&#125;</span></div></pre></td></tr></table></figure>
+<h4 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h4><h5 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fibo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="number">0</span></div><div class="line">  <span class="keyword">let</span> b = <span class="number">1</span></div><div class="line"></div><div class="line">  <span class="keyword">yield</span> a</div><div class="line">  <span class="keyword">yield</span> b</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">let</span> next = a + b</div><div class="line">    a = b</div><div class="line">    b = next</div><div class="line">    <span class="keyword">yield</span> next</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> generator = fibo()</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</div><div class="line">  <span class="built_in">console</span>.log(generator.next().value) <span class="comment">//=&gt; 0 1 1 2 3 5 8 13 21 34 55</span></div></pre></td></tr></table></figure>
+<h5 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h5><p>一个每次调用加10的函数。可以看出，gen函数中的写法是同步的风格，然而实际上t函数中用到了异步，这里用到了yield的暂停和重新启动功能，十分强大。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> gen = <span class="function"><span class="keyword">function</span>*(<span class="params">num</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(num)</div><div class="line">  <span class="keyword">var</span> a = <span class="keyword">yield</span> t(num)</div><div class="line">  <span class="built_in">console</span>.log(a)</div><div class="line">  <span class="keyword">var</span> b = <span class="keyword">yield</span> t(a)</div><div class="line">  <span class="built_in">console</span>.log(b)</div><div class="line">  <span class="keyword">return</span> b</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> genResult = gen(<span class="number">10</span>);</div><div class="line">genResult.next()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    genResult.next(num + <span class="number">10</span>)</div><div class="line">  &#125;, <span class="number">100</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出<code>10,20,30</code></p>
+<h5 id="跟promise结合"><a href="#跟promise结合" class="headerlink" title="跟promise结合"></a>跟promise结合</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">res</span> =&gt;</span> res(num + <span class="number">10</span>))</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">runGenerator</span>(<span class="params">g, ...res</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> it = g(...res), ret;</div><div class="line">  (<span class="function"><span class="keyword">function</span> <span class="title">iterate</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    ret = it.next( val );</div><div class="line">    <span class="keyword">if</span> (!ret.done) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="string">"then"</span> <span class="keyword">in</span> ret.value) &#123;</div><div class="line">        ret.value.then( iterate );</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">else</span> &#123;</div><div class="line">        setTimeout( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          iterate( ret.value );</div><div class="line">        &#125;, <span class="number">0</span> );</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;)();</div><div class="line">&#125;</div><div class="line"></div><div class="line">runGenerator(gen, <span class="number">30</span>)</div></pre></td></tr></table></figure>
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p><a href="https://juejin.im/entry/5a02608e6fb9a04500027875" target="_blank" rel="external">通过ES6 Generator函数实现异步操作</a></p>
+<p><a href="https://www.jianshu.com/p/b709747d125e" target="_blank" rel="external">生成器</a></p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>本文章为<a href="https://hpoenixf.com/posts/25280/">前端进阶系列</a>的一部分,欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
 
       
     </div>
@@ -465,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/14971/" rel="next" title="代码大全读书笔记（第二部分）">
-                <i class="fa fa-chevron-left"></i> 代码大全读书笔记（第二部分）
+              <a href="/posts/10947/" rel="next" title="来聊聊promise">
+                <i class="fa fa-chevron-left"></i> 来聊聊promise
               </a>
             
           </div>
@@ -475,8 +490,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/44090/" rel="prev" title="iscroll-lite源码阅读">
-                iscroll-lite源码阅读 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/25280/" rel="prev" title="（置顶）前端进阶系列-目录">
+                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -645,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跳过的坑"><span class="nav-number">3.</span> <span class="nav-text">跳过的坑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代器"><span class="nav-number">1.</span> <span class="nav-text">迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是迭代器"><span class="nav-number">1.1.</span> <span class="nav-text">什么是迭代器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#迭代器接口"><span class="nav-number">1.2.</span> <span class="nav-text">迭代器接口</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器"><span class="nav-number">2.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#function"><span class="nav-number">2.1.</span> <span class="nav-text">function*</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#generator生成器对象"><span class="nav-number">2.2.</span> <span class="nav-text">generator生成器对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#斐波那契数列"><span class="nav-number">3.1.</span> <span class="nav-text">斐波那契数列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异步"><span class="nav-number">3.2.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#跟promise结合"><span class="nav-number">3.3.</span> <span class="nav-text">跟promise结合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
@@ -841,7 +856,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: '1499174372000',
+            id: '1526441890000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
