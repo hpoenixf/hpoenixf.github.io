@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/posts/18922/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="迭代器什么是迭代器js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。 1234567891011function makeIterator(array)&amp;#123;    var nextIndex = 0;4    return &amp;#123;       next: function()&amp;#123;           return nextInd">
-<meta property="og:updated_time" content="2018-05-16T03:45:33.914Z">
+<meta property="og:updated_time" content="2018-05-17T02:58:49.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强大而难懂的迭代器">
 <meta name="twitter:description" content="迭代器什么是迭代器js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。 1234567891011function makeIterator(array)&amp;#123;    var nextIndex = 0;4    return &amp;#123;       next: function()&amp;#123;           return nextInd">
@@ -378,7 +378,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>758 words </span>
+          <span>761 words </span>
         </span>
       
         </div>
@@ -397,7 +397,7 @@
         <h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><h5 id="什么是迭代器"><a href="#什么是迭代器" class="headerlink" title="什么是迭代器"></a>什么是迭代器</h5><p>js迭代器是一个对象，具有next方法，可以返回序列中的带有done和value两个属性的下一项。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeIterator</span>(<span class="params">array</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> nextIndex = <span class="number">0</span>;<span class="number">4</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">       <span class="attr">next</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">           <span class="keyword">return</span> nextIndex &lt; array.length ?</div><div class="line">               &#123;<span class="attr">value</span>: array[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span>&#125; :</div><div class="line">               &#123;<span class="attr">done</span>: <span class="literal">true</span>&#125;;</div><div class="line">       &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h5 id="迭代器接口"><a href="#迭代器接口" class="headerlink" title="迭代器接口"></a>迭代器接口</h5><p>可迭代对象如Map，Set，Array，String的实例拥有一个名为Symbol.iterator的接口函数，调用该函数会返回迭代器</p>
+<h5 id="迭代器接口"><a href="#迭代器接口" class="headerlink" title="迭代器接口"></a>迭代器接口</h5><p>可迭代对象如Map，Set，Array，String，arguments，DOM elements的实例拥有一个名为Symbol.iterator的接口函数，调用该函数会返回迭代器</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="keyword">var</span> b = a[<span class="built_in">Symbol</span>.iterator]()</div><div class="line"><span class="built_in">console</span>.log(b + <span class="string">''</span>) <span class="comment">//[object Array Iterator]</span></div><div class="line"><span class="built_in">console</span>.log(b.next()) <span class="comment">//&#123; value: 1, done: false &#125;</span></div><div class="line"><span class="built_in">console</span>.log(b.next())&#123; <span class="attr">value</span>: <span class="number">3</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line"><span class="built_in">console</span>.log(b.next())&#123; <span class="attr">value</span>: <span class="number">4</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line"><span class="built_in">console</span>.log(b.next())&#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</div></pre></td></tr></table></figure>
 <p>拥有该接口函数的，可以使用<code>for of</code>循环,优点是可以使用break，只会遍历可迭代对象。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> a) &#123;</div><div class="line">  <span class="built_in">console</span>.log(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -490,8 +490,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/25280/" rel="prev" title="（置顶）前端进阶系列-目录">
-                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/21689/" rel="prev" title="任务队列、事件循环与定时器">
+                任务队列、事件循环与定时器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -580,7 +580,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
