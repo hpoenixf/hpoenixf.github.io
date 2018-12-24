@@ -447,6 +447,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/64805/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/64805/" itemprop="url">chrome插件开发</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T23:05:15+08:00">2018-12-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/64805/" class="leancloud_visitors" data-flag-title="chrome插件开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,290 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>chrome 插件开发</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="manifest"><a href="#manifest" class="headerlink" title="manifest"></a>manifest</h4><p>每个chrome 插件项目必须要有一个有一个manifest.json，在这里，在这里简单介绍一下本插件用到的字段，完整的请看<a href="https://developer.chrome.com/extensions/manifest" target="_blank" rel="external">这里</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "ICMS Dev", // 名称</div><div class="line">  "version": "1.1", // 版本</div><div class="line">  "description": "ICMS Dev Extension", // 描述</div><div class="line">  "permissions": ["storage","*://*/*"], // 使用到的权限</div><div class="line">  "background": &#123;</div><div class="line">    "scripts": [" ["background.js"] /"] // 常驻后台的JS</div><div class="line">  &#125;,</div><div class="line">  "browser_action": &#123; </div><div class="line">    "default_title": "ICMS", // 悬浮停留时显示的标题</div><div class="line">    "default_icon": ": "icms.png"// "// 图标</div><div class="line">  &#125;,</div><div class="line">  "content_scripts": [</div><div class="line">    &#123;</div><div class="line">      "matches": ["*://*/*"],</div><div class="line">      "js": [" ["content.js"],</div><div class="line">"],</div><div class="line">      "run_at": "document_start" // 运行时刻，document_start表示DOM构建和js运行前运行</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  "manifest_version": 2, // 只能填2</div><div class="line">  "devtools_page": ": "devtools.html" //" // // devtools.js在这里被在这里被引入</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="不同的js"><a href="#不同的js" class="headerlink" title="不同的js"></a>不同的js</h4><p>开发<br>chrome插件跟开发普通的页面差不多，不同的是，chrome的js有好几种，在这里只用到其中的三种，运行在后台的后台的background.js，运行在页面的页面的content.js，运行在，devTool的ol的devtool.js，在这里简单列一下他们的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>background</th>
+<th>content</th>
+<th>devtool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特点</td>
+<td>能使用几乎所有API，可跨域</td>
+<td>可查询、操作DOM，可向页面注入js和css，但不允许读取页面JS</td>
+<td>专有API，可在开发者工具窗口新建panel</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>始终运行</td>
+<td>可在manifest中配置</td>
+<td>与开发者工具窗口一致</td>
+</tr>
+<tr>
+<td>可用API</td>
+<td>全部(除了devTool)</td>
+<td>i18n、storage、runtime</td>
+<td>devtools</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png" alt="img](g"><br>完整请<br>完整请看 <a href="https://developer.chrome.com/extensions/content_scripts" target="_blank" rel="external">contens_scripts</a>、<a href="https://developer.chrome.com/extensions/background_pages" target="_blank" rel="external">backgroun_pages</a> 、 <a href="https://developer.chrome.com/extensions/devtools" target="_blank" rel="external">devtools</a></p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><h4 id="查看页面模块信息"><a href="#查看页面模块信息" class="headerlink" title="查看页面模块信息"></a>查看页面模块信息</h4><p>先来尝试解决第一个功能点，通过上面的简单了解，使用，使用content.js可以查询可以查询DOM，因此该功能主要在content.js上实现。通过观察发现每个模块会有一个特有的类目，可以使用简单的简单的document.querySelectorctorAll()来查询模块。并在模块的DOM结构上获取模块的其它信息。</p>
+<h4 id="监听模块请求数据"><a href="#监听模块请求数据" class="headerlink" title="监听模块请求数据"></a>监听模块请求数据</h4><p>监控模块请求数据，需要使用到使用到devtool.js下才能用下才能用的能用的APIchrome.chrome.devtools.networkwork，<a href="https://developer.chrome.com/extensions/devtools_network" target="_blank" rel="external">文档</a>，因为background.js的web的webRequestAPI只能查看请求头之类的东西。这里有一点比较坑的是，在devtool.js下的bo下的bodySize总是0，因此我想做过大体积请求报警只能读取请求的字符串长度，因为请求没有被gizp过，偏差还是有点大。<br>可以使用以使用chrome.devtools.inspectedWindow.eval(‘Fn’,{ useContentScriptContext: true })来执行来执行content.js中可执行中可执行的函数，这种方式需要式需要content.js在man在manifest中配置 ?”run_at”: “document_start”，详情。因此写了两个这样的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 输出对象</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">console</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">  </div><div class="line">  chrome.devtools.inspectedWindow.eval(</div><div class="line">  (</div><div class="line">    <span class="string">'  '</span><span class="built_in">console</span>.log(<span class="string">' +('</span> +val + <span class="string">')'</span>, &#123; <span class="attr">useContentScriptContext</span>: <span class="literal">true</span> &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 输出字符串</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">text</span>(<span class="params">val, type = <span class="string">'log'</span></span>) </span>&#123;</div><div class="line">       chrome.devtools.inspectedWindow.eval(</div><div class="line">  (</div><div class="line">      <span class="string">`console.<span class="subst">$&#123;type&#125;</span>(unescape("`</span> +</div><div class="line">      <span class="built_in">escape</span>(val) + <span class="string">'"))'</span>, &#123; <span class="attr">useContentScriptContext</span>: <span class="literal">true</span> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时还可以使用以使用chrome.runtime.sendMessage从devtool.js向backgorund.js发送消息发送消息，background使用d使用chrome.runtime.onMessage来监听，收到消息后，调用chrome.browserAction.setBadgeText来修改角标数字，因此如果接口体积过大，我们就能很直观的发现变化了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// // devtools.js</span></div><div class="line">chr</div><div class="line">js</div><div class="line">chrome.runtime.sendMessage(&#123;ge(&#123;<span class="attr">sizeWarn</span>: <span class="literal">true</span>&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// // content.js</span></div><div class="line">chr</div><div class="line">js</div><div class="line">chrome.runtime.sendMessage(&#123;ge(&#123;<span class="attr">clearBadge</span>: <span class="literal">true</span>&#125;)</div></pre></td></tr></table></figure>
+<h4 id="查看模块对应请求"><a href="#查看模块对应请求" class="headerlink" title="查看模块对应请求"></a>查看模块对应请求</h4><p>这里采用的方法是将请求与模块DOM上自动带上的模块id进行绑定并存储。具体交互方法是点击插件，就给每个模块加上蒙层，点击模块的蒙层，即可根据模块DOM来查找该请求</p>
+<h3 id="下面是他们的关系"><a href="#下面是他们的关系" class="headerlink" title="下面是他们的关系"></a>下面是他们的关系</h3><p><img src="https://cdn.nlark.com/lark/0/2018/png/118003/1543912196049-80ead7b9-8ba4-4a8b-a92a-443298c83293.png" alt=""></p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>chrome还可以做很多事情，比如我的插件还修复了另一个内部使用的埋点插件在移动端样式错乱的问题，还做了埋点请求的监控，等等等等。如果对一个网站不满意，我们除了改变网站的代码，我们还可以改变我们的浏览器，领悟到这一点，感觉思路也开阔一点了。</p>
+<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>使用chrome插件可以完成一些自动化的操作和做一些页面性能或报错的检测提醒且不用去修改原本项目页面的代码。掌握chrome插件的开发可以有效解决部分开发中碰到的痛点，提升开发效率。<br>chrome插件还有很多实用的API，如标签控制，菜单定制，窗口控制等，本次开发的chrome插件，只用到了其中很少的一部分功能，并且在使用体验还有不小的提升空间，希望有机会可以和大家多交流学习。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.chrome.com/extensions" target="_blank" rel="external">https://developer.chrome.com/extensions</a></p>
+<p><a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html" target="_blank" rel="external">https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html</a></p>
+<p><a href="http://www.ituring.com.cn/book/miniarticle/60223" target="_blank" rel="external">http://www.ituring.com.cn/book/miniarticle/60223</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/61514/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -515,7 +703,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>970 words </span>
+          <span>984 words </span>
         </span>
       
         </div>
@@ -532,17 +720,15 @@
 
       
         
-          
-            <p>这是一篇从入职阿里一月总结被拖延到变成2018年总结的文章，不由得说我的拖延症是严重了一点。</p>
-<p>2018年，先是在创业公司加了一个月9116做了小程序，然后离职从广州回到深圳，然后各种面试，然后苦等两个月五月底进阿里lazada，在阿里的半年里从期待到失落再到现在的再次有所期待，真是一个又一个的起伏。</p>
-<p>从工作两年就呆了三四家公司的职业生涯来说，要说有什么经验，可能就是一个离职率高的公司一定是不值得长久留下来的，在公司不要简单的去完成任务，要去想办法改善、做点不一样的，不然换工作就很难说出你跟别人有什么不一样，为什么我们要选你。以及，换工作如果离入职还有一段时间，不要在家里苦等，只会被无尽的催促，不如去旅游去穷游，呆在家里只是白白的变胖..人生中可能再有一次三个月不工作的机会很难了。</p>
-<p>进阿里前，一直有流传阿里是前端的最终去路，也在前端方面输出了很多优秀的技术如weex、antd，egg，作为前端能来到这样的平台有种高考考进清华北大的感觉，还是感到有点激动。</p>
-<p>然而刚来的时候，却感觉有点失落。做频道页面用到WEEX，使用的都是内部的轮子，踩了很多坑，调试起来体验略差。做大促活动页面的时候，是使用的jquery来开发一个个模块，运营使用模块来搭建页面。这个模式固然很先进方便，然而开发一个个模块，不断的调整样式，却又是一个没什么挑战性和成就感的活，让人觉得面试造火箭，进门领螺丝的感觉。我们是做东南亚电商的，更新一个页面，需要重复发布六次，一不小心一个小时就过去了。还有经常会碰到因为这样那样的原因，某个文案没翻译，又要重新发布一次六个国家，会感觉自己不断的在做重复而没有成长的活，十分疲惫。</p>
-<p>通过跟身边的人谈话，学习，我的想法开始有所改变，的确现在所处的开发环境有这样和那样的不足，但是，这也意味着机会。去一个很完善的地方只能搬砖填瓦，来到还有lazada，意味着还有很多可以发挥的空间。另外，完成任务只是一个基础的事情，要做的额外的才能超出期待，收获自己想要的事情，比如，如何提升大家的工作效率？如何降低大家的上手学习成本？如何给业务带来更大价值？如何提升页面性能，代码质量？</p>
-<p>因此，除了完成被产品和上级分配的工作外，我也主动做了一些事情。优化脚手架和模块的初始模板，在开发环境加入多语言的切换参数，开发可以快速排查模块请求与其它信息的chrome插件等等等，可能是后面会一直拿来吹嘘的是我一个新人被分配去负责lazada双十一的分会场前端负责人，虽然很多事情还是大佬们去跟进，但还是对项目流程做出了一些小小的优化…</p>
-<p>可以不断的学习和成长，这就是为什么我选择程序员的一个重要原因，希望在2019年，自己也能有所收获。</p>
-
-          
+          <p>这是一篇从入职阿里一月总结被拖延到变成2018年总结的文章，不由得说我的拖延症是严重了一点。</p>
+<p>2018年，先是在创业公司加了一个月9116做了小程序，然后离职从广州回到深圳，然后各种面试，然后苦等两个月五月底进阿里lazada，在阿里的半年里从期待到失落再到现在的再次有所期待，期间十月去了一次泰国旅游，人生真是一个又一个的起伏。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/61514/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1307,150 +1493,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/38806/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/38806/" itemprop="url">前端工程师要懂些什么</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T20:43:53+08:00">2018-04-25</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/38806/" class="leancloud_visitors" data-flag-title="前端工程师要懂些什么">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-      
-        <span class="post-letters-count">
-          &nbsp; | &nbsp;
-          <span>407 words </span>
-        </span>
-      
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前端除了JS,HTML,CSS三板斧，还要懂些什么？有什么东西对我们提升自己前端水平有帮助？<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/38806/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1505,7 +1547,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

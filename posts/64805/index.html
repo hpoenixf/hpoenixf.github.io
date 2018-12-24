@@ -97,23 +97,26 @@
 
 
 
-  <meta name="description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
+  <meta name="description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。 基础知识ma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试必考之http状态码有哪些">
-<meta property="og:url" content="http://hpoenixf.com/posts/22307/index.html">
+<meta property="og:title" content="chrome插件开发">
+<meta property="og:url" content="http://hpoenixf.com/posts/64805/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
-<meta property="og:updated_time" content="2018-04-17T00:35:44.680Z">
+<meta property="og:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。 基础知识ma">
+<meta property="og:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png">
+<meta property="og:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543912196049-80ead7b9-8ba4-4a8b-a92a-443298c83293.png">
+<meta property="og:updated_time" content="2018-12-24T15:21:43.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面试必考之http状态码有哪些">
-<meta name="twitter:description" content="背景http状态码有哪些，这也是一个很高频的面试问题。一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。 如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。">
+<meta name="twitter:title" content="chrome插件开发">
+<meta name="twitter:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。 基础知识ma">
+<meta name="twitter:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/posts/22307/"/>
+  <link rel="canonical" href="http://hpoenixf.com/posts/64805/"/>
 
 
 
@@ -123,7 +126,7 @@
   };
 </script>
 
-  <title>面试必考之http状态码有哪些 | hpoenixf's blog</title>
+  <title>chrome插件开发 | hpoenixf's blog</title>
   
 
 
@@ -302,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/22307/">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/64805/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -319,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">面试必考之http状态码有哪些</h2>
+          <h2 class="post-title" itemprop="name headline">chrome插件开发</h2>
         
 
         <div class="post-meta">
@@ -331,7 +334,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-09T23:41:31+08:00">2018-03-09</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T23:05:15+08:00">2018-12-24</time>
             
 
             
@@ -349,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/22307/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/22307/" itemprop="commentsCount"></span>
+                <a href="/posts/64805/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/64805/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -358,7 +361,7 @@
 
           
           
-             <span id="/posts/22307/" class="leancloud_visitors" data-flag-title="面试必考之http状态码有哪些">
+             <span id="/posts/64805/" class="leancloud_visitors" data-flag-title="chrome插件开发">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +381,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>1,110 words </span>
+          <span>1,290 words </span>
         </span>
       
         </div>
@@ -394,31 +397,55 @@
       
 
       
-        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>http状态码有哪些，这也是一个很高频的面试问题。<br>一般大家都知道404页面不存在，500服务器错误，301重定向，302临时重定向，200ok，401未授权啥的。</p>
-<p>如果只是简单的这样答，可能只能让面试官给你的答案打个五六十分，不足以给面试官留下良好的印象，为了展现自己良好的http知识，你或许可以重点介绍三个状态码及相关的知识，他们分别是304协商缓存，101协议升级，以及307hsts跳转。</p>
-<h4 id="304协商缓存"><a href="#304协商缓存" class="headerlink" title="304协商缓存"></a>304协商缓存</h4><p>先从304协商缓存开始吧。这是比较基础的知识。相信我，只要你提起304协商缓存，面试官一定会忍不住问你，什么是协商缓存？</p>
-<a id="more"></a>
-<p>这时就到了你展示一下自己丰富的浏览器缓存知识的时候了。我一般会这么答：浏览器缓存分为强制缓存和协商缓存，优先读取强制缓存。</p>
-<p>强制缓存分为expires和cache-control，而expires是一个特定的时间，是比较旧的标准和cache-control通常是一个具体的时间长度，比较新，优先级也比较高。</p>
-<p>而协商缓存包括etag和last-modified，last-modified的设置标准是资源的上次修改时间，而etag是为了应对资源修改时间可能很频繁的情况出现的，是基于资源的内容计算出来的值，因此优先级也较高。</p>
-<p>协商缓存与强制缓存的区别在于强制缓存不需要访问服务器，返回结果是200，协商缓存需要访问服务器，如果命中缓存的话，返回结果是304。</p>
-<h4 id="101协议升级"><a href="#101协议升级" class="headerlink" title="101协议升级"></a>101协议升级</h4><p>主要用于websocket，也可以用于http2的升级。</p>
-<p>websocket的特点和功效不细说，大家都很熟了。</p>
-<p>http2好处多多，一般说出支持单个连接多次请求，二进制，压缩头部，服务器推送等特征面试官就比较满足了。具体了解也是自行谷歌百度，这里也是不细说。</p>
-<p>当然这时候我们可能要应对一下面试官接下来的追问：到底https,http,http2以及它的原形spdy有什么区别，又分别有什么优点和不足，他们的建立连接分别又有着什么环节，这些知识就需要读者自己去充分搜索查询了。</p>
-<h4 id="307-hsts跳转"><a href="#307-hsts跳转" class="headerlink" title="307 hsts跳转"></a>307 hsts跳转</h4><p>这个比较高端，原本的用法是用于让post请求的跳转去新的post请求，但也用于hsts跳转。</p>
-<p>hsts全称HTTP严格传输安全（HTTP Strict Transport Security，縮寫：HSTS），功能是要求浏览器下次访问该站点时使用https来访问，而不再需要先是http再转https。这样可以避免ssl剥离攻击，即攻击者在用户使用http访问的过程中进行攻击，对服务器冒充自己是用户，在攻击者和服务器中使用https访问，在用户和服务器中使用http访问。</p>
-<p>具体使用方法是在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
-<p>当然，提到了ssl剥离攻击，你一定很感兴趣还有什么方法可以对号称安全的https进行攻击呢？我这里了解到的有ssl劫持攻击，大概就是信任第三方的安全证书，这点被利用于代理软件监听https。如果还有更多的，欢迎补充。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>仅仅三个状态码，都可以牵涉到如此丰富的知识，对于状态码，我们不能只是片面的去背诵状态码及对应的含义，要去主动挖掘，深入，借助http状态码来建立自己的网络体系。</p>
-<p>留一个课后作业：301和302有什么区别？分别适用于什么场景？你还会只去记一个是永久重定向，一个是临时重定向吗？</p>
-<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>知道你们很懒，帮你们搜索好了相关资料</p>
-<p><a href="http://www.cnblogs.com/vajoy/p/5341664.html" target="_blank" rel="external">浅谈浏览器http的缓存机制
-</a></p>
-<p><a href="https://ye11ow.gitbooks.io/http2-explained/content/" target="_blank" rel="external">http2讲解</a></p>
-<p><a href="http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/" target="_blank" rel="external">HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事</a><br><a href="https://www.barretlee.com/blog/2015/10/22/hsts-intro/" target="_blank" rel="external">你所不知道的 HSTS</a></p>
-<p><a href="https://imququ.com/post/sth-about-switch-to-https.html" target="_blank" rel="external">关于启用 HTTPS 的一些经验分享（一）</a></p>
+        <p>chrome 插件开发</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="manifest"><a href="#manifest" class="headerlink" title="manifest"></a>manifest</h4><p>每个chrome 插件项目必须要有一个有一个manifest.json，在这里，在这里简单介绍一下本插件用到的字段，完整的请看<a href="https://developer.chrome.com/extensions/manifest" target="_blank" rel="external">这里</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "ICMS Dev", // 名称</div><div class="line">  "version": "1.1", // 版本</div><div class="line">  "description": "ICMS Dev Extension", // 描述</div><div class="line">  "permissions": ["storage","*://*/*"], // 使用到的权限</div><div class="line">  "background": &#123;</div><div class="line">    "scripts": [" ["background.js"] /"] // 常驻后台的JS</div><div class="line">  &#125;,</div><div class="line">  "browser_action": &#123; </div><div class="line">    "default_title": "ICMS", // 悬浮停留时显示的标题</div><div class="line">    "default_icon": ": "icms.png"// "// 图标</div><div class="line">  &#125;,</div><div class="line">  "content_scripts": [</div><div class="line">    &#123;</div><div class="line">      "matches": ["*://*/*"],</div><div class="line">      "js": [" ["content.js"],</div><div class="line">"],</div><div class="line">      "run_at": "document_start" // 运行时刻，document_start表示DOM构建和js运行前运行</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  "manifest_version": 2, // 只能填2</div><div class="line">  "devtools_page": ": "devtools.html" //" // // devtools.js在这里被在这里被引入</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="不同的js"><a href="#不同的js" class="headerlink" title="不同的js"></a>不同的js</h4><p>开发<br>chrome插件跟开发普通的页面差不多，不同的是，chrome的js有好几种，在这里只用到其中的三种，运行在后台的后台的background.js，运行在页面的页面的content.js，运行在，devTool的ol的devtool.js，在这里简单列一下他们的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>background</th>
+<th>content</th>
+<th>devtool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特点</td>
+<td>能使用几乎所有API，可跨域</td>
+<td>可查询、操作DOM，可向页面注入js和css，但不允许读取页面JS</td>
+<td>专有API，可在开发者工具窗口新建panel</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>始终运行</td>
+<td>可在manifest中配置</td>
+<td>与开发者工具窗口一致</td>
+</tr>
+<tr>
+<td>可用API</td>
+<td>全部(除了devTool)</td>
+<td>i18n、storage、runtime</td>
+<td>devtools</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png" alt="img](g"><br>完整请<br>完整请看 <a href="https://developer.chrome.com/extensions/content_scripts" target="_blank" rel="external">contens_scripts</a>、<a href="https://developer.chrome.com/extensions/background_pages" target="_blank" rel="external">backgroun_pages</a> 、 <a href="https://developer.chrome.com/extensions/devtools" target="_blank" rel="external">devtools</a></p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><h4 id="查看页面模块信息"><a href="#查看页面模块信息" class="headerlink" title="查看页面模块信息"></a>查看页面模块信息</h4><p>先来尝试解决第一个功能点，通过上面的简单了解，使用，使用content.js可以查询可以查询DOM，因此该功能主要在content.js上实现。通过观察发现每个模块会有一个特有的类目，可以使用简单的简单的document.querySelectorctorAll()来查询模块。并在模块的DOM结构上获取模块的其它信息。</p>
+<h4 id="监听模块请求数据"><a href="#监听模块请求数据" class="headerlink" title="监听模块请求数据"></a>监听模块请求数据</h4><p>监控模块请求数据，需要使用到使用到devtool.js下才能用下才能用的能用的APIchrome.chrome.devtools.networkwork，<a href="https://developer.chrome.com/extensions/devtools_network" target="_blank" rel="external">文档</a>，因为background.js的web的webRequestAPI只能查看请求头之类的东西。这里有一点比较坑的是，在devtool.js下的bo下的bodySize总是0，因此我想做过大体积请求报警只能读取请求的字符串长度，因为请求没有被gizp过，偏差还是有点大。<br>可以使用以使用chrome.devtools.inspectedWindow.eval(‘Fn’,{ useContentScriptContext: true })来执行来执行content.js中可执行中可执行的函数，这种方式需要式需要content.js在man在manifest中配置 ?”run_at”: “document_start”，详情。因此写了两个这样的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 输出对象</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">console</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">  </div><div class="line">  chrome.devtools.inspectedWindow.eval(</div><div class="line">  (</div><div class="line">    <span class="string">'  '</span><span class="built_in">console</span>.log(<span class="string">' +('</span> +val + <span class="string">')'</span>, &#123; <span class="attr">useContentScriptContext</span>: <span class="literal">true</span> &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 输出字符串</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">text</span>(<span class="params">val, type = <span class="string">'log'</span></span>) </span>&#123;</div><div class="line">       chrome.devtools.inspectedWindow.eval(</div><div class="line">  (</div><div class="line">      <span class="string">`console.<span class="subst">$&#123;type&#125;</span>(unescape("`</span> +</div><div class="line">      <span class="built_in">escape</span>(val) + <span class="string">'"))'</span>, &#123; <span class="attr">useContentScriptContext</span>: <span class="literal">true</span> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时还可以使用以使用chrome.runtime.sendMessage从devtool.js向backgorund.js发送消息发送消息，background使用d使用chrome.runtime.onMessage来监听，收到消息后，调用chrome.browserAction.setBadgeText来修改角标数字，因此如果接口体积过大，我们就能很直观的发现变化了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// // devtools.js</span></div><div class="line">chr</div><div class="line">js</div><div class="line">chrome.runtime.sendMessage(&#123;ge(&#123;<span class="attr">sizeWarn</span>: <span class="literal">true</span>&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// // content.js</span></div><div class="line">chr</div><div class="line">js</div><div class="line">chrome.runtime.sendMessage(&#123;ge(&#123;<span class="attr">clearBadge</span>: <span class="literal">true</span>&#125;)</div></pre></td></tr></table></figure>
+<h4 id="查看模块对应请求"><a href="#查看模块对应请求" class="headerlink" title="查看模块对应请求"></a>查看模块对应请求</h4><p>这里采用的方法是将请求与模块DOM上自动带上的模块id进行绑定并存储。具体交互方法是点击插件，就给每个模块加上蒙层，点击模块的蒙层，即可根据模块DOM来查找该请求</p>
+<h3 id="下面是他们的关系"><a href="#下面是他们的关系" class="headerlink" title="下面是他们的关系"></a>下面是他们的关系</h3><p><img src="https://cdn.nlark.com/lark/0/2018/png/118003/1543912196049-80ead7b9-8ba4-4a8b-a92a-443298c83293.png" alt=""></p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>chrome还可以做很多事情，比如我的插件还修复了另一个内部使用的埋点插件在移动端样式错乱的问题，还做了埋点请求的监控，等等等等。如果对一个网站不满意，我们除了改变网站的代码，我们还可以改变我们的浏览器，领悟到这一点，感觉思路也开阔一点了。</p>
+<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>使用chrome插件可以完成一些自动化的操作和做一些页面性能或报错的检测提醒且不用去修改原本项目页面的代码。掌握chrome插件的开发可以有效解决部分开发中碰到的痛点，提升开发效率。<br>chrome插件还有很多实用的API，如标签控制，菜单定制，窗口控制等，本次开发的chrome插件，只用到了其中很少的一部分功能，并且在使用体验还有不小的提升空间，希望有机会可以和大家多交流学习。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.chrome.com/extensions" target="_blank" rel="external">https://developer.chrome.com/extensions</a></p>
+<p><a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html" target="_blank" rel="external">https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html</a></p>
+<p><a href="http://www.ituring.com.cn/book/miniarticle/60223" target="_blank" rel="external">http://www.ituring.com.cn/book/miniarticle/60223</a></p>
 
       
     </div>
@@ -482,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/14981/" rel="next" title="web性能优化（一）">
-                <i class="fa fa-chevron-left"></i> web性能优化（一）
+              <a href="/posts/61514/" rel="next" title="我的2018">
+                <i class="fa fa-chevron-left"></i> 我的2018
               </a>
             
           </div>
@@ -492,8 +519,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/24239/" rel="prev" title="我的前端成长回顾">
-                我的前端成长回顾 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/25280/" rel="prev" title="（置顶）前端进阶系列-目录">
+                （置顶）前端进阶系列-目录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -662,7 +689,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304协商缓存"><span class="nav-number">2.</span> <span class="nav-text">304协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#101协议升级"><span class="nav-number">3.</span> <span class="nav-text">101协议升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307-hsts跳转"><span class="nav-number">4.</span> <span class="nav-text">307 hsts跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#manifest"><span class="nav-number">2.1.</span> <span class="nav-text">manifest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的js"><span class="nav-number">2.2.</span> <span class="nav-text">不同的js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">3.</span> <span class="nav-text">开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看页面模块信息"><span class="nav-number">3.1.</span> <span class="nav-text">查看页面模块信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听模块请求数据"><span class="nav-number">3.2.</span> <span class="nav-text">监听模块请求数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看模块对应请求"><span class="nav-number">3.3.</span> <span class="nav-text">查看模块对应请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是他们的关系"><span class="nav-number">4.</span> <span class="nav-text">下面是他们的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">5.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展望"><span class="nav-number">6.</span> <span class="nav-text">展望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -858,7 +885,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: '1520610091000',
+            id: '1545663915000',
             owner: 'hpoenixf',
             repo: 'gitment-comments',
             
