@@ -2045,7 +2045,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #08268b;
+  background: #f79acb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2374,6 +2374,14 @@ ul.popular-posts .popular-posts-item .popular-posts-title {
   font-size: 14px;
   margin: 0;
   line-height: 2.4;
+}
+.gt-header a,
+.gt-comments a,
+.gt-popup a {
+  border-bottom: none;
+}
+.gt-container .gt-popup .gt-action.is--active:before {
+  top: 0.7em;
 }
 .page-archive .archive-page-counter {
   position: relative;

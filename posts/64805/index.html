@@ -97,18 +97,18 @@
 
 
 
-  <meta name="description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。 基础知识ma">
+  <meta name="description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="chrome插件开发">
 <meta property="og:url" content="http://hpoenixf.com/posts/64805/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。 基础知识ma">
+<meta property="og:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。">
 <meta property="og:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png">
 <meta property="og:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543912196049-80ead7b9-8ba4-4a8b-a92a-443298c83293.png">
-<meta property="og:updated_time" content="2018-12-24T15:21:43.547Z">
+<meta property="og:updated_time" content="2018-12-24T15:26:07.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chrome插件开发">
-<meta name="twitter:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。 基础知识ma">
+<meta name="twitter:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。">
 <meta name="twitter:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png">
 
 
@@ -399,6 +399,7 @@
       
         <p>chrome 插件开发</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。</p>
+<a id="more"></a>
 <h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="manifest"><a href="#manifest" class="headerlink" title="manifest"></a>manifest</h4><p>每个chrome 插件项目必须要有一个有一个manifest.json，在这里，在这里简单介绍一下本插件用到的字段，完整的请看<a href="https://developer.chrome.com/extensions/manifest" target="_blank" rel="external">这里</a></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "ICMS Dev", // 名称</div><div class="line">  "version": "1.1", // 版本</div><div class="line">  "description": "ICMS Dev Extension", // 描述</div><div class="line">  "permissions": ["storage","*://*/*"], // 使用到的权限</div><div class="line">  "background": &#123;</div><div class="line">    "scripts": [" ["background.js"] /"] // 常驻后台的JS</div><div class="line">  &#125;,</div><div class="line">  "browser_action": &#123; </div><div class="line">    "default_title": "ICMS", // 悬浮停留时显示的标题</div><div class="line">    "default_icon": ": "icms.png"// "// 图标</div><div class="line">  &#125;,</div><div class="line">  "content_scripts": [</div><div class="line">    &#123;</div><div class="line">      "matches": ["*://*/*"],</div><div class="line">      "js": [" ["content.js"],</div><div class="line">"],</div><div class="line">      "run_at": "document_start" // 运行时刻，document_start表示DOM构建和js运行前运行</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  "manifest_version": 2, // 只能填2</div><div class="line">  "devtools_page": ": "devtools.html" //" // // devtools.js在这里被在这里被引入</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="不同的js"><a href="#不同的js" class="headerlink" title="不同的js"></a>不同的js</h4><p>开发<br>chrome插件跟开发普通的页面差不多，不同的是，chrome的js有好几种，在这里只用到其中的三种，运行在后台的后台的background.js，运行在页面的页面的content.js，运行在，devTool的ol的devtool.js，在这里简单列一下他们的区别</p>
@@ -555,11 +556,7 @@
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
+<div id="gitalk-container"></div>
 
   
 
@@ -871,45 +868,23 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: '1545663915000',
-            owner: 'hpoenixf',
-            repo: 'gitment-comments',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
-            
-                client_id: 'd81a0dc3cee29d34be76'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'd81a0dc3cee29d34be76',
+      clientSecret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+      repo: 'hpoenixf.github.io',
+      owner: 'hpoenixf',
+      admin: ['hpoenixf'],
+      id: location.pathname,
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+  
 
 
   
