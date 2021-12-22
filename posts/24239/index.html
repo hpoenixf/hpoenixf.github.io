@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="背景转眼间，学习前端也有两年半了，从开始的不知js/css/html是什么，到一年前感觉自己工作比较重复觉得有点迷茫，再到现在重新充满激情，也获得了一些大公司的录取机会，也是多少找到了一点成为优秀前端的方向了。 不经意发现知乎上我两年前的零基础开始学 Web 前端开发，有什么建议吗？的回答还有人在看，在评论，有点感慨。我的分享应该也是帮助了一些人入门吧，他们或许在入门后也碰到跟我一样的迷茫，不知道">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的前端成长回顾">
+<meta property="og:url" content="http://hpoenixf.com/posts/24239/index.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="背景转眼间，学习前端也有两年半了，从开始的不知js/css/html是什么，到一年前感觉自己工作比较重复觉得有点迷茫，再到现在重新充满激情，也获得了一些大公司的录取机会，也是多少找到了一点成为优秀前端的方向了。 不经意发现知乎上我两年前的零基础开始学 Web 前端开发，有什么建议吗？的回答还有人在看，在评论，有点感慨。我的分享应该也是帮助了一些人入门吧，他们或许在入门后也碰到跟我一样的迷茫，不知道">
+<meta property="og:updated_time" content="2018-04-17T00:35:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的前端成长回顾">
+<meta name="twitter:description" content="背景转眼间，学习前端也有两年半了，从开始的不知js/css/html是什么，到一年前感觉自己工作比较重复觉得有点迷茫，再到现在重新充满激情，也获得了一些大公司的录取机会，也是多少找到了一点成为优秀前端的方向了。 不经意发现知乎上我两年前的零基础开始学 Web 前端开发，有什么建议吗？的回答还有人在看，在评论，有点感慨。我的分享应该也是帮助了一些人入门吧，他们或许在入门后也碰到跟我一样的迷茫，不知道">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/posts/24239/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>我的前端成长回顾 | hpoenixf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116923512-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116923512-1');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/hpoenixf" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/24239/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">我的前端成长回顾</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T22:32:53+08:00">2018-03-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/24239/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/24239/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/24239/" class="leancloud_visitors" data-flag-title="我的前端成长回顾">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,920 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>转眼间，学习前端也有两年半了，从开始的不知js/css/html是什么，到一年前感觉自己工作比较重复觉得有点迷茫，再到现在重新充满激情，也获得了一些大公司的录取机会，也是多少找到了一点成为优秀前端的方向了。</p>
+<p>不经意发现知乎上我两年前的<a href="https://www.zhihu.com/question/19637373/answer/69787687" target="_blank" rel="external">零基础开始学 Web 前端开发，有什么建议吗？</a>的回答还有人在看，在评论，有点感慨。我的分享应该也是帮助了一些人入门吧，他们或许在入门后也碰到跟我一样的迷茫，不知道他们是怎么解决的呢？现在把我在入门前端之后的发生的经历和成长也写出来，希望对大家也有点帮助。</p>
+<a id="more"></a>
+<h4 id="2016年"><a href="#2016年" class="headerlink" title="2016年"></a>2016年</h4><p>在入门前端后，我如愿在2016年的三月份入职了广州某游戏公司，完成了当初想在毕业前去个大公司的小目标。当时我还处在只会jquery，看了点backbone，写过一下experss，懂点点nodejs，了解es6的状态。</p>
+<p>在公司主要进行的就是比较常见的内部管理系统的开发，现学现卖的用上了vue，当时还是用vue1，在半年后vue2推出，又花了一定的功夫把项目迁移到了vue2，2017年找工作时可能还会有人问下vue1和vue2的区别是什么，现在应该也没有人问了，前端真的是一个变化很快的领域。</p>
+<p>相比起react，vue是一套很适合新人，门槛较低的框架。推荐前端刚入门的小伙伴去学习。vue看似简单，但是如果仅仅是停留在使用api和相关工具，希望大家在空闲之余，可以了解下源码，可以重点关注一下vue双向绑定，虚拟dom，nextTick的原理，看下vuex和vue-router的源码，前端的变化很快，仅仅记住api和工具是不够的，要了解底层的编程思想和实现原理。</p>
+<h4 id="2017年"><a href="#2017年" class="headerlink" title="2017年"></a>2017年</h4><p>经过一些曲折，17年四月份我入职了某创业公司,摆脱了之前的内部管理系统，开始了进行面对用户的前端的开发。</p>
+<p>不得不说，面对用户的页面跟之前的内部管理系统还是有不小的区别的。前者要考虑的东西要多一些。内部管理系统比较注重对业务的了解以及开发效率，对性能优化，兼容性等没什么要求，只有内部的人用，统一用chrome浏览器，过得去就可以，可能更多的注重将数据转换成视图页面。然而面对用户的页面不一样，需要考虑兼容性问题，考虑加载时间问题，考虑seo问题，考了美观问题，考虑响应式问题等等等等。</p>
+<p>其实这两种页面并没有优劣之分，对内部的系统可以往开发效率提升以及复杂应用的方向提升，而对用户的页面则可以往性能优化，多端兼容的方向去发展。只要不满足于获取数据渲染页面，都有提升和发展的空间。</p>
+<p>在17年下半年，接到任务，进行移动端的架构，被要求不能使用vue/react，直接使用服务器渲染页面。这让我有点慌。说实话，当时我已经写了超过一年的vue项目，习惯于每开一下新项目就搭建vue全家桶，让我抛弃先进的mvvm框架，去使用回原生的js，感觉就好像下了飞机去坐火车。</p>
+<p>然而让我这样做也是有道理的，公司的移动端的页面并不复杂，并不需要使用到mvvm框架，当时开发的使用了vue的移动端页面，由于要获取各种数据，白屏时间有三秒之多，使用服务器渲染可以解决这样的问题，我不能为了开发的一时爽快而影响用户的体验。</p>
+<p>经过探索和专研，我也是有了一定的成果，自己加入了前端SPA路由跳转，把它总结成了一套<a href="http://hpoenixf.com/%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9FJS%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%90%8C%E6%9E%84.html">框架</a>,这个项目也成了我后来找工作的最大底气和骄傲。是的，如果只是重重复复的开发相近的页面，没有去探索和沉淀自己的东西，那自己的技术水平也只能稳步不前。刚刚说过，不能只了解框架，这里还要补充一点，不能依赖框架，要了解到，框架解决了什么问题，适用于什么样的场景。原生JS的能力不要荒废，自己造造轮子还是有收获的。</p>
+<h4 id="2018年"><a href="#2018年" class="headerlink" title="2018年"></a>2018年</h4><p>在完成了框架的搭建和优化后，在公司的安排下，我不断的将自己的框架应用在各种项目，我做了一个跟微博类似的项目，还做了跟今日头条类似的项目，还有商城，还有…在短时间内做这么多项目，单纯的只是渲染页面而没有时间去深入业务，让我觉得前端就真的只是这样重复的渲染页面，处理下兼容而已吗？这样真的有意思吗？开始变得迷茫起来。</p>
+<p>之后又发生了一些事情，让我不得不选择换一个环境,回到深圳，重新开始。是的，我又要换工作了。可能是我经历还算丰富，也做了一些事情，因此也得到了一些大公司的面试机会。然而在一开始，我就碰到了不少挫折。</p>
+<p>https的流程是怎样的？如何对项目进行监控？进行错误处理？nodejs的父子进程是怎么进行通讯的？你的项目是怎么部署上线的？你的项目是怎么解决移动端测试问题的？</p>
+<p>是的，对于这些问题，刚开始找工作的我是毫无概念，之前的我，就只是专注于写写自己的前端，跑下koa渲染服务器，跟api服务器取下数据渲染下页面。其他问题自然有运维，测试，后台去管。</p>
+<p>很显然，我之前的想法是很狭隘的，身为web开发人员，不能把自己的重心仅仅局限在前端，局限在浏览器端，要有一种工程师的觉悟，尽管有些环节可能分给其他同事去做，但自己也不能一无所知，毫不关心。不要让自己的视野局限于前端浏览器部分，只有了解了整个项目的部署，后端，前端，测试等流程，才能去更好的去完成一个项目。现在前端技术发展很快，nodejs给予了我们去关注服务器的能力，我们要勇于向外看，走出去。</p>
+<p>在了解到自己的不足后，我便开始了知识漏洞的补充，并把其中的一部分成果(<a href="https://juejin.im/post/5a99f80cf265da238c3a1e16" target="_blank" rel="external">当面试官问你如何进行性能优化时，你该这么回答(一)</a>)分享了出来，希望对大家也有点帮助。</p>
+<p>以上，就是我对最近两年的学习工作的一个简单总结，最近事情也比较多，写不了太详细，如果有希望继续交流的，可以发邮箱 hpoenixf#foxmail.com或是通过别的渠道联系我。欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+  <p style="margin-top: 20px">如果我的文章对你有帮助，欢迎
+    <a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">关注和 star 本博客</a>
+    或是<a href="https://github.com/hpoenixf" target="_blank" rel="external">关注我的 github</a>，获取更新通知。欢迎发送邮件到hpoenixf@foxmail.com与作者交流</p>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/22307/" rel="next" title="面试必考之http状态码有哪些">
+                <i class="fa fa-chevron-left"></i> 面试必考之http状态码有哪些
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/60659/" rel="prev" title="我是怎么成为前端工程师的">
+                我是怎么成为前端工程师的 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
+          
+
+  
+<div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hpoenixf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hpoenixf@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016年"><span class="nav-number">2.</span> <span class="nav-text">2016年</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2017年"><span class="nav-number">3.</span> <span class="nav-text">2017年</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2018年"><span class="nav-number">4.</span> <span class="nav-text">2018年</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-male"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'd81a0dc3cee29d34be76',
+      clientSecret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+      repo: 'hpoenixf.github.io',
+      owner: 'hpoenixf',
+      admin: ['hpoenixf'],
+      id: location.pathname,
+      distractionFreeMode: ''
+    })
+    gitalk.render('gitalk-container')
+  </script>
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

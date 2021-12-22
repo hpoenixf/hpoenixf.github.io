@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrome插件开发">
+<meta property="og:url" content="http://hpoenixf.com/posts/64805/index.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。">
+<meta property="og:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png">
+<meta property="og:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543912196049-80ead7b9-8ba4-4a8b-a92a-443298c83293.png">
+<meta property="og:updated_time" content="2018-12-24T15:26:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chrome插件开发">
+<meta name="twitter:description" content="chrome 插件开发 背景lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。">
+<meta name="twitter:image" content="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/posts/64805/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>chrome插件开发 | hpoenixf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116923512-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116923512-1');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/hpoenixf" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/64805/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">chrome插件开发</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T23:05:15+08:00">2018-12-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/64805/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/64805/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/64805/" class="leancloud_visitors" data-flag-title="chrome插件开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,290 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>chrome 插件开发</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>lazada的促销页面主要是由前端开发一个个模块，然后运营选取模块像积木一样搭建好页面。每个模块是独立请求数据并渲染的。因此一个页面可能会有十几个请求，我们经常会碰到某个模块没有显示或是数据出错，这时就要控制台一个个排查模块对应的请求数据是哪个，参数是哪个，出错的又是哪个模块，又是什么版本。还是有点繁琐。因此我决定开发一个chrome插件来简化这样的操作。</p>
+<a id="more"></a>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="manifest"><a href="#manifest" class="headerlink" title="manifest"></a>manifest</h4><p>每个chrome 插件项目必须要有一个有一个manifest.json，在这里，在这里简单介绍一下本插件用到的字段，完整的请看<a href="https://developer.chrome.com/extensions/manifest" target="_blank" rel="external">这里</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "ICMS Dev", // 名称</div><div class="line">  "version": "1.1", // 版本</div><div class="line">  "description": "ICMS Dev Extension", // 描述</div><div class="line">  "permissions": ["storage","*://*/*"], // 使用到的权限</div><div class="line">  "background": &#123;</div><div class="line">    "scripts": [" ["background.js"] /"] // 常驻后台的JS</div><div class="line">  &#125;,</div><div class="line">  "browser_action": &#123; </div><div class="line">    "default_title": "ICMS", // 悬浮停留时显示的标题</div><div class="line">    "default_icon": ": "icms.png"// "// 图标</div><div class="line">  &#125;,</div><div class="line">  "content_scripts": [</div><div class="line">    &#123;</div><div class="line">      "matches": ["*://*/*"],</div><div class="line">      "js": [" ["content.js"],</div><div class="line">"],</div><div class="line">      "run_at": "document_start" // 运行时刻，document_start表示DOM构建和js运行前运行</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  "manifest_version": 2, // 只能填2</div><div class="line">  "devtools_page": ": "devtools.html" //" // // devtools.js在这里被在这里被引入</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="不同的js"><a href="#不同的js" class="headerlink" title="不同的js"></a>不同的js</h4><p>开发<br>chrome插件跟开发普通的页面差不多，不同的是，chrome的js有好几种，在这里只用到其中的三种，运行在后台的后台的background.js，运行在页面的页面的content.js，运行在，devTool的ol的devtool.js，在这里简单列一下他们的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>background</th>
+<th>content</th>
+<th>devtool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特点</td>
+<td>能使用几乎所有API，可跨域</td>
+<td>可查询、操作DOM，可向页面注入js和css，但不允许读取页面JS</td>
+<td>专有API，可在开发者工具窗口新建panel</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>始终运行</td>
+<td>可在manifest中配置</td>
+<td>与开发者工具窗口一致</td>
+</tr>
+<tr>
+<td>可用API</td>
+<td>全部(除了devTool)</td>
+<td>i18n、storage、runtime</td>
+<td>devtools</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://cdn.nlark.com/lark/0/2018/png/118003/1543822642315-f932505b-8381-4252-8f85-38c2c0eb26d3.png" alt="img](g"><br>完整请<br>完整请看 <a href="https://developer.chrome.com/extensions/content_scripts" target="_blank" rel="external">contens_scripts</a>、<a href="https://developer.chrome.com/extensions/background_pages" target="_blank" rel="external">backgroun_pages</a> 、 <a href="https://developer.chrome.com/extensions/devtools" target="_blank" rel="external">devtools</a></p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><h4 id="查看页面模块信息"><a href="#查看页面模块信息" class="headerlink" title="查看页面模块信息"></a>查看页面模块信息</h4><p>先来尝试解决第一个功能点，通过上面的简单了解，使用，使用content.js可以查询可以查询DOM，因此该功能主要在content.js上实现。通过观察发现每个模块会有一个特有的类目，可以使用简单的简单的document.querySelectorctorAll()来查询模块。并在模块的DOM结构上获取模块的其它信息。</p>
+<h4 id="监听模块请求数据"><a href="#监听模块请求数据" class="headerlink" title="监听模块请求数据"></a>监听模块请求数据</h4><p>监控模块请求数据，需要使用到使用到devtool.js下才能用下才能用的能用的APIchrome.chrome.devtools.networkwork，<a href="https://developer.chrome.com/extensions/devtools_network" target="_blank" rel="external">文档</a>，因为background.js的web的webRequestAPI只能查看请求头之类的东西。这里有一点比较坑的是，在devtool.js下的bo下的bodySize总是0，因此我想做过大体积请求报警只能读取请求的字符串长度，因为请求没有被gizp过，偏差还是有点大。<br>可以使用以使用chrome.devtools.inspectedWindow.eval(‘Fn’,{ useContentScriptContext: true })来执行来执行content.js中可执行中可执行的函数，这种方式需要式需要content.js在man在manifest中配置 ?”run_at”: “document_start”，详情。因此写了两个这样的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 输出对象</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">console</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">  </div><div class="line">  chrome.devtools.inspectedWindow.eval(</div><div class="line">  (</div><div class="line">    <span class="string">'  '</span><span class="built_in">console</span>.log(<span class="string">' +('</span> +val + <span class="string">')'</span>, &#123; <span class="attr">useContentScriptContext</span>: <span class="literal">true</span> &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 输出字符串</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">text</span>(<span class="params">val, type = <span class="string">'log'</span></span>) </span>&#123;</div><div class="line">       chrome.devtools.inspectedWindow.eval(</div><div class="line">  (</div><div class="line">      <span class="string">`console.<span class="subst">$&#123;type&#125;</span>(unescape("`</span> +</div><div class="line">      <span class="built_in">escape</span>(val) + <span class="string">'"))'</span>, &#123; <span class="attr">useContentScriptContext</span>: <span class="literal">true</span> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时还可以使用以使用chrome.runtime.sendMessage从devtool.js向backgorund.js发送消息发送消息，background使用d使用chrome.runtime.onMessage来监听，收到消息后，调用chrome.browserAction.setBadgeText来修改角标数字，因此如果接口体积过大，我们就能很直观的发现变化了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// // devtools.js</span></div><div class="line">chr</div><div class="line">js</div><div class="line">chrome.runtime.sendMessage(&#123;ge(&#123;<span class="attr">sizeWarn</span>: <span class="literal">true</span>&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// // content.js</span></div><div class="line">chr</div><div class="line">js</div><div class="line">chrome.runtime.sendMessage(&#123;ge(&#123;<span class="attr">clearBadge</span>: <span class="literal">true</span>&#125;)</div></pre></td></tr></table></figure>
+<h4 id="查看模块对应请求"><a href="#查看模块对应请求" class="headerlink" title="查看模块对应请求"></a>查看模块对应请求</h4><p>这里采用的方法是将请求与模块DOM上自动带上的模块id进行绑定并存储。具体交互方法是点击插件，就给每个模块加上蒙层，点击模块的蒙层，即可根据模块DOM来查找该请求</p>
+<h3 id="下面是他们的关系"><a href="#下面是他们的关系" class="headerlink" title="下面是他们的关系"></a>下面是他们的关系</h3><p><img src="https://cdn.nlark.com/lark/0/2018/png/118003/1543912196049-80ead7b9-8ba4-4a8b-a92a-443298c83293.png" alt=""></p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>chrome还可以做很多事情，比如我的插件还修复了另一个内部使用的埋点插件在移动端样式错乱的问题，还做了埋点请求的监控，等等等等。如果对一个网站不满意，我们除了改变网站的代码，我们还可以改变我们的浏览器，领悟到这一点，感觉思路也开阔一点了。</p>
+<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>使用chrome插件可以完成一些自动化的操作和做一些页面性能或报错的检测提醒且不用去修改原本项目页面的代码。掌握chrome插件的开发可以有效解决部分开发中碰到的痛点，提升开发效率。<br>chrome插件还有很多实用的API，如标签控制，菜单定制，窗口控制等，本次开发的chrome插件，只用到了其中很少的一部分功能，并且在使用体验还有不小的提升空间，希望有机会可以和大家多交流学习。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.chrome.com/extensions" target="_blank" rel="external">https://developer.chrome.com/extensions</a></p>
+<p><a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html" target="_blank" rel="external">https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html</a></p>
+<p><a href="http://www.ituring.com.cn/book/miniarticle/60223" target="_blank" rel="external">http://www.ituring.com.cn/book/miniarticle/60223</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+  <p style="margin-top: 20px">如果我的文章对你有帮助，欢迎
+    <a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">关注和 star 本博客</a>
+    或是<a href="https://github.com/hpoenixf" target="_blank" rel="external">关注我的 github</a>，获取更新通知。欢迎发送邮件到hpoenixf@foxmail.com与作者交流</p>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/61514/" rel="next" title="我的2018">
+                <i class="fa fa-chevron-left"></i> 我的2018
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/63809/" rel="prev" title="如何写漂亮的代码">
+                如何写漂亮的代码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
+          
+
+  
+<div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hpoenixf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hpoenixf@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#manifest"><span class="nav-number">2.1.</span> <span class="nav-text">manifest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的js"><span class="nav-number">2.2.</span> <span class="nav-text">不同的js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">3.</span> <span class="nav-text">开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看页面模块信息"><span class="nav-number">3.1.</span> <span class="nav-text">查看页面模块信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听模块请求数据"><span class="nav-number">3.2.</span> <span class="nav-text">监听模块请求数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看模块对应请求"><span class="nav-number">3.3.</span> <span class="nav-text">查看模块对应请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是他们的关系"><span class="nav-number">4.</span> <span class="nav-text">下面是他们的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">5.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展望"><span class="nav-number">6.</span> <span class="nav-text">展望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-male"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'd81a0dc3cee29d34be76',
+      clientSecret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+      repo: 'hpoenixf.github.io',
+      owner: 'hpoenixf',
+      admin: ['hpoenixf'],
+      id: location.pathname,
+      distractionFreeMode: ''
+    })
+    gitalk.render('gitalk-container')
+  </script>
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

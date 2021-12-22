@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="错误信息监控收集哪些错误信息先从一个面试题开始吧。腾讯第二轮电话面试的一个题目：如果用户使用网页，发现白屏，现在联系上了你们，你们会向他询问什么信息呢？ 一个个去堆答案没有意思，我们换个思路，先想一下为什么会白屏？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端监控探究">
+<meta property="og:url" content="http://hpoenixf.com/posts/2967/index.html">
+<meta property="og:site_name" content="hpoenixf&#39;s blog">
+<meta property="og:description" content="错误信息监控收集哪些错误信息先从一个面试题开始吧。腾讯第二轮电话面试的一个题目：如果用户使用网页，发现白屏，现在联系上了你们，你们会向他询问什么信息呢？ 一个个去堆答案没有意思，我们换个思路，先想一下为什么会白屏？">
+<meta property="og:updated_time" content="2020-06-09T15:46:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端监控探究">
+<meta name="twitter:description" content="错误信息监控收集哪些错误信息先从一个面试题开始吧。腾讯第二轮电话面试的一个题目：如果用户使用网页，发现白屏，现在联系上了你们，你们会向他询问什么信息呢？ 一个个去堆答案没有意思，我们换个思路，先想一下为什么会白屏？">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hpoenixf.com/posts/2967/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>前端监控探究 | hpoenixf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116923512-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116923512-1');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hpoenixf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">github.com/hpoenixf</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/hpoenixf" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/2967/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端监控探究</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-02T11:28:14+08:00">2020-06-02</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/2967/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/2967/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/2967/" class="leancloud_visitors" data-flag-title="前端监控探究">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,824 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="错误信息监控"><a href="#错误信息监控" class="headerlink" title="错误信息监控"></a>错误信息监控</h2><h3 id="收集哪些错误信息"><a href="#收集哪些错误信息" class="headerlink" title="收集哪些错误信息"></a>收集哪些错误信息</h3><p>先从一个面试题开始吧。腾讯第二轮电话面试的一个题目：如果用户使用网页，发现白屏，现在联系上了你们，你们会向他询问什么信息呢？</p>
+<p>一个个去堆答案没有意思，我们换个思路，先想一下为什么会白屏？</p>
+<a id="more"></a>
+<h3 id="错误发生在什么环节"><a href="#错误发生在什么环节" class="headerlink" title="错误发生在什么环节"></a>错误发生在什么环节</h3><p>跟我之前的<a href="http://hpoenixf.com/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89.html">性能优化的文章</a>一样，我们以用户访问页面的过程为顺序，大致排查一下</p>
+<ol>
+<li>用户没打开网络</li>
+<li>DNS域名劫持</li>
+<li>http劫持</li>
+<li>cdn或是其他资源文件访问出错</li>
+<li>服务器错误</li>
+<li>接口出错</li>
+<li>前端代码错误</li>
+<li>浏览器兼容性问题(css或是js)</li>
+<li>设备屏幕尺寸兼容问题</li>
+<li>客户端出错</li>
+<li>上面被盖了了webview或是别的元素</li>
+<li>用户操作出错</li>
+</ol>
+<h3 id="收集哪些信息"><a href="#收集哪些信息" class="headerlink" title="收集哪些信息"></a>收集哪些信息</h3><p>通过以上可能发生错误的环节，我们需要向用户手机一下以下的用户信息</p>
+<ol>
+<li>当前的网络状态</li>
+<li>运营商</li>
+<li>地理位置</li>
+<li>访问时间</li>
+<li>客户端的版本(如果是通过客户端访问)</li>
+<li>系统版本</li>
+<li>浏览器信息</li>
+<li>设备分辨率</li>
+<li>页面的来源</li>
+<li>用户账号信息</li>
+<li>页面访问流程各阶段耗时</li>
+<li>js代码报错信息</li>
+</ol>
+<p>另外，参考Google Analytics数据统计的原理，我们还可以收集下面的信息</p>
+<ol>
+<li>用户的浏览器语言编码</li>
+<li>浏览器语言设置</li>
+<li>flash的版本</li>
+<li>网页的标题</li>
+<li>网页的来源</li>
+<li>cookie的数据</li>
+</ol>
+<h3 id="怎么发现白屏"><a href="#怎么发现白屏" class="headerlink" title="怎么发现白屏"></a>怎么发现白屏</h3><ol>
+<li>N秒没触发onload</li>
+<li>N秒后页面仍然是白的</li>
+<li>N秒后DOM元素少于X个</li>
+<li>前端主动触发</li>
+</ol>
+<h3 id="如何收集错误的信息"><a href="#如何收集错误的信息" class="headerlink" title="如何收集错误的信息"></a>如何收集错误的信息</h3><p>现在话题来到了如何收集错误信息了。</p>
+<p>前端错误收集有两大流派：</p>
+<p> 一个是虚拟机监控，优点是指标齐全，并且可以进行竞品监控，缺点是反映不全，容易失真</p>
+<p>下面简单列出一些虚拟机监控的方案</p>
+<ol>
+<li>图片对比，每隔一段时间使用虚拟机访问页面并截图然后进行相似度对比，如果差值超出一定的数值，进行报警</li>
+<li>定时抓取页面的HTML源码，分析是否出现异常</li>
+</ol>
+<p>另一个是脚本监控，优点是可以收集海量真实数据，缺点是影响性能，采样少的情况下容易失真。</p>
+<p>这里暂时只重点讲脚本监控（挖个坑，之后可能填）</p>
+<p>在这里，我们主要利用脚本收集用户的各阶段访问消耗时间以及错误信息</p>
+<h3 id="各阶段访问耗时记录"><a href="#各阶段访问耗时记录" class="headerlink" title="各阶段访问耗时记录"></a>各阶段访问耗时记录</h3><p>之所以要收集访问耗时，是为了查出是什么阶段消耗的时间较多，从而更好的定位错误来源。</p>
+<h4 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h4><p>首先我们可以关注一下<a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance" target="_blank" rel="external">Performance</a>,下面就先讲一下其中的两个API</p>
+<h5 id="performance-timing"><a href="#performance-timing" class="headerlink" title="performance timing"></a>performance timing</h5><p>具体可以查看<a href="https://www.w3.org/TR/navigation-timing/#sec-window.performance-attribute" target="_blank" rel="external">w3.org/TR/navigation-timing</a>、<a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API" target="_blank" rel="external">Navigation Timing API</a>。</p>
+<p>在chrome浏览器控制台输入Performance.timing，会得到记录了一个浏览器访问各阶段的时间的对象。</p>
+<p>进行错误收集的时候，可以对比这些时间，看错误发生在什么阶段</p>
+<ol>
+<li>DNS 查询耗时 ：domainLookupEnd - domainLookupStart</li>
+<li>TCP 链接耗时 ：connectEnd - connectStart</li>
+<li>request 请求耗时 ：responseEnd - responseStart</li>
+<li>解析 dom 树耗时 ： domComplete - domInteractive</li>
+<li>白屏时间 ：responseStart - navigationStart</li>
+<li>domready 时间 ：domContentLoadedEventEnd - navigationStart</li>
+<li>onload 时间 ：loadEventEnd – navigationStart</li>
+<li>TTFB 首包时间 responseStart - Requeststart</li>
+<li>tti 可交互时间: domInteractive - fetchstart</li>
+</ol>
+<h5 id="performance-getEntries"><a href="#performance-getEntries" class="headerlink" title="performance getEntries"></a>performance getEntries</h5><p>具体参见<a href="https://www.w3.org/TR/resource-timing/" target="_blank" rel="external">W3C Resource timing</a>，<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/getEntries" target="_blank" rel="external">Performance.getEntries()</a></p>
+<p>通过performance.getEntries()，可以得到一个数字，其中的每个元素分别代表着一个资源，元素对象包括的属性跟上面的performance timing有点接近，还有不同的属性包括name代表资源的地址，请求花费的时间duration。</p>
+<h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>记录访问开始的时间可有以下的方法：</p>
+<ol>
+<li>服务器将访问的时间渲染到页面上</li>
+<li>SPA的话，记录前一个页面卸载的时间</li>
+</ol>
+<p>记录访问过程的时间</p>
+<ol>
+<li>在head标签解析后，渲染body标签前加入script标签进行打点，一般将这个时间视为白屏时间</li>
+<li>捕获DOMContentLoaded事件来记录dom元素加载完毕的时间</li>
+<li>在首屏页面的所有图片加载完后进行记录，保存首屏时间</li>
+<li>捕获load事件记录页面加载完成的时间</li>
+</ol>
+<h3 id="脚本错误信息收集"><a href="#脚本错误信息收集" class="headerlink" title="脚本错误信息收集"></a>脚本错误信息收集</h3><h4 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h4><p>window.onerror可以捕捉运行时错误，可以拿到出错的信息，堆栈，出错的文件、行号、列号</p>
+<p>要注意以下几点：</p>
+<ol>
+<li><p>要把window.onerror这个代码块分离出去，并且比其他脚本先执行（注意这个前提！）即可捕捉到语法错误。</p>
+</li>
+<li><p>由于网络请求异常事件不会冒泡，需要在捕获阶段进行处理</p>
+</li>
+<li><p>不能捕获promise的错误信息</p>
+</li>
+<li><p>跨域资源需要专门处理，需要在script标签加上crossorigin属性，服务器设置Access-Control-Allow-Origin</p>
+</li>
+<li><p>window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx。</p>
+</li>
+</ol>
+<h4 id="promise的错误处理"><a href="#promise的错误处理" class="headerlink" title="promise的错误处理"></a>promise的错误处理</h4><p>promise除了使用catch方法来捕获错误，还可以使用window的unhandledrejection事件捕获异常的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"unhandledrejection"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">  <span class="comment">// Event新增属性</span></div><div class="line">  <span class="comment">// @prop &#123;Promise&#125; promise - 状态为rejected的Promise实例</span></div><div class="line">  <span class="comment">// @prop &#123;String|Object&#125; reason - 异常信息或rejected的内容</span></div><div class="line"></div><div class="line">  <span class="comment">// 会阻止异常继续抛出，不让Uncaught(in promise) Error产生</span></div><div class="line">  e.preventDefault()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h4><p>无法捕捉到语法错误，只能捕捉运行时错误；<br>可以拿到出错的信息，堆栈，出错的文件、行号、列号； 需要借助工具把所有的function块以及文件块加入try,catch，可以在这个阶段打入更多的静态信息。</p>
+<p>要注意的是try catch只能捕获同步代码的异常，对回调，setTimeout，promise等无能为力</p>
+<h4 id="API出错上报"><a href="#API出错上报" class="headerlink" title="API出错上报"></a>API出错上报</h4><p>获取请求，如果接口出错或是异常，报错</p>
+<h2 id="性能信息监控"><a href="#性能信息监控" class="headerlink" title="性能信息监控"></a>性能信息监控</h2><h3 id="performance-timing-1"><a href="#performance-timing-1" class="headerlink" title="performance.timing"></a>performance.timing</h3><h3 id="埋点sdk上报"><a href="#埋点sdk上报" class="headerlink" title="埋点sdk上报"></a>埋点sdk上报</h3><h3 id="监听onload，contentload事件"><a href="#监听onload，contentload事件" class="headerlink" title="监听onload，contentload事件"></a>监听onload，contentload事件</h3><h3 id="检测dom数量"><a href="#检测dom数量" class="headerlink" title="检测dom数量"></a>检测dom数量</h3><h3 id="检测最大面积的元素加载"><a href="#检测最大面积的元素加载" class="headerlink" title="检测最大面积的元素加载"></a>检测最大面积的元素加载</h3><h2 id="用户行为监控"><a href="#用户行为监控" class="headerlink" title="用户行为监控"></a>用户行为监控</h2><ul>
+<li>事件监听，滚动，点击等</li>
+<li>业务主动上报</li>
+<li>API请求</li>
+<li>用户对页面的操作</li>
+</ul>
+<h2 id="上报手段"><a href="#上报手段" class="headerlink" title="上报手段"></a>上报手段</h2><ol>
+<li><p>后端提供接口，前端ajax上传</p>
+</li>
+<li><p>创建一个新的图片，url参数带上错误信息</p>
+</li>
+</ol>
+<p>推荐使用gif,原因如下：</p>
+<ul>
+<li>简单方便可跨域</li>
+<li>可以防止重复请求</li>
+<li>服务器不用做响应</li>
+</ul>
+<ol>
+<li>navigator.sendBeacon</li>
+</ol>
+<p>能保证在退出页面前发送</p>
+<ol>
+<li>无埋点或是可视化埋点</li>
+</ol>
+<p>生成页面唯一标致，监听事件，用户行为等，dom节点上埋下坑位方便定位</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><p><a href="https://www.cnblogs.com/fsjohnhuang/p/7685144.html" target="_blank" rel="external">前端魔法堂——异常不仅仅是try/catch</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/longm/p/7382163.html" target="_blank" rel="external">前端优化-如何计算白屏和首屏时间</a></p>
+</li>
+<li><p><a href="https://www.biaodianfu.com/google-analytics-architecture.html" target="_blank" rel="external">Google Analytics数据统计的原理</a></p>
+</li>
+<li><p><a href="http://www.alloyteam.com/2015/09/explore-performance/" target="_blank" rel="external">初探 performance – 监控网页与程序性能</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>支持作者</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hpoenixf WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+  <p style="margin-top: 20px">如果我的文章对你有帮助，欢迎
+    <a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">关注和 star 本博客</a>
+    或是<a href="https://github.com/hpoenixf" target="_blank" rel="external">关注我的 github</a>，获取更新通知。欢迎发送邮件到hpoenixf@foxmail.com与作者交流</p>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/20802/" rel="next" title="前端系分文档">
+                <i class="fa fa-chevron-left"></i> 前端系分文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/2511/" rel="prev" title="如何应对前端系统设计和优化">
+                如何应对前端系统设计和优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-7481512314305059",
+              enable_page_level_ads: true
+            });
+          </script>
+          
+
+  
+<div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hpoenixf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hpoenixf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hpoenixf@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误信息监控"><span class="nav-number">1.</span> <span class="nav-text">错误信息监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收集哪些错误信息"><span class="nav-number">1.1.</span> <span class="nav-text">收集哪些错误信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误发生在什么环节"><span class="nav-number">1.2.</span> <span class="nav-text">错误发生在什么环节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#收集哪些信息"><span class="nav-number">1.3.</span> <span class="nav-text">收集哪些信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么发现白屏"><span class="nav-number">1.4.</span> <span class="nav-text">怎么发现白屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何收集错误的信息"><span class="nav-number">1.5.</span> <span class="nav-text">如何收集错误的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各阶段访问耗时记录"><span class="nav-number">1.6.</span> <span class="nav-text">各阶段访问耗时记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#performance"><span class="nav-number">1.6.1.</span> <span class="nav-text">performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#performance-timing"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">performance timing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#performance-getEntries"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">performance getEntries</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他方法"><span class="nav-number">1.6.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本错误信息收集"><span class="nav-number">1.7.</span> <span class="nav-text">脚本错误信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#window-onerror"><span class="nav-number">1.7.1.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#promise的错误处理"><span class="nav-number">1.7.2.</span> <span class="nav-text">promise的错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#try-catch"><span class="nav-number">1.7.3.</span> <span class="nav-text">try catch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API出错上报"><span class="nav-number">1.7.4.</span> <span class="nav-text">API出错上报</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能信息监控"><span class="nav-number">2.</span> <span class="nav-text">性能信息监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#performance-timing-1"><span class="nav-number">2.1.</span> <span class="nav-text">performance.timing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#埋点sdk上报"><span class="nav-number">2.2.</span> <span class="nav-text">埋点sdk上报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听onload，contentload事件"><span class="nav-number">2.3.</span> <span class="nav-text">监听onload，contentload事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测dom数量"><span class="nav-number">2.4.</span> <span class="nav-text">检测dom数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测最大面积的元素加载"><span class="nav-number">2.5.</span> <span class="nav-text">检测最大面积的元素加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户行为监控"><span class="nav-number">3.</span> <span class="nav-text">用户行为监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上报手段"><span class="nav-number">4.</span> <span class="nav-text">上报手段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-male"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hpoenixf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'd81a0dc3cee29d34be76',
+      clientSecret: 'b73b1ce57547b406c5cdd7e97b895811e9ac448a',
+      repo: 'hpoenixf.github.io',
+      owner: 'hpoenixf',
+      admin: ['hpoenixf'],
+      id: location.pathname,
+      distractionFreeMode: ''
+    })
+    gitalk.render('gitalk-container')
+  </script>
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Q9TFXpimWp8pMUBrW5PdfNg3-gzGzoHsz", "793qUgAmJo5qkhVU3vP0oG8r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
