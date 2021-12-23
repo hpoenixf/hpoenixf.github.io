@@ -353,21 +353,16 @@
             
           
 
-          
-          
-             <span id="/posts/8342/" class="leancloud_visitors" data-flag-title="[译]如何运用最新的技术提升网页速度和性能">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
-          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span id="busuanzi_container_page_pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" >0</span>
+            </span>
+            </span>
 
           
 
@@ -817,7 +812,7 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
 
 
         
-<div class="busuanzi-count">
+<div class="busuanzi-count id="busuanzi_container_site_pv">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
   </script>
 
@@ -1083,14 +1078,14 @@ if (&apos;querySelector&apos;indocument &amp;&amp; &apos;addEventListener&apos;i
       });
     }
 
-
+    window.onload = function() {
       var Counter = AV.Object.extend("Counter");
       if (document.querySelectorAll('.leancloud_visitors').length == 1) {
         addCount(Counter);
       } else if (document.querySelectorAll('.post-title-link').length > 1) {
         showTime(Counter);
       }
-
+}
   </script>
 
 

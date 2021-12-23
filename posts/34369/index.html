@@ -103,7 +103,7 @@
 <meta property="og:url" content="http://hpoenixf.com/posts/34369/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
 <meta property="og:description" content="帧同步简介帧同步是让玩家保持一致性，可以进行对战联机的功能，王者荣耀要采用了该技术。简单点来说，就是每当玩家进行操作，都会上传对应的操作给服务器，服务器定时将收到的操作发放给游戏客户端，每个游戏客户端收到的数据都是一样的，运行的结果自然也是一样的。 帧同步跟状态同步相比，优点有：高一致性，低流量消耗，简化服务器逻辑，容易反作弊。">
-<meta property="og:updated_time" content="2021-12-23T16:01:36.449Z">
+<meta property="og:updated_time" content="2021-12-23T16:01:42.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="帧同步sdk开发总结">
 <meta name="twitter:description" content="帧同步简介帧同步是让玩家保持一致性，可以进行对战联机的功能，王者荣耀要采用了该技术。简单点来说，就是每当玩家进行操作，都会上传对应的操作给服务器，服务器定时将收到的操作发放给游戏客户端，每个游戏客户端收到的数据都是一样的，运行的结果自然也是一样的。 帧同步跟状态同步相比，优点有：高一致性，低流量消耗，简化服务器逻辑，容易反作弊。">
@@ -346,21 +346,16 @@
             
           
 
-          
-          
-             <span id="/posts/34369/" class="leancloud_visitors" data-flag-title="帧同步sdk开发总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
-          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span id="busuanzi_container_page_pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" >0</span>
+            </span>
+            </span>
 
           
 
@@ -689,7 +684,7 @@
 
 
         
-<div class="busuanzi-count">
+<div class="busuanzi-count id="busuanzi_container_site_pv">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
   </script>
 
@@ -955,14 +950,14 @@
       });
     }
 
-
+    window.onload = function() {
       var Counter = AV.Object.extend("Counter");
       if (document.querySelectorAll('.leancloud_visitors').length == 1) {
         addCount(Counter);
       } else if (document.querySelectorAll('.post-title-link').length > 1) {
         showTime(Counter);
       }
-
+}
   </script>
 
 

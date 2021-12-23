@@ -488,7 +488,7 @@
 
 
         
-<div class="busuanzi-count">
+<div class="busuanzi-count id="busuanzi_container_site_pv">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
   </script>
 
@@ -735,14 +735,14 @@
       });
     }
 
-
+    window.onload = function() {
       var Counter = AV.Object.extend("Counter");
       if (document.querySelectorAll('.leancloud_visitors').length == 1) {
         addCount(Counter);
       } else if (document.querySelectorAll('.post-title-link').length > 1) {
         showTime(Counter);
       }
-
+}
   </script>
 
 
