@@ -498,6 +498,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/posts/34369/" rel="prev" title="帧同步sdk开发总结">
+                帧同步sdk开发总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -580,7 +584,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -970,14 +974,14 @@
       });
     }
 
-    $(function() {
+
       var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+      if (document.querySelectorAll('.leancloud_visitors').length == 1) {
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length > 1) {
         showTime(Counter);
       }
-    });
+
   </script>
 
 
