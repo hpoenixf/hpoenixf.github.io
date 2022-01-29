@@ -298,6 +298,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/44090/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hpoenixf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hpoenixf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/44090/" itemprop="url">iscroll-lite源码阅读</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-12T12:22:31+08:00">2017-08-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+
+          
+
+          
+
+          
+      
+        <span class="post-letters-count">
+          &nbsp; | &nbsp;
+          <span>1,452 words </span>
+        </span>
+      
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>最近开发移动端项目用到了iscroll，踩了不少坑，因此阅读源码加深下对这个工具的了解。<br>本次阅读的是iscroll-lite，包含了主要的功能，比完整版少了鼠标滚轮，滚动后对齐到特定位置，按键绑定及定制滚动条等功能。</p>
+<h4 id="主体结构"><a href="#主体结构" class="headerlink" title="主体结构"></a>主体结构</h4><p>以当前的5.2版本为例，前三百行是工具函数，封装了一些工具。三百行到四百行是构造函数IScroll，起到配置和初始化的效果。四百行到一千修改了IScroll的原型，给IScroll实例加上了各种方法。最后是模块化相关的判断。总体的结构是很清晰的。</p>
+<h4 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h4><h5 id="prefixStyle"><a href="#prefixStyle" class="headerlink" title="_prefixStyle"></a>_prefixStyle</h5><p>用于浏览器兼容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _vendor = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> vendors = [<span class="string">'t'</span>, <span class="string">'webkitT'</span>, <span class="string">'MozT'</span>, <span class="string">'msT'</span>, <span class="string">'OT'</span>],</div><div class="line">		transform,</div><div class="line">		i = <span class="number">0</span>,</div><div class="line">		l = vendors.length;</div><div class="line"></div><div class="line">	<span class="keyword">for</span> ( ; i &lt; l; i++ ) &#123;</div><div class="line">		transform = vendors[i] + <span class="string">'ransform'</span>;</div><div class="line">		<span class="keyword">if</span> ( transform <span class="keyword">in</span> _elementStyle ) <span class="keyword">return</span> vendors[i].substr(<span class="number">0</span>, vendors[i].length<span class="number">-1</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;)();</div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">_prefixStyle</span> (<span class="params">style</span>) </span>&#123;</div><div class="line">       <span class="keyword">if</span> ( _vendor === <span class="literal">false</span> ) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">       <span class="keyword">if</span> ( _vendor === <span class="string">''</span> ) <span class="keyword">return</span> style;</div><div class="line">       <span class="keyword">return</span> _vendor + style.charAt(<span class="number">0</span>).toUpperCase() + style.substr(<span class="number">1</span>);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/44090/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+
+    
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/61797/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1264,170 +1399,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/2914/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hpoenixf">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hpoenixf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/2914/" itemprop="url">[译]设计和构建你自己的JavaScript代码库：提示与技巧</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-26T11:53:06+08:00">2016-07-26</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-
-          
-
-          
-
-          
-      
-        <span class="post-letters-count">
-          &nbsp; | &nbsp;
-          <span>4,496 words </span>
-        </span>
-      
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="设计和构建你自己的JavaScript代码库：提示与技巧"><a href="#设计和构建你自己的JavaScript代码库：提示与技巧" class="headerlink" title="设计和构建你自己的JavaScript代码库：提示与技巧"></a>设计和构建你自己的JavaScript代码库：提示与技巧</h1><blockquote>
-<p>本文转载自：<a href="http://www.zcfy.cc" target="_blank" rel="external">众成翻译</a><br>译者：<a href="http://www.zcfy.cc/@hpoenixf" target="_blank" rel="external">hpoenixf</a><br>链接：<a href="http://www.zcfy.cc/article/939" target="_blank" rel="external">http://www.zcfy.cc/article/939</a><br>原文：<a href="https://www.sitepoint.com/design-and-build-your-own-javascript-library/" target="_blank" rel="external">https://www.sitepoint.com/design-and-build-your-own-javascript-library/</a></p>
-</blockquote>
-<p>代码库：我们一直在使用它们。代码库是开发者把他们会在项目中使用到的代码打包起来形成的，这总能节省时间和避免重复造轮子。拥有一个可重复使用的包，不管是开源的还是闭源的，总比重复构建一样特性的包或者从过去的项目中手动复制粘贴要好。</p>
-<h3 id="来自作者的更多文章"><a href="#来自作者的更多文章" class="headerlink" title="来自作者的更多文章"></a>来自作者的更多文章</h3><ul>
-<li><a href="https://www.sitepoint.com/stop-maiming-bodies-the-perils-of-pixel-font-size/?utm_source=sitepoint&amp;utm_medium=relatedinline&amp;utm_term=javascript&amp;utm_campaign=relatedauthor" target="_blank" rel="external">Stop Maiming Bodies: The Perils of Pixel Font-Size</a></li>
-<li><a href="https://www.sitepoint.com/es2016-should-future-of-javascript-be-developer-driven/?utm_source=sitepoint&amp;utm_medium=relatedinline&amp;utm_term=javascript&amp;utm_campaign=relatedauthor" target="_blank" rel="external">ES2016: Should the Future of JavaScript Be Developer-Driven?</a></li>
-</ul>
-<p>除了被打包的代码，还可以更精确的形容代码库吗？除了少数的例外，代码库通常只是一个文件，或者是在同一个文件夹里的几个文件。它的代码应该可以单独保存和在你的项目中正常使用。库文件允许你根据项目的不同来调整结构或者行为。想象一下只能通过USB接口进行通讯的USB设备。一些设备，例如鼠标和键盘，可以通过设备提供的接口来进行配置。</p>
-<p>在这篇文章，我会解释如何构建库文件。尽管大部分的方法可以应用到其他语言，但这篇文章主要讲述的是构建JavaScript库文件。</p>
-<p>##为什么构建你自己的Javascript库？</p>
-<p>首先和最重要的，库文件可以让现有的代码方便的重复利用。你不需要挖出陈旧的项目来复制文件，只需要引入库文件。这也可以让你的应用组件化，让应用的代码库更小更易维护。</p>
-<p><img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1463750487Christ_Church_Library_Oxford-17189963462.jpg" alt="Christ Church Library, Oxford"></p>
-<p>Christ Church Library (<a href="https://commons.wikimedia.org/wiki/File:Christ_Church_Library,_Oxford-17189963462.jpg" target="_blank" rel="external">source</a>)</p>
-<p>任何可以让实现一个具体的功能更容易或者可以被重复利用的抽象的代码，都可以被打包进去库文件。jQuery是一个有趣的例子。尽管jQuery的API有大量的简化的DOM API，在跨浏览器DOM操作比较困难的过去有着相当重要的意义。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/2914/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-
-    
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1482,7 +1453,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

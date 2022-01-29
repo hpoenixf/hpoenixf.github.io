@@ -97,23 +97,23 @@
 
 
 
-  <meta name="description" content="随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。">
+  <meta name="description" content="sdk 的作用是把一些功能封装起来，提供给别的开发者使用，如何才能编写一个好的sdk呢 首先，谁最有权力来判断我的sdk好不好呢？产品经理吗？领导吗？当然是我们的用户。我们不妨以用户使用sdk的全流程来思考一下，好的sdk有怎样的特征  让用户选择我们的sdk 宣传已经接入的知名业务 强调团队已经产出的优秀产品 到内部论坛、外部宣传   让用户了解我们的sdk  编写更好的文档 提供playgro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="加快webpack构建">
-<meta property="og:url" content="http://hpoenixf.com/posts/21589/index.html">
+<meta property="og:title" content="如何写一个好的sdk">
+<meta property="og:url" content="http://hpoenixf.com/posts/1885/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。">
-<meta property="og:updated_time" content="2018-04-17T00:35:46.000Z">
+<meta property="og:description" content="sdk 的作用是把一些功能封装起来，提供给别的开发者使用，如何才能编写一个好的sdk呢 首先，谁最有权力来判断我的sdk好不好呢？产品经理吗？领导吗？当然是我们的用户。我们不妨以用户使用sdk的全流程来思考一下，好的sdk有怎样的特征  让用户选择我们的sdk 宣传已经接入的知名业务 强调团队已经产出的优秀产品 到内部论坛、外部宣传   让用户了解我们的sdk  编写更好的文档 提供playgro">
+<meta property="og:updated_time" content="2022-01-29T15:45:38.784Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加快webpack构建">
-<meta name="twitter:description" content="随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。">
+<meta name="twitter:title" content="如何写一个好的sdk">
+<meta name="twitter:description" content="sdk 的作用是把一些功能封装起来，提供给别的开发者使用，如何才能编写一个好的sdk呢 首先，谁最有权力来判断我的sdk好不好呢？产品经理吗？领导吗？当然是我们的用户。我们不妨以用户使用sdk的全流程来思考一下，好的sdk有怎样的特征  让用户选择我们的sdk 宣传已经接入的知名业务 强调团队已经产出的优秀产品 到内部论坛、外部宣传   让用户了解我们的sdk  编写更好的文档 提供playgro">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/posts/21589/"/>
+  <link rel="canonical" href="http://hpoenixf.com/posts/1885/"/>
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>加快webpack构建 | hpoenixf's blog</title>
+  <title>如何写一个好的sdk | hpoenixf's blog</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/21589/">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/1885/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -318,7 +318,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">加快webpack构建</h2>
+          <h2 class="post-title" itemprop="name headline">如何写一个好的sdk</h2>
         
 
         <div class="post-meta">
@@ -330,7 +330,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-10T20:40:59+08:00">2017-12-10</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-01-29T20:57:06+08:00">2022-01-29</time>
             
 
             
@@ -348,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/21589/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/21589/" itemprop="commentsCount"></span>
+                <a href="/posts/1885/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/1885/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -372,7 +372,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>336 words </span>
+          <span>650 words </span>
         </span>
       
         </div>
@@ -388,17 +388,119 @@
       
 
       
-        <p>随着项目的复杂，现在开发的移动端多页面项目构建时间超过二十秒，按一天重启二十次来说，一天有超过六分钟时间，一个月超过两小时用于构建webpack，如果能减少相关的时间，可以有效的节省开发时间。</p>
-<a id="more"></a>
-<p>1.在开发环境不使用babel转码，仅在生产环境使用。本地开发的chrome的es6的兼容性足够好，不需要babel转码，经测试，这一操作可以减少25%的构建时间。如果使用babel，可以开启babel的缓存</p>
-<p>2.在开发环境不使用post-css，关闭压缩css，可以提升10%的速度。</p>
-<p>3.在entry中仅引入当前开发的页面，这一举措可以提升一倍的构建速度，在其他步奏完成后，还需要12秒左右的构建速度，完成该步骤后，仅需五秒的构建时间。</p>
-<p>4.启用代码热更新，想办法捕获热更新，避免热更新时刷新浏览器</p>
-<p>5.启动happypack，并行编译</p>
-<p>6.第三方代码库使用cdn</p>
-<p>7.使用resolve.alias 优化资源的搜索路径，noParse忽略。</p>
-<p>8.使用dll</p>
-<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
+        <p>sdk 的作用是把一些功能封装起来，提供给别的开发者使用，如何才能编写一个好的sdk呢</p>
+<p>首先，谁最有权力来判断我的sdk好不好呢？产品经理吗？领导吗？当然是我们的用户。<br>我们不妨以用户使用sdk的全流程来思考一下，好的sdk有怎样的特征</p>
+<ol>
+<li>让用户选择我们的sdk<ol>
+<li>宣传已经接入的知名业务</li>
+<li>强调团队已经产出的优秀产品</li>
+<li>到内部论坛、外部宣传</li>
+</ol>
+</li>
+<li>让用户了解我们的sdk <ol>
+<li>编写更好的文档</li>
+<li>提供playground</li>
+</ol>
+</li>
+<li>让用户更好的接入我们的sdk</li>
+<li>让用户使用上更好的sdk</li>
+<li>让用户更好的解决问题</li>
+<li>让用户更好的运维、升级</li>
+</ol>
+<p>后面几点就详细讲讲吧</p>
+<h3 id="容易接入的sdk"><a href="#容易接入的sdk" class="headerlink" title="容易接入的sdk"></a>容易接入的sdk</h3><ul>
+<li>优雅的代码<ul>
+<li>使用typescript或jsdoc来优化代码提醒</li>
+<li>完善代码注释</li>
+<li>良好的分类和代码组织</li>
+<li>有规律，良好的命名</li>
+</ul>
+</li>
+<li><p>提供demo</p>
+<ul>
+<li>可下载可运行</li>
+<li>可在页面调试运行</li>
+</ul>
+</li>
+<li><p>减少用户心智负担</p>
+<ul>
+<li>尽量减少需要的参数，提供默认参数</li>
+<li>允许集中配置</li>
+<li>屏蔽用户不需要操心的细节<h3 id="好的sdk代码"><a href="#好的sdk代码" class="headerlink" title="好的sdk代码"></a>好的sdk代码</h3></li>
+</ul>
+</li>
+<li><p>完成应该做的工作</p>
+</li>
+</ul>
+<ul>
+<li><p>提供一定的自由度</p>
+</li>
+<li><p>控制体积</p>
+<ul>
+<li>最好允许选择，组合功能来生成sdk包</li>
+<li>支持按需，分平台引入</li>
+<li>第三方依赖较少</li>
+<li>最小可用原则</li>
+</ul>
+</li>
+<li>扩展性<ul>
+<li>支持用户自己编写插件</li>
+</ul>
+</li>
+<li>可维护性<ul>
+<li>系统拆分为独立模块，降低维护复杂度</li>
+</ul>
+</li>
+<li>兼容性、稳定性<ul>
+<li>尽可能覆盖多的平台/系统</li>
+<li>跨端跨平台一致</li>
+<li>新版本的sdk与旧版本的兼容</li>
+<li>新老接口</li>
+<li>新功能</li>
+<li>稳定运行，不影响宿主</li>
+</ul>
+</li>
+<li><p>高效</p>
+<ul>
+<li>高效率完成任务</li>
+<li>低内存占用<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3></li>
+</ul>
+</li>
+<li><p>错误处理</p>
+<ul>
+<li>分类分级别</li>
+</ul>
+</li>
+<li><p>在线答疑</p>
+<ul>
+<li>机器人自动答复</li>
+<li>研发同学值班</li>
+</ul>
+</li>
+</ul>
+<h3 id="运维及升级处理"><a href="#运维及升级处理" class="headerlink" title="运维及升级处理"></a>运维及升级处理</h3><ul>
+<li><p>如何版本处理</p>
+</li>
+<li><p>如何避免没有权限的人使用</p>
+<ul>
+<li>后端校验</li>
+<li>数字签名</li>
+</ul>
+</li>
+<li><p>收集数据</p>
+<ul>
+<li>使用者情况</li>
+</ul>
+</li>
+</ul>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>solid原则</p>
+<ul>
+<li>单一职责：一个接口负责一个功能</li>
+<li>开闭原则：对扩展开放，对修改关闭。添加功能时加代码而不是改代码</li>
+<li>里氏替换：父类可以用子类替换</li>
+<li>接口隔离：不同功能的模块用不同的接口</li>
+<li>依赖倒置：高层模块不以来低层模块</li>
+</ul>
 
       
     </div>
@@ -457,8 +559,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/17726/" rel="next" title="移动端自适应布局方案">
-                <i class="fa fa-chevron-left"></i> 移动端自适应布局方案
+              <a href="/posts/27567/" rel="next" title="小程序原理简述">
+                <i class="fa fa-chevron-left"></i> 小程序原理简述
               </a>
             
           </div>
@@ -466,10 +568,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/8215/" rel="prev" title="一个简单的virtual-dom实现">
-                一个简单的virtual-dom实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,8 +626,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -614,6 +721,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#容易接入的sdk"><span class="nav-number">1.</span> <span class="nav-text">容易接入的sdk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好的sdk代码"><span class="nav-number">2.</span> <span class="nav-text">好的sdk代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题"><span class="nav-number">3.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运维及升级处理"><span class="nav-number">4.</span> <span class="nav-text">运维及升级处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
