@@ -97,23 +97,23 @@
 
 
 
-  <meta name="description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
+  <meta name="description" content="webpack是当下常用的代码构建工具，对它进行优化可以提升工作效率和项目质量。 webpack是用来转换，生成代码的，要对它进行优化，主要还是从更快的工作和生成更小体积两个方面来进行考虑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个简单的virtual-dom实现">
-<meta property="og:url" content="http://hpoenixf.com/posts/8215/index.html">
+<meta property="og:title" content="webpack分析与优化">
+<meta property="og:url" content="http://hpoenixf.com/posts/55602/index.html">
 <meta property="og:site_name" content="hpoenixf&#39;s blog">
-<meta property="og:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
-<meta property="og:updated_time" content="2018-04-17T00:35:46.000Z">
+<meta property="og:description" content="webpack是当下常用的代码构建工具，对它进行优化可以提升工作效率和项目质量。 webpack是用来转换，生成代码的，要对它进行优化，主要还是从更快的工作和生成更小体积两个方面来进行考虑">
+<meta property="og:updated_time" content="2022-01-30T13:36:36.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个简单的virtual-dom实现">
-<meta name="twitter:description" content="简介virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行 snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出">
+<meta name="twitter:title" content="webpack分析与优化">
+<meta name="twitter:description" content="webpack是当下常用的代码构建工具，对它进行优化可以提升工作效率和项目质量。 webpack是用来转换，生成代码的，要对它进行优化，主要还是从更快的工作和生成更小体积两个方面来进行考虑">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hpoenixf.com/posts/8215/"/>
+  <link rel="canonical" href="http://hpoenixf.com/posts/55602/"/>
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>一个简单的virtual-dom实现 | hpoenixf's blog</title>
+  <title>webpack分析与优化 | hpoenixf's blog</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/8215/">
+    <link itemprop="mainEntityOfPage" href="http://hpoenixf.com/posts/55602/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hpoenixf">
@@ -318,7 +318,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">一个简单的virtual-dom实现</h2>
+          <h2 class="post-title" itemprop="name headline">webpack分析与优化</h2>
         
 
         <div class="post-meta">
@@ -330,7 +330,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-01T23:43:41+08:00">2018-01-01</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-01-30T16:19:11+08:00">2022-01-30</time>
             
 
             
@@ -348,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/8215/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/8215/" itemprop="commentsCount"></span>
+                <a href="/posts/55602/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/55602/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -372,7 +372,7 @@
       
         <span class="post-letters-count">
           &nbsp; | &nbsp;
-          <span>197 words </span>
+          <span>331 words </span>
         </span>
       
         </div>
@@ -388,12 +388,42 @@
       
 
       
-        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>virtual dom是一个听起来很高大上的概念，是现代前端框架一个常见的概念。然而virtual dom并不像想象中的那么复杂，两三百行的代码就可以完成一个简单的实现，比如snabbdom的核心代码只有三百多行</p>
-<p>snabbdom是一个简单而高效的virtual dom实现。vue便是维护了snabbdom的一份fork而实现virtual dom的。这两天阅读了snabbdom的源码，整理出来一个两百行多点，不包括生命周期属性设置等，只关注vnode的virtual dom项目vdom。</p>
-<p>本文章为<a href="http://hpoenixf.com/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97-%E7%9B%AE%E5%BD%95.html">前端进阶系列</a>的一部分,<br>欢迎关注和<a href="https://github.com/hpoenixf/hpoenixf.github.io" target="_blank" rel="external">star</a>本博客或是关注我的<a href="https://github.com/hpoenixf" target="_blank" rel="external">github</a></p>
-<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://github.com/hpoenixf/vdom" target="_blank" rel="external">项目地址</a></p>
-<p><a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a></p>
-<p><a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="external">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
+        <p>webpack是当下常用的代码构建工具，对它进行优化可以提升工作效率和项目质量。</p>
+<p>webpack是用来转换，生成代码的，要对它进行优化，主要还是从更快的工作和生成更小体积两个方面来进行考虑<br><a id="more"></a></p>
+<h3 id="更快的进行工作"><a href="#更快的进行工作" class="headerlink" title="更快的进行工作"></a>更快的进行工作</h3><p>speed-measure-webpack-plugin 测量时间</p>
+<ul>
+<li>减少要处理的文件<ul>
+<li>externals 从cdn引入文件</li>
+<li>缩小范围。include exclude  </li>
+<li>noprase 忽略第三方库</li>
+</ul>
+</li>
+<li>开启缓存<ul>
+<li>babel，cache-loader，hard-source-webpack-plugin</li>
+<li>多进程   thread loader,webpack5 默认开始</li>
+</ul>
+</li>
+<li>区分环境<br>-本地话取消es6转码<ul>
+<li>本地时取消压缩代码，抽取样式</li>
+<li>sourcemap eval类型字符串，加速，cheap 没有列信息</li>
+<li>压缩登在本地不需要</li>
+</ul>
+</li>
+<li>dll编译,cdn   [DllReferencePlugin</li>
+<li>指定路径，减少查找时间<ul>
+<li>resolve.modules</li>
+<li>alias，指定min.js而不是重新编译</li>
+</ul>
+</li>
+</ul>
+<h3 id="生成更小体积的代码"><a href="#生成更小体积的代码" class="headerlink" title="生成更小体积的代码"></a>生成更小体积的代码</h3><p>webpack-bundle-analyzer</p>
+<ul>
+<li>去掉没有用到的代码</li>
+<li>tree shaking</li>
+<li>改用cdn</li>
+<li>uglifyjs</li>
+<li>Scope Hoisting 让代码尽可能放到统一函数，Scope Hoisting 的实现原理其实很简单：分析出模块之间的依赖关系，尽可能将打散的模块合并到一个函数中，前提是不能造成代码冗余。 因此「只有那些被引用了一次的模块才能被合并」。</li>
+</ul>
 
       
     </div>
@@ -452,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/21589/" rel="next" title="加快webpack构建">
-                <i class="fa fa-chevron-left"></i> 加快webpack构建
+              <a href="/posts/1885/" rel="next" title="如何写一个好的sdk">
+                <i class="fa fa-chevron-left"></i> 如何写一个好的sdk
               </a>
             
           </div>
@@ -461,10 +491,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/13626/" rel="prev" title="使用原生JS进行前后端同构">
-                使用原生JS进行前后端同构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -628,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#地址"><span class="nav-number">2.</span> <span class="nav-text">地址</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#更快的进行工作"><span class="nav-number">1.</span> <span class="nav-text">更快的进行工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成更小体积的代码"><span class="nav-number">2.</span> <span class="nav-text">生成更小体积的代码</span></a></li></ol></div>
             
 
           </div>
